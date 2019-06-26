@@ -1,4 +1,4 @@
-package com.lade.app.entities;
+package com.lade.app.Entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -13,8 +13,10 @@ public class SiteEscalade implements Serializable {
   private int nbrSecteur;
   private String voies;
   private String longeurs;
-  private String lieu;
   private String cotation;
+  private String lieu;
+  private String villeProximite;
+  private String typeRoche;
   private boolean tag;
 
 
@@ -23,14 +25,17 @@ public class SiteEscalade implements Serializable {
   }
 
   public SiteEscalade(String nom, String secteur, int nbrSecteur, String voies,
-      String longeurs, String lieu, String cotation, boolean tag) {
+      String longeurs, String cotation, String lieu, String villeProximite,
+      String typeRoche, boolean tag) {
     this.nom = nom;
     this.secteur = secteur;
     this.nbrSecteur = nbrSecteur;
     this.voies = voies;
     this.longeurs = longeurs;
-    this.lieu = lieu;
     this.cotation = cotation;
+    this.lieu = lieu;
+    this.villeProximite = villeProximite;
+    this.typeRoche = typeRoche;
     this.tag = tag;
   }
 
@@ -96,5 +101,21 @@ public class SiteEscalade implements Serializable {
 
   public void setTag(boolean tag) {
     this.tag = tag;
+  }
+
+  public String getVilleProximite() {
+    return villeProximite;
+  }
+
+  public void setVilleProximite(String villeProximite) {
+    this.villeProximite = villeProximite;
+  }
+
+  public String getTypeRoche() {
+    return typeRoche;
+  }
+
+  public void setTypeRoche(String typeRoche) {
+    this.typeRoche = typeRoche;
   }
 }
