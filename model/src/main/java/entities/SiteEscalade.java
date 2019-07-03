@@ -1,4 +1,4 @@
-package com.lade.app.entities;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
