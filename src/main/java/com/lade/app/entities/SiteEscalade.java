@@ -1,4 +1,4 @@
-package com.lade.app.Entities;
+package com.lade.app.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -19,26 +19,25 @@ public class SiteEscalade implements Serializable {
   private String typeRoche;
   private boolean tag;
 
+  // #####  Constructeur sans paramètre  ########
 
   public SiteEscalade() {
-    this.nom = nom;
   }
 
-  public SiteEscalade(String nom, String secteur, int nbrSecteur, String voies,
-      String longeurs, String cotation, String lieu, String villeProximite,
-      String typeRoche, boolean tag) {
+  // ####   Constructeur avec paramètre  ######
+
+
+  public SiteEscalade(String nom, String secteur, int nbrSecteur, String lieu,
+      String villeProximite, boolean tag) {
     this.nom = nom;
     this.secteur = secteur;
     this.nbrSecteur = nbrSecteur;
-    this.voies = voies;
-    this.longeurs = longeurs;
-    this.cotation = cotation;
     this.lieu = lieu;
     this.villeProximite = villeProximite;
-    this.typeRoche = typeRoche;
     this.tag = tag;
   }
 
+  // ######## Getter & Setter #############
   public String getNom() {
     return nom;
   }
