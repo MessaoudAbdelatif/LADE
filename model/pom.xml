@@ -11,5 +11,18 @@
 
   <artifactId>model</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.lade</groupId>
+      <artifactId>consumer</artifactId>
+
+    </dependency>
+    <dependency>
+      <groupId>com.lade</groupId>
+      <artifactId>business</artifactId>
+
+    </dependency>
+  </dependencies>
+<packaging>jar</packaging>
 
 </project>

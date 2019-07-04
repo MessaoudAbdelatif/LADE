@@ -9,6 +9,7 @@ public class SiteEscalade implements Serializable {
 
   @Id
   private String nom;
+
   private String secteur;
   private int nbrSecteur;
   private String voies;
@@ -24,7 +25,7 @@ public class SiteEscalade implements Serializable {
   public SiteEscalade() {
   }
 
-  // ####   Constructeur avec paramètre  ######
+// ####   Constructeur avec paramètre  ######
 
 
   public SiteEscalade(String nom, String secteur, int nbrSecteur, String lieu,
@@ -36,6 +37,7 @@ public class SiteEscalade implements Serializable {
     this.villeProximite = villeProximite;
     this.tag = tag;
   }
+
 
   // ######## Getter & Setter #############
   public String getNom() {
