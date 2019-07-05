@@ -10,6 +10,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>consumer</artifactId>
+  <packaging>jar</packaging>
 
+
+  <dependencies>
+    <dependency>
+      <groupId>com.lade</groupId>
+      <artifactId>model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.lade</groupId>
+      <artifactId>business</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>
