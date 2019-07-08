@@ -19,25 +19,15 @@ public class SiteEscalade implements Serializable {
   private String typeRoche;
   private boolean tag;
 
-  // #####  Constructeur sans paramètre  ########
-
   public SiteEscalade() {
   }
 
-  // ####   Constructeur avec paramètre  ######
-
-
-  public SiteEscalade(String nom, String secteur, int nbrSecteur, String lieu,
-      String villeProximite, boolean tag) {
+  public SiteEscalade(String nom, String secteur, int nbrSecteur) {
     this.nom = nom;
     this.secteur = secteur;
     this.nbrSecteur = nbrSecteur;
-    this.lieu = lieu;
-    this.villeProximite = villeProximite;
-    this.tag = tag;
   }
 
-  // ######## Getter & Setter #############
   public String getNom() {
     return nom;
   }
@@ -78,14 +68,6 @@ public class SiteEscalade implements Serializable {
     this.longeurs = longeurs;
   }
 
-  public String getLieu() {
-    return lieu;
-  }
-
-  public void setLieu(String lieu) {
-    this.lieu = lieu;
-  }
-
   public String getCotation() {
     return cotation;
   }
@@ -94,12 +76,12 @@ public class SiteEscalade implements Serializable {
     this.cotation = cotation;
   }
 
-  public boolean isTag() {
-    return tag;
+  public String getLieu() {
+    return lieu;
   }
 
-  public void setTag(boolean tag) {
-    this.tag = tag;
+  public void setLieu(String lieu) {
+    this.lieu = lieu;
   }
 
   public String getVilleProximite() {
@@ -116,5 +98,13 @@ public class SiteEscalade implements Serializable {
 
   public void setTypeRoche(String typeRoche) {
     this.typeRoche = typeRoche;
+  }
+
+  public boolean isTag() {
+    return tag;
+  }
+
+  public void setTag(boolean tag) {
+    this.tag = tag;
   }
 }
