@@ -47,6 +47,15 @@
 /* Other styles for the page not related to the animated dropdown */
 
 body{
+  height: 100%;
   background: #fffcd3;
   background: linear-gradient(to right, #e6e269, #fefff9);
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
 }
