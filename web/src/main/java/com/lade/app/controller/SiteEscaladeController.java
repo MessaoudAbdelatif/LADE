@@ -19,6 +19,6 @@ public class SiteEscaladeController {
     List<SiteEscalade> siteEscalade = siteEscaladeDao.findAll();
     model.addAttribute("listSiteEscalade", siteEscalade);
 
-    return "siteEscalade";
+    return "views/siteEscalade";
   }
 }
