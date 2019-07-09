@@ -9,23 +9,21 @@ public class SiteEscalade implements Serializable {
 
   @Id
   private String nom;
-  private String secteur;
   private int nbrSecteur;
-  private String voies;
-  private String longeurs;
-  private String cotation;
   private String lieu;
   private String villeProximite;
   private String typeRoche;
   private boolean tag;
 
+
   public SiteEscalade() {
+
   }
 
-  public SiteEscalade(String nom, String secteur, int nbrSecteur) {
+  public SiteEscalade(String nom, String lieu, String villeProximite) {
     this.nom = nom;
-    this.secteur = secteur;
-    this.nbrSecteur = nbrSecteur;
+    this.lieu = lieu;
+    this.villeProximite = villeProximite;
   }
 
   public String getNom() {
@@ -36,44 +34,12 @@ public class SiteEscalade implements Serializable {
     this.nom = nom;
   }
 
-  public String getSecteur() {
-    return secteur;
-  }
-
-  public void setSecteur(String secteur) {
-    this.secteur = secteur;
-  }
-
   public int getNbrSecteur() {
     return nbrSecteur;
   }
 
   public void setNbrSecteur(int nbrSecteur) {
     this.nbrSecteur = nbrSecteur;
-  }
-
-  public String getVoies() {
-    return voies;
-  }
-
-  public void setVoies(String voies) {
-    this.voies = voies;
-  }
-
-  public String getLongeurs() {
-    return longeurs;
-  }
-
-  public void setLongeurs(String longeurs) {
-    this.longeurs = longeurs;
-  }
-
-  public String getCotation() {
-    return cotation;
-  }
-
-  public void setCotation(String cotation) {
-    this.cotation = cotation;
   }
 
   public String getLieu() {

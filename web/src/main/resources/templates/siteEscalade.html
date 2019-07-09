@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Les Sites D'escalade - Les Amis De L'escalade</title>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="container">
+    <div class="panel">
+<table class="table">
+  <tr>
+    <th>NOM</th><th>LIEU</th><th>VILLE A PROXIMITE</th>
+  </tr >
+  <tr th:each="s:${listSiteEscalade} ">
+    <th th:text="${s.nom}"></th>
+    <th th:text="${s.lieu}"></th>
+    <th th:text="${s.villeProximite}"></th>
+
+  </tr>
+</table>
+  </div>
+  </div>
+</div>
+</body>
+
+</html>
