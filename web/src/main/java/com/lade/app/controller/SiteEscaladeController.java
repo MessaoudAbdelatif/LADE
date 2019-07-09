@@ -10,17 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SiteEscaladeController {
-@Autowired
-private SiteEscaladeDao siteEscaladeDao;
-@GetMapping("/siteEscalade")
+
+  @Autowired
+  private SiteEscaladeDao siteEscaladeDao;
+
+  @GetMapping("/siteEscalade")
   public String siteEscalade(Model model) {
-  List<SiteEscalade> siteEscalade = siteEscaladeDao.findAll();
-model.addAttribute("listSiteEscalade", siteEscalade);
+    List<SiteEscalade> siteEscalade = siteEscaladeDao.findAll();
+    model.addAttribute("listSiteEscalade", siteEscalade);
 
     return "siteEscalade";
-  }
-  @GetMapping("/login")
-  public String login(){
-  return "login";
   }
 }

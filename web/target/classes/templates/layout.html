@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"
+<html
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
@@ -22,20 +22,20 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" th:href="@{/index}" id="navbarLink1" role="button" aria-haspopup="true" aria-expanded="false">
-            ACCUEIL
+            Accueil
           </a>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{#}" id="navbarLink2" role="button"  aria-haspopup="true" aria-expanded="false">
-            NOS TOPOS
+          <a class="nav-link" th:href="@{/siteEscalade}" id="navbarLink2" role="button"  aria-haspopup="true" aria-expanded="false">
+            Nos Sites d'escalades
           </a>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            S'IDENTIFIER
+            S'Identifier
           </a>
           <!-- Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
           <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" th:href="@{/login}">SE CONNECTER</a>
-            <a class="dropdown-item" href="#">S'INSCRIRE</a>
+            <a class="dropdown-item" th:href="@{/login}">Se connecter</a>
+            <a class="dropdown-item" th:href="@{/registration}">S'inscrire</a>
           </div>
         </li>
       </ul>

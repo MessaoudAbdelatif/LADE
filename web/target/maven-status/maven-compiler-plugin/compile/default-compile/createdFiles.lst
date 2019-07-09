@@ -1,2 +1,3 @@
-com/lade/app/controllers/SiteEscaladeController.class
+com/lade/app/controller/SiteEscaladeController.class
 com/lade/app/AppApplication.class
+com/lade/app/controller/indexController.class
