@@ -18,8 +18,8 @@ public class SiteEscaladeController {
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
-      @RequestParam(name = "numPages", defaultValue = "0") int numPages) {
-    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findAll(PageRequest.of(numPages, 5));
+      @RequestParam(name="numPages", defaultValue="0") int numPages) {
+    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findAll(PageRequest.of(numPages, 6));
     model.addAttribute("listSiteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
     model.addAttribute("currentPage", numPages);

@@ -29,15 +29,13 @@
           <th th:text="${s.villeProximite}"></th>
         </tr>
       </table>
-      <ul class="nav nav-pills">
-        <li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-          <a th:href="@{/siteEscalade(page=${status.index})}" th:text="${status.index}"></a>
-        </li>
-      </ul>
     </div>
   </div>
-
-</div>
+  <ul class="pagination">
+    <li th:class="${currentPage==status.index}?'active':''" th:each="numPages,status:${pages}">
+      <a th:href="@{/siteEscalade(numPages=${status.index})}" th:text="${status.index}"></a>
+    </li>
+  </ul>
 </div>
 </body>
 
