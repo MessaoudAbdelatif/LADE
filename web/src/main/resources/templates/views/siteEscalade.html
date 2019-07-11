@@ -7,7 +7,9 @@
 <head>
   <meta charset="utf-8"/>
   <title>Les Sites D'escalade - Les Amis De L'escalade</title>
-  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/> <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+  <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
   <link rel="stylesheet" th:href="@{/assets/bootstrap/css/style.css}"/>
 </head>
 <body>
@@ -15,20 +17,27 @@
   <div class="container">
     <div class="card">
       <div class="card-title">Nos Sites D'escalades</div>
-<table class="table-hover">
-  <tr class="card-header">
-    <th>NOM</th><th>LIEU</th><th>VILLE A PROXIMITE</th>
-  </tr >
-  <tr th:each="s:${listSiteEscalade} ">
-    <th th:text="${s.nom}"></th>
-    <th th:text="${s.lieu}"></th>
-    <th th:text="${s.villeProximite}"></th>
-
-  </tr>
-</table>
+      <table class="table-hover">
+        <tr class="card-header">
+          <th>NOM</th>
+          <th>LIEU</th>
+          <th>VILLE A PROXIMITE</th>
+        </tr>
+        <tr th:each="s:${listSiteEscalade} ">
+          <th th:text="${s.nom}"></th>
+          <th th:text="${s.lieu}"></th>
+          <th th:text="${s.villeProximite}"></th>
+        </tr>
+      </table>
+      <ul class="nav nav-pills">
+        <li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+          <a th:href="@{/siteEscalade(page=${status.index})}" th:text="${status.index}"></a>
+        </li>
+      </ul>
     </div>
   </div>
-  </div>
+
+</div>
 </div>
 </body>
 
