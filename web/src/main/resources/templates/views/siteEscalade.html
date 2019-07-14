@@ -32,6 +32,7 @@
     </div>
   </div>
   <div class="container">
+  <br>
   <ul class="pagination">
     <li class="page-item" th:classappend="${currentPage==status.index}?'active':''" th:each="numPages,status:${pages}">
       <a class="page-link" th:href="@{/siteEscalade(numPages=${status.index})}" th:text="${status.index}"></a>
