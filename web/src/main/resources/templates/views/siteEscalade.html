@@ -14,9 +14,9 @@
 </head>
 <body>
 <div layout:fragment="content1">
-  <div class="container">
+  <div class="container pt-4">
     <div class="card">
-      <div class="card-title">Nos Sites D'escalades</div>
+      <div class="card-title h3">Nos Sites D'escalades</div>
       <table class="table-hover">
         <tr class="card-header">
           <th>NOM</th>
@@ -32,7 +32,6 @@
     </div>
   </div>
   <div class="container">
-  <br>
   <ul class="pagination">
     <li class="page-item" th:classappend="${currentPage==status.index}?'active':''" th:each="numPages,status:${pages}">
       <a class="page-link" th:href="@{/siteEscalade(numPages=${status.index})}" th:text="${status.index}"></a>
