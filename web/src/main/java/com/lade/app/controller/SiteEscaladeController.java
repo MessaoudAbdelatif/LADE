@@ -18,11 +18,14 @@ public class SiteEscaladeController {
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
-      @RequestParam(name="numPages", defaultValue="0") int numPages) {
-    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findAll(PageRequest.of(numPages, 10));
+      @RequestParam(name="numPages", defaultValue="0") int numPages,
+      @RequestParam(name="nomSiteEscaladeInsere", defaultValue="") String sei)
+  {
+    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 3));
     model.addAttribute("listSiteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
     model.addAttribute("currentPage", numPages);
+    model.addAttribute("sei", sei);
 
     return "views/siteEscalade";
   }
