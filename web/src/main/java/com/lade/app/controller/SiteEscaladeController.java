@@ -21,7 +21,7 @@ public class SiteEscaladeController {
       @RequestParam(name="numPages", defaultValue="0") int numPages,
       @RequestParam(name="nomSiteEscaladeInsere", defaultValue="") String sei)
   {
-    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 3));
+    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 5));
     model.addAttribute("listSiteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
     model.addAttribute("currentPage", numPages);

@@ -7,18 +7,18 @@
 <head>
   <meta charset="utf-8"/>
   <title>Register - Les Amis De L'escalade</title>
-  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css"
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"
         th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
   <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
-  <link rel="stylesheet" th:href="@{/assets/bootstrap/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/bootstrap/css/style.css}"/>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
 </head>
 <body>
 <div layout:fragment="content1">
   <main class="page registration-page">
-    <section class="clean-block clean-form dark">
-      <div class="container pt-5 col-md-8 col-lg-6">
+    <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
+      <div class="container">
         <div class="block-heading">
           <h2 class="h2">Inscription</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
@@ -32,7 +32,7 @@
           <div class="form-group"><label for="email">E-mail</label><input class="form-control item"
                                                                          type="text" id="email">
           </div>
-          <button class="btn btn-primary btn-block" type="button">Sign Up</button>
+          <button class="btn btn-primary " type="button">S'enregistrer</button>
         </form>
       </div>
     </section>
