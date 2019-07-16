@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Les Sites D'escalade - Les Amis De L'escalade</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+  <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
+  <link rel="stylesheet" th:href="@{/bootstrap/css/style.css}"/>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="container mt-5 ml-md-5 col-md-6">
+    <div class="card bg-transparent">
+
+        <div class="card-header h4">Nos Sites D'escalades</div>
+      <div class=" p-3">
+        <form class="form-group" th:action="@{/siteEscalade}" method="get">
+          <label>Un site d'escalade en particulier ?</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="nomSiteEscaladeInsere" th:value="${sei}"
+                   placeholder="Saisir nom..." aria-label="sei" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit" id="button-addon2">Rechercher</button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+      <table class="table-hover">
+        <tr class="card-header">
+          <th>NOM</th>
+          <th>LIEU</th>
+          <th class="">VILLE A PROXIMITE</th>
+        </tr>
+        <tr th:each="s:${listSiteEscalade} ">
+          <th th:text="${s.nom}"></th>
+          <th th:text="${s.lieu}"></th>
+          <th th:text="${s.villeProximite}"></th>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+  <div class="container">
+    <ul  class="pagination" >
+      <li class="page-item">
+        <a class="page-link " th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
+          th:each="numPages,status:${pages}">
+        <a class="page-link "
+           th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei})}"
+           th:text="${status.index}"></a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+
+</html>
