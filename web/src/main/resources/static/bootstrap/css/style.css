@@ -48,9 +48,9 @@
 
 body{
   font-family: 'Roboto',Arial,Helvetica, sans-serif;
-  /*height: 100%;*/
-/*  background: url(/static/img/bgEscalade2.jpeg)
-  no-repeat center center fixed;*/
+  background-size: 80%;
+  background: url(../../img/bgEscalade2.jpeg)
+  no-repeat center center fixed ;
   /*
   background: #fffcd3;
   background: linear-gradient(to right, #e6cdd8, #fefff9);*/
