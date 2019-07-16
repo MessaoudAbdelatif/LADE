@@ -38,7 +38,7 @@
           <th>LIEU</th>
           <th class="">VILLE A PROXIMITE</th>
         </tr>
-        <tr class="text-secondary" th:each="s:${listSiteEscalade} ">
+        <tr th:each="s:${listSiteEscalade} ">
           <th th:text="${s.nom}"></th>
           <th th:text="${s.lieu}"></th>
           <th th:text="${s.villeProximite}"></th>

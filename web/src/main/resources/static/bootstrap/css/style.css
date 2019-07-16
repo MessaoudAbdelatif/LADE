@@ -47,11 +47,11 @@
 /* Other styles for the page not related to the animated dropdown */
 
 body{
+  font-family: 'Roboto',Arial,Helvetica, sans-serif;
   /*height: 100%;*/
-  background: url(/static/img/bgEscalade2.jpeg)
-  no-repeat center center fixed;
+/*  background: url(/static/img/bgEscalade2.jpeg)
+  no-repeat center center fixed;*/
   /*
-  !*background-image: url(/static/img/bgEscalade.jpg);*!
   background: #fffcd3;
   background: linear-gradient(to right, #e6cdd8, #fefff9);*/
 }
@@ -62,4 +62,16 @@ body{
 
 #sticky-footer {
   flex-shrink: none;
+}
+tr{
+  font-family: 'Roboto',Arial,Helvetica, sans-serif;
+}
+
+a{
+
+}
+#menuText{
+  font-family: 'Chewy', cursive;
+  font-size: larger;
+
 }
