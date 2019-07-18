@@ -24,6 +24,7 @@ public class SiteEscaladeController {
     Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 5));
     model.addAttribute("listSiteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
+    model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
     model.addAttribute("currentPage", numPages);
     model.addAttribute("sei", sei);
 

@@ -7,10 +7,6 @@
 <head>
   <meta charset="utf-8"/>
   <title>Les Sites D'escalade - Les Amis De L'escalade</title>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
-  <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
-  <link rel="stylesheet" th:href="@{/bootstrap/css/style.css}"/>
 </head>
 <body>
 <div layout:fragment="content1">
@@ -47,10 +43,10 @@
 
     </div>
   </div>
-  <div class="container">
+  <div class="container" th:if="${nbrPagesTotal>1}">
     <ul  class="pagination" >
       <li class="page-item">
-        <a class="page-link " th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}" aria-label="Previous">
+        <a class="page-link " th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}" aria-label="Previous"  th:if="${currentPage>0}">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -62,7 +58,7 @@
            th:text="${status.index}"></a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a class="page-link" th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei})}"  aria-label="Next" th:if="${listSiteEscalade.size()>4}">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
