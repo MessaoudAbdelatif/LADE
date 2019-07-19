@@ -13,7 +13,7 @@
   <div class="container mt-5 ml-md-5 col-md-6">
     <div class="card bg-transparent">
 
-        <div class="card-header h4">Nos Sites D'escalades</div>
+      <div class="card-header h4">Nos Sites D'escalades</div>
       <div class=" p-3">
         <form class="form-group" th:action="@{/siteEscalade}" method="get">
           <label>Un site d'escalade en particulier ?</label>
@@ -42,28 +42,33 @@
       </table>
 
     </div>
-  </div>
-  <div class="container" th:if="${nbrPagesTotal>1}">
-    <ul  class="pagination" >
-      <li class="page-item">
-        <a class="page-link " th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}" aria-label="Previous"  th:if="${currentPage>0}">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
+    <div class="container" th:if="${nbrPagesTotal>1}">
+      <ul class="pagination justify-content-center ">
+        <li class="page-item">
+          <a class="page-link "
+             th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}"
+             aria-label="Previous" th:if="${currentPage>0}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
 
-      <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
-          th:each="numPages,status:${pages}">
-        <a class="page-link "
-           th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei})}"
-           th:text="${status.index}"></a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei})}"  aria-label="Next" th:if="${listSiteEscalade.size()>4}">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+        <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
+            th:each="numPages,status:${pages}">
+          <a class="page-link "
+             th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei})}"
+             th:text="${status.index}"></a>
+        </li>
+        <li class="page-item">
+          <a class="page-link"
+             th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei})}"
+             aria-label="Next" th:if="${listSiteEscalade.size()>4}">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
+
 </div>
 </body>
 
