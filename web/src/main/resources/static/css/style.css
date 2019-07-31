@@ -72,6 +72,11 @@ a{
 #menuText{
   font-family: 'Chewy', cursive;
   font-size: larger;
-
+}
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
 }
 

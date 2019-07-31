@@ -10,4 +10,10 @@ public class IndexController {
     return "views/index";
   }
 
+
+    @GetMapping("/coco")
+    public String commentaire(){
+      return "views/creationCommentaire";
+  }
+
 }

@@ -1,7 +1,7 @@
 package com.lade.app.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
-import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
+import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingRespectLayoutTitleStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
@@ -19,7 +19,7 @@ public class WebConfig {
 
   private ISpringTemplateEngine templateEngine() {
     SpringTemplateEngine engine = new SpringTemplateEngine();
-    engine.addDialect(new LayoutDialect(new GroupingStrategy()));
+    engine.addDialect(new LayoutDialect(new GroupingRespectLayoutTitleStrategy()));
     return engine;
   }
 }
