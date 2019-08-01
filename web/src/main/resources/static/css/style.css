@@ -69,7 +69,7 @@ tr{
 a{
 
 }
-#menuText{
+#menuText {
   font-family: 'Chewy', cursive;
   font-size: larger;
 }
@@ -78,5 +78,11 @@ a{
 }
 .shadow-textarea textarea.form-control {
   padding-left: 0.8rem;
+}
+
+h1, h2,h3,h4{
+  font-family: 'Chewy', cursive;
+  font-size: larger;
+
 }
 

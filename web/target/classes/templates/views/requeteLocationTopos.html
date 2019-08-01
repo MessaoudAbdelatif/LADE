@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr"
-      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 
 <head>
   <meta charset="utf-8"/>
   <title>Home - Les Amis De L'escalade</title>
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/> <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
-  <link rel="stylesheet" th:href="@{/bootstrap/css/style.css}"/>
 </head>
 <body>
 <div layout:fragment="content1">
-  <p>BONJOUR</p>
+
+  <main class="page">
+    <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
+      <div class="container">
+        <div class="block-heading">
+          <h2 class="h2">Demande de location de Topos</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
+            auctor in, mattis vitae leo.</p>
+        </div>
+        <form>
+          <div class="form-group"><label for="dateDebut">Date de début</label>
+            <input class="form-control item" type="date" id="dateDebut">
+          </div>
+          <div class="form-group"><label for="dateFin">Date de fin</label><input
+              class="form-control item" type="date" id="dateFin">
+          </div>
+          <label for="exampleFormControlTextarea6">Ecrire un message pour encourager le
+            prêteur</label>
+          <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="9"
+                    placeholder="Votre message ici..."></textarea>
+          <button class="btn btn-primary" type="button">Envoyé la demande de prêt</button>
+        </form>
+      </div>
+    </section>
+  </main>
 </div>
 </body>
 
-</html
+</html>
