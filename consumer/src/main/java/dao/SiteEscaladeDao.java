@@ -11,4 +11,5 @@ public interface SiteEscaladeDao extends JpaRepository<SiteEscalade, String> {
 
    Page<SiteEscalade> findByNomContains(String sei, Pageable pageable);
 
+
 }

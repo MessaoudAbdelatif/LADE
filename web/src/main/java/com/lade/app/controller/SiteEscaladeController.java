@@ -22,12 +22,23 @@ public class SiteEscaladeController {
       @RequestParam(name="nomSiteEscaladeInsere", defaultValue="") String sei)
   {
     Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 5));
-    model.addAttribute("listSiteEscalade", pagesiteEscalade.getContent());
+    model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
     model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
     model.addAttribute("currentPage", numPages);
     model.addAttribute("sei", sei);
 
     return "views/siteEscalade";
+  }
+  @GetMapping("/viewSiteEscalade")
+  public String viewSiteEscalade(Model model,String nom){
+    model.addAttribute("name",nom);
+    model.addAttribute("nbrSecteur", siteEscaladeDao.getOne(nom).getNbrSecteur() );
+    model.addAttribute("Lieu",siteEscaladeDao.getOne(nom).getLieu());
+model.addAttribute("villeAProximite",siteEscaladeDao.getOne(nom).getVilleProximite());
+model.addAttribute("typeRoche",siteEscaladeDao.getOne(nom).getTypeRoche());
+model.addAttribute("tag",siteEscaladeDao.getOne(nom).isTag());
+    siteEscaladeDao.getOne(nom);
+    return "views/viewSiteEscalade";
   }
 }

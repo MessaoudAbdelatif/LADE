@@ -11,7 +11,7 @@
 <body>
 <div layout:fragment="content1">
   <div class="container mt-5 ml-md-5 col-md-6">
-    <div class="card bg-light">
+    <div class="shadow card bg-light">
 
       <div class="card-header h4 text-dark text-center">Nos Sites D'escalades</div>
       <div class=" p-3">
@@ -28,16 +28,20 @@
 
 
       </div>
-      <table class="table-hover">
+      <table class="table table-hover">
         <tr class="card-header">
           <th>NOM</th>
           <th>LIEU</th>
-          <th class="">VILLE A PROXIMITE</th>
+          <th>VILLE A PROXIMITE</th>
+          <th>NOMBRE DE SECTEUR</th>
         </tr>
-        <tr th:each="s:${listSiteEscalade} ">
-          <th th:text="${s.nom}"></th>
-          <th th:text="${s.lieu}"></th>
-          <th th:text="${s.villeProximite}"></th>
+        <tr th:each="s:${siteEscalade}">
+          <a th:href="@{'/viewSiteEscalade/'+s.nom}">
+            <th th:text="${s.nom}"></th>
+            <th th:text="${s.lieu}"></th>
+            <th th:text="${s.villeProximite}"></th>
+            <th class="text-center" th:text="${s.nbrSecteur}"></th>
+          </a>
         </tr>
       </table>
 
@@ -61,7 +65,7 @@
         <li class="page-item">
           <a class="page-link"
              th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei})}"
-             aria-label="Next" th:if="${listSiteEscalade.size()>4}">
+             aria-label="Next" th:if="${siteEscalade.size()>4}">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
