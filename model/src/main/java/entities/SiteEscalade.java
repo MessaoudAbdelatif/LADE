@@ -1,8 +1,11 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class SiteEscalade implements Serializable {
@@ -14,6 +17,10 @@ public class SiteEscalade implements Serializable {
   private String villeProximite;
   private String typeRoche;
   private boolean tag;
+  @OneToMany(mappedBy = "nomSiteEscalade", fetch = FetchType.LAZY)
+  private Collection<Secteur> secteurs;
+  @OneToMany(mappedBy = "nomSiteEscalade", fetch = FetchType.LAZY)
+  private Collection<Commentaire> commentaires;
 
 
   public SiteEscalade() {
@@ -72,5 +79,21 @@ public class SiteEscalade implements Serializable {
 
   public void setTag(boolean tag) {
     this.tag = tag;
+  }
+
+  public Collection<Secteur> getSecteurs() {
+    return secteurs;
+  }
+
+  public void setSecteurs(Collection<Secteur> secteurs) {
+    this.secteurs = secteurs;
+  }
+
+  public Collection<Commentaire> getCommentaires() {
+    return commentaires;
+  }
+
+  public void setCommentaires(Collection<Commentaire> commentaires) {
+    this.commentaires = commentaires;
   }
 }

@@ -18,10 +18,10 @@ public class SiteEscaladeController {
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
-      @RequestParam(name="numPages", defaultValue="0") int numPages,
-      @RequestParam(name="nomSiteEscaladeInsere", defaultValue="") String sei)
-  {
-    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao.findByNomContains(sei,PageRequest.of(numPages, 5));
+      @RequestParam(name = "numPages", defaultValue = "0") int numPages,
+      @RequestParam(name = "nomSiteEscaladeInsere", defaultValue = "") String sei) {
+    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao
+        .findByNomContains(sei, PageRequest.of(numPages, 5));
     model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
     model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
     model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
@@ -30,15 +30,15 @@ public class SiteEscaladeController {
 
     return "views/siteEscalade";
   }
+
   @GetMapping("/viewSiteEscalade")
-  public String viewSiteEscalade(Model model,String nom){
-    model.addAttribute("name",nom);
-    model.addAttribute("nbrSecteur", siteEscaladeDao.getOne(nom).getNbrSecteur() );
-    model.addAttribute("Lieu",siteEscaladeDao.getOne(nom).getLieu());
-model.addAttribute("villeAProximite",siteEscaladeDao.getOne(nom).getVilleProximite());
-model.addAttribute("typeRoche",siteEscaladeDao.getOne(nom).getTypeRoche());
-model.addAttribute("tag",siteEscaladeDao.getOne(nom).isTag());
-    siteEscaladeDao.getOne(nom);
+  public String viewSiteEscalade(Model model, String nom) {
+    model.addAttribute("name", nom);
+    model.addAttribute("nbrSecteur", siteEscaladeDao.getOne(nom).getNbrSecteur());
+    model.addAttribute("Lieu", siteEscaladeDao.getOne(nom).getLieu());
+    model.addAttribute("villeAProximite", siteEscaladeDao.getOne(nom).getVilleProximite());
+    model.addAttribute("typeRoche", siteEscaladeDao.getOne(nom).getTypeRoche());
+    model.addAttribute("tag", siteEscaladeDao.getOne(nom).isTag());
     return "views/viewSiteEscalade";
   }
 }
