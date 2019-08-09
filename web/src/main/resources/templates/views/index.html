@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
@@ -8,7 +9,12 @@
 </head>
 <body>
 <div layout:fragment="content1">
-  <p>BONJOUR</p>
+
+  <select name="cotation">
+    <option th:each="cotationOpt : ${T(entities.Cotation).getDisplayValue()}"
+            th:value="${cotationOpt}" th:text="${cotationOpt}"></option>
+  </select>
+
 </div>
 </body>
 

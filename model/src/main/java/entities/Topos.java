@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Topos implements Serializable {
@@ -15,6 +17,7 @@ public class Topos implements Serializable {
   private String nom;
   private String description;
   private String lieuDeParution;
+  @Temporal(TemporalType.TIMESTAMP)
   private Date dateDeParution;
   private String proprietaire;
   private Boolean disponibleEnLocation;
