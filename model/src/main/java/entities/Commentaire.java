@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Commentaire implements Serializable {
 
   @Id
-  private Integer id;
+  private Long id;
   private String userName;
   private String nomSiteEscalade;
   private String titre;
@@ -20,7 +20,7 @@ public class Commentaire implements Serializable {
   public Commentaire() {
   }
 
-  public Commentaire(Integer id, String userName, String nomSiteEscalade, String titre,
+  public Commentaire(Long id, String userName, String nomSiteEscalade, String titre,
       String message, Date dateEdition) {
     this.id = id;
     this.userName = userName;
@@ -30,11 +30,11 @@ public class Commentaire implements Serializable {
     this.dateEdition = dateEdition;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

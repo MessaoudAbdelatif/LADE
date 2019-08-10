@@ -25,12 +25,26 @@
             auctor in, mattis vitae leo.</p>
         </div>
         <form>
+          <div class="form-group"><label for="username">Pseudo</label><input
+              class="form-control item"
+              type="text" id="username"></div>
           <div class="form-group"><label for="name">Nom</label><input class="form-control item"
-                                                                       type="text" id="name"></div>
+                                                                      type="text" id="name"></div>
+          <div class="form-group"><label for="name">Prénom</label><input class="form-control item"
+                                                                         type="text" id="prenom">
+          </div>
           <div class="form-group"><label for="password">Mot de Passe</label><input
               class="form-control item" type="password" id="password"></div>
+
+          <div class="form-group"><label for="password">Confirmation du Mot de Passe</label><input
+              class="form-control item" type="password" id="confirmationPassword"></div>
           <div class="form-group"><label for="email">E-mail</label><input class="form-control item"
-                                                                         type="text" id="email">
+                                                                          type="text" id="email">
+          </div>
+          <div class="form-group"><label for="messagePerso">Parler nous de vous</label>
+            <textarea class="form-control" id="messagePerso" rows="2"
+                      placeholder="Une bref présentation qui résume votre passion pour l'escalade..">
+            </textarea>
           </div>
           <button class="btn btn-primary " type="button">S'enregistrer</button>
         </form>

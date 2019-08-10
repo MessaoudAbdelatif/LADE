@@ -16,6 +16,7 @@ public class SiteEscaladeController {
   @Autowired
   private SiteEscaladeDao siteEscaladeDao;
 
+
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
       @RequestParam(name = "numPages", defaultValue = "0") int numPages,
@@ -33,12 +34,14 @@ public class SiteEscaladeController {
 
   @GetMapping("/viewSiteEscalade")
   public String viewSiteEscalade(Model model, String nom) {
+
     model.addAttribute("name", nom);
     model.addAttribute("nbrSecteur", siteEscaladeDao.getOne(nom).getNbrSecteur());
     model.addAttribute("Lieu", siteEscaladeDao.getOne(nom).getLieu());
     model.addAttribute("villeAProximite", siteEscaladeDao.getOne(nom).getVilleProximite());
     model.addAttribute("typeRoche", siteEscaladeDao.getOne(nom).getTypeRoche());
     model.addAttribute("tag", siteEscaladeDao.getOne(nom).isTag());
+    model.addAttribute("secteur", siteEscaladeDao.getOne(nom).getSecteurs());
     return "views/viewSiteEscalade";
   }
 }

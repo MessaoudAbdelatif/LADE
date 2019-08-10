@@ -9,6 +9,6 @@ public class Longeur implements Serializable {
   @Id
   private String nom;
   private String nomVoie;
-  private Cotation cotation;
+  private String cotation;
 
 }

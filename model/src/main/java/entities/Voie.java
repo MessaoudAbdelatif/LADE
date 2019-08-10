@@ -14,14 +14,14 @@ public class Voie implements Serializable {
   private String nom;
   private String nomSecteur;
   private String descreption;
-  private Cotation cotation;
+  private String cotation;
   @OneToMany(mappedBy = "nomVoie", fetch = FetchType.LAZY)
   private Collection<Longeur> longeurs;
 
   public Voie() {
   }
 
-  public Voie(String nom, String nomSecteur, String descreption, Cotation cotation,
+  public Voie(String nom, String nomSecteur, String descreption, String cotation,
       Collection<Longeur> longeurs) {
     this.nom = nom;
     this.nomSecteur = nomSecteur;
@@ -54,11 +54,11 @@ public class Voie implements Serializable {
     this.descreption = descreption;
   }
 
-  public Cotation getCotation() {
+  public String getCotation() {
     return cotation;
   }
 
-  public void setCotation(Cotation cotation) {
+  public void setCotation(String cotation) {
     this.cotation = cotation;
   }
 

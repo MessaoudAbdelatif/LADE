@@ -31,6 +31,10 @@
             <th>Type de roche</th>
             <th class="text-center" th:text="${typeRoche}"></th>
           </tr>
+          <tr th:if="${secteur.size()>0}">
+            <th>Secteur</th>
+            <th class="text-center" th:text="${secteur}"></th>
+          </tr>
           <tr th:if="${tag}">
             <th>"Offciel les amis de l'escalade"</th>
             <th class="text-center text-success">Approuvé</th>

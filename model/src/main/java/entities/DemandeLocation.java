@@ -12,7 +12,7 @@ public class DemandeLocation {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Long id;
   private Date dateDebut;
   private Date dateFin;
   private String nomTopos;
@@ -23,8 +23,8 @@ public class DemandeLocation {
   public DemandeLocation() {
   }
 
-  public DemandeLocation(Integer id, Date dateDebut, Date dateFin, String nomTopos,
-      String userName, String message, Boolean proprioValidation) {
+  public DemandeLocation(Long id, Date dateDebut, Date dateFin, String nomTopos, String userName,
+      String message, Boolean proprioValidation) {
     this.id = id;
     this.dateDebut = dateDebut;
     this.dateFin = dateFin;
@@ -34,11 +34,11 @@ public class DemandeLocation {
     this.proprioValidation = proprioValidation;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

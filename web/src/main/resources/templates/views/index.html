@@ -10,9 +10,12 @@
 <body>
 <div layout:fragment="content1">
 
-  <select name="cotation">
-    <option th:each="cotationOpt : ${T(entities.Cotation).getDisplayValue()}"
-            th:value="${cotationOpt}" th:text="${cotationOpt}"></option>
+ <p>COUCOU</p>
+  <select>
+    <option th:each="cotation : ${T(entities.Cotation).getCotation()}"
+            th:value="${cotation}"
+            th:text="${cotation}">
+    </option>
   </select>
 
 </div>
