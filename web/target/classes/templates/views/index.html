@@ -10,9 +10,9 @@
 <body>
 <div layout:fragment="content1">
 
- <p>COUCOU</p>
+  <p>COUCOU</p>
   <select>
-    <option th:each="cotation : ${T(entities.Cotation).getCotation()}"
+    <option th:each="cotation : ${T(entities.Cotation).getCotations()}"
             th:value="${cotation}"
             th:text="${cotation}">
     </option>

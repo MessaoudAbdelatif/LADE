@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class UtilisateurConnecte implements Serializable {
+
   @Id
   private String userName;
   private String civilite;
@@ -30,20 +31,13 @@ public class UtilisateurConnecte implements Serializable {
   }
 
   public UtilisateurConnecte(String userName, String civilite, String nom, String prenom,
-      String presentationPersonel, String email, Boolean etatCompte, String motDePasse,
-      Date dateCreation, Collection<DemandeLocation> demandeLocations,
-      Collection<Commentaire> commentaires) {
+      String presentationPersonel, String email) {
     this.userName = userName;
     this.civilite = civilite;
     this.nom = nom;
     this.prenom = prenom;
     this.presentationPersonel = presentationPersonel;
     this.email = email;
-    this.etatCompte = etatCompte;
-    this.motDePasse = motDePasse;
-    this.dateCreation = dateCreation;
-    this.demandeLocations = demandeLocations;
-    this.commentaires = commentaires;
   }
 
   public String getUserName() {
