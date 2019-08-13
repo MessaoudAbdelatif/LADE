@@ -9,33 +9,33 @@
 </head>
 <body>
 <div layout:fragment="content1">
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${name}">
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscalade1.nom}">
     <div class="shadow card bg-light">
 
-      <div class="card-header h4 text-dark text-center" th:text="${name}"></div>
+      <div class="card-header h4 text-dark text-center" th:text="${siteEscalade1.nom}"></div>
       <div class="p-2">
         <table class="table table-hover table-bordered table-striped">
           <tr>
             <th>Nombre de secteur(s)</th>
-            <th class="text-center" th:text="${nbrSecteur}"></th>
+            <th class="text-center" th:text="${siteEscalade1.nbrSecteur}"></th>
           </tr>
           <tr>
             <th>Lieu</th>
-            <th class="text-center" th:text="${Lieu}"></th>
+            <th class="text-center" th:text="${siteEscalade1.lieu}"></th>
           </tr>
           <tr>
             <th>Ville à Proximité</th>
-            <th class="text-center" th:text="${villeAProximite}"></th>
+            <th class="text-center" th:text="${siteEscalade1.villeProximite}"></th>
           </tr>
           <tr>
             <th>Type de roche</th>
-            <th class="text-center" th:text="${typeRoche}"></th>
+            <th class="text-center" th:text="${siteEscalade1.typeRoche}"></th>
           </tr>
-          <tr th:if="${secteur.size()>0}">
+          <tr th:if="${!siteEscalade1.secteurs.isEmpty()}">
             <th>Secteur</th>
-            <th class="text-center" th:text="${secteur}"></th>
+            <th class="text-center" th:text="${siteEscalade1.secteurs}"></th>
           </tr>
-          <tr th:if="${tag}">
+          <tr th:if="${siteEscalade1.tag}">
             <th>"Offciel les amis de l'escalade"</th>
             <th class="text-center text-success">Approuvé</th>
           </tr>

@@ -36,12 +36,10 @@
           <th>NOMBRE DE SECTEUR</th>
         </tr>
         <tr th:each="s:${siteEscalade}">
-          <a th:href="@{'/viewSiteEscalade/'+s.nom}">
             <th th:text="${s.nom}"></th>
             <th th:text="${s.lieu}"></th>
             <th th:text="${s.villeProximite}"></th>
             <th class="text-center" th:text="${s.nbrSecteur}"></th>
-          </a>
         </tr>
       </table>
 

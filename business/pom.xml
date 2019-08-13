@@ -17,6 +17,10 @@
       <groupId>com.lade</groupId>
       <artifactId>model</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.lade</groupId>
+      <artifactId>consumer</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

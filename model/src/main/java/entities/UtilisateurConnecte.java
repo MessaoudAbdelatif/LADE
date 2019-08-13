@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,7 +15,8 @@ public class UtilisateurConnecte implements Serializable {
 
   @Id
   private String userName;
-  private String civilite;
+  @Enumerated(EnumType.STRING)
+  private Civilite civilite;
   private String nom;
   private String prenom;
   private String presentationPersonel;
@@ -30,7 +33,7 @@ public class UtilisateurConnecte implements Serializable {
   public UtilisateurConnecte() {
   }
 
-  public UtilisateurConnecte(String userName, String civilite, String nom, String prenom,
+  public UtilisateurConnecte(String userName, Civilite civilite, String nom, String prenom,
       String presentationPersonel, String email) {
     this.userName = userName;
     this.civilite = civilite;
@@ -48,11 +51,11 @@ public class UtilisateurConnecte implements Serializable {
     this.userName = userName;
   }
 
-  public String getCivilite() {
+  public Civilite getCivilite() {
     return civilite;
   }
 
-  public void setCivilite(String civilite) {
+  public void setCivilite(Civilite civilite) {
     this.civilite = civilite;
   }
 

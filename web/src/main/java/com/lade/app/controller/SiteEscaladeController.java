@@ -2,6 +2,7 @@ package com.lade.app.controller;
 
 import dao.SiteEscaladeDao;
 import entities.SiteEscalade;
+import metier.SiteEscaladeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SiteEscaladeController {
 
   @Autowired
+  private SiteEscaladeMetier siteEscaladeMetier;
+  @Autowired
   private SiteEscaladeDao siteEscaladeDao;
-
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
@@ -34,14 +36,12 @@ public class SiteEscaladeController {
 
   @GetMapping("/viewSiteEscalade")
   public String viewSiteEscalade(Model model, String nom) {
-
-    model.addAttribute("name", nom);
-    model.addAttribute("nbrSecteur", siteEscaladeDao.getOne(nom).getNbrSecteur());
-    model.addAttribute("Lieu", siteEscaladeDao.getOne(nom).getLieu());
-    model.addAttribute("villeAProximite", siteEscaladeDao.getOne(nom).getVilleProximite());
-    model.addAttribute("typeRoche", siteEscaladeDao.getOne(nom).getTypeRoche());
-    model.addAttribute("tag", siteEscaladeDao.getOne(nom).isTag());
-    model.addAttribute("secteur", siteEscaladeDao.getOne(nom).getSecteurs());
+    try {
+      SiteEscalade se = siteEscaladeMetier.ConsulterSiteEscalade(nom);
+      model.addAttribute("siteEscalade1", se);
+    } catch (Exception e) {
+      model.addAttribute("exception", e);
+    }
     return "views/viewSiteEscalade";
   }
 }
