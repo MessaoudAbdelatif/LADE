@@ -28,18 +28,19 @@
 
 
       </div>
-      <table class="table table-hover">
+      <div class="text-danger p-3" th:if="${siteEscalade.isEmpty()}">Aucun Site D'escalade Trouvé !!</div>
+      <table class="table table-hover" th:if="${!siteEscalade.isEmpty()}">
         <tr class="card-header">
           <th>NOM</th>
           <th>LIEU</th>
           <th>VILLE A PROXIMITE</th>
-          <th>NOMBRE DE SECTEUR</th>
+          <th></th>
         </tr>
         <tr th:each="s:${siteEscalade}">
             <th th:text="${s.nom}"></th>
             <th th:text="${s.lieu}"></th>
             <th th:text="${s.villeProximite}"></th>
-            <th class="text-center" th:text="${s.nbrSecteur}"></th>
+            <th class="text-center"><a class="btn btn-primary" th:href="@{/viewSiteEscalade(nom=${s.nom})}">Consulter</a></th>
         </tr>
       </table>
 

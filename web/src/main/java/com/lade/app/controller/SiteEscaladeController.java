@@ -23,13 +23,17 @@ public class SiteEscaladeController {
   public String siteEscalade(Model model,
       @RequestParam(name = "numPages", defaultValue = "0") int numPages,
       @RequestParam(name = "nomSiteEscaladeInsere", defaultValue = "") String sei) {
-    Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao
+    try { Page<SiteEscalade> pagesiteEscalade = siteEscaladeDao
         .findByNomContains(sei, PageRequest.of(numPages, 5));
-    model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
-    model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
-    model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
-    model.addAttribute("currentPage", numPages);
-    model.addAttribute("sei", sei);
+      model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
+      model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
+      model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
+      model.addAttribute("currentPage", numPages);
+      model.addAttribute("sei", sei);
+    }catch (Exception e){
+      model.addAttribute("exceptionAucunSiteEscaladeTrouve", e);
+    }
+
 
     return "views/siteEscalade";
   }
