@@ -37,8 +37,8 @@ public class SiteEscaladeController {
   @GetMapping("/viewSiteEscalade")
   public String viewSiteEscalade(Model model, String nom) {
     try {
-      SiteEscalade se = siteEscaladeMetier.ConsulterSiteEscalade(nom);
-      model.addAttribute("siteEscalade1", se);
+      SiteEscalade se = siteEscaladeMetier.consulterSiteEscalade(nom);
+      model.addAttribute("siteEscaladeSelected", se);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }

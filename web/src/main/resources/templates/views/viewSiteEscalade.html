@@ -9,33 +9,33 @@
 </head>
 <body>
 <div layout:fragment="content1">
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscalade1.nom}">
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscaladeSelected.nom}">
     <div class="shadow card bg-light">
 
-      <div class="card-header h4 text-dark text-center" th:text="${siteEscalade1.nom}"></div>
+      <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom}"></div>
       <div class="p-2">
         <table class="table table-hover table-bordered table-striped">
           <tr>
             <th>Nombre de secteur(s)</th>
-            <th class="text-center" th:text="${siteEscalade1.nbrSecteur}"></th>
+            <th class="text-center" th:text="${siteEscaladeSelected.nbrSecteur}"></th>
           </tr>
           <tr>
             <th>Lieu</th>
-            <th class="text-center" th:text="${siteEscalade1.lieu}"></th>
+            <th class="text-center" th:text="${siteEscaladeSelected.lieu}"></th>
           </tr>
           <tr>
             <th>Ville à Proximité</th>
-            <th class="text-center" th:text="${siteEscalade1.villeProximite}"></th>
+            <th class="text-center" th:text="${siteEscaladeSelected.villeProximite}"></th>
           </tr>
           <tr>
             <th>Type de roche</th>
-            <th class="text-center" th:text="${siteEscalade1.typeRoche}"></th>
+            <th class="text-center" th:text="${siteEscaladeSelected.typeRoche}"></th>
           </tr>
-          <tr th:if="${!siteEscalade1.secteurs.isEmpty()}">
+          <tr th:if="${!siteEscaladeSelected.secteurs.isEmpty()}">
             <th>Secteur</th>
-            <th class="text-center" th:text="${siteEscalade1.secteurs}"></th>
+            <th class="text-center" th:text="${siteEscaladeSelected.secteurs}"></th>
           </tr>
-          <tr th:if="${siteEscalade1.tag}">
+          <tr th:if="${siteEscaladeSelected.tag}">
             <th>"Offciel les amis de l'escalade"</th>
             <th class="text-center text-success">Approuvé</th>
           </tr>
