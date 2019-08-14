@@ -9,17 +9,25 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class UtilisateurConnecte implements Serializable {
 
   @Id
+  @NonNull
+  @Size(min= 5,max= 50)
   private String userName;
   @Enumerated(EnumType.STRING)
+  @NonNull
   private Civilite civilite;
+  @NonNull
   private String nom;
+  @NonNull
   private String prenom;
   private String presentationPersonel;
+  @NonNull
   private String email;
   private Boolean etatCompte;
   private String motDePasse;
