@@ -14,7 +14,7 @@ public abstract class Cotation {
       "8A", "8A+", "8B", "8B+", "8C", "8C+",
       "9A", "9A+", "9B", "9B+", "9C", "9C+");
 
-  protected Cotation() {
+  public Cotation() {
   }
 
   public static List<String> getCotations() {

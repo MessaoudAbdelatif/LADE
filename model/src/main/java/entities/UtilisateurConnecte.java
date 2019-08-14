@@ -4,36 +4,39 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import org.springframework.lang.NonNull;
 
 @Entity
 public class UtilisateurConnecte implements Serializable {
 
   @Id
-  @NonNull
-  @Size(min= 5,max= 50)
+  @Size(min = 5, max = 60)
   private String userName;
-  @Enumerated(EnumType.STRING)
-  @NonNull
-  private Civilite civilite;
-  @NonNull
+
+  private String civilite;
+
+  @NotEmpty
   private String nom;
-  @NonNull
+
+  @NotEmpty
   private String prenom;
+
   private String presentationPersonel;
-  @NonNull
+
+  @Email
   private String email;
+
   private Boolean etatCompte;
   private String motDePasse;
   private Date dateCreation;
   @OneToMany(mappedBy = "userName", fetch = FetchType.LAZY)
   private Collection<DemandeLocation> demandeLocations;
+
   @OneToMany(mappedBy = "userName", fetch = FetchType.LAZY)
   private Collection<Commentaire> commentaires;
 
@@ -41,7 +44,8 @@ public class UtilisateurConnecte implements Serializable {
   public UtilisateurConnecte() {
   }
 
-  public UtilisateurConnecte(String userName, Civilite civilite, String nom, String prenom,
+  public UtilisateurConnecte(
+      String userName, String civilite, String nom, String prenom,
       String presentationPersonel, String email) {
     this.userName = userName;
     this.civilite = civilite;
@@ -59,11 +63,11 @@ public class UtilisateurConnecte implements Serializable {
     this.userName = userName;
   }
 
-  public Civilite getCivilite() {
+  public String getCivilite() {
     return civilite;
   }
 
-  public void setCivilite(Civilite civilite) {
+  public void setCivilite(String civilite) {
     this.civilite = civilite;
   }
 
@@ -121,5 +125,21 @@ public class UtilisateurConnecte implements Serializable {
 
   public void setDateCreation(Date dateCreation) {
     this.dateCreation = dateCreation;
+  }
+
+  public Collection<DemandeLocation> getDemandeLocations() {
+    return demandeLocations;
+  }
+
+  public void setDemandeLocations(Collection<DemandeLocation> demandeLocations) {
+    this.demandeLocations = demandeLocations;
+  }
+
+  public Collection<Commentaire> getCommentaires() {
+    return commentaires;
+  }
+
+  public void setCommentaires(Collection<Commentaire> commentaires) {
+    this.commentaires = commentaires;
   }
 }

@@ -18,49 +18,56 @@
             auctor in, mattis vitae leo.</p>
         </div>
 
-        <form th:action="@{/registration}" method="post">
-          <div class="form-group"><label for="username">Pseudo</label>
+        <form th:action="@{/save}" method="post">
+          <div class="form-group"><label for="username">Pseudo :</label>
             <input
                 class="form-control item"
                 type="text" id="username" name="userName"
-                th:value="${utilisateurConnecte.userName}"/></div>
-          <span th:errors="${utilisateurConnecte.userName}" class="text-danger"></span>
-          <div>
-            <div class="form-group">
-              <label for="civilite">Civilite :</label>
-              <select id="civilite" th:field="*{civilite}">
-                <option th:each="CiviliteSelection : ${civilite}"
-                        th:text="${CiviliteSelection}"
-                        th:value="${CiviliteSelection}">
-                </option>
-              </select>
-            </div>
+                th:value="${utilisateurConnecte.userName}"/><span
+                th:errors="${utilisateurConnecte.userName}" class="text-danger"></span></div>
+
+           <div>
+             <div class="form-group">
+               <label for="civilite">Civilite :</label>
+               <select id="civilite" th:field="*{civilite}" th:value="${utilisateurConnecte.civilite}">
+                 <option th:each="CiviliteSelection : ${civilite}"
+                         th:text="${CiviliteSelection}"
+                         th:value="${CiviliteSelection}">
+                 </option>
+               </select>
+             </div>
+           </div>
+
+          <div class="form-group"><label for="name">Nom :</label><input class="form-control item"
+                                                                        name="nom" type="text"
+                                                                        id="name"
+                                                                        th:value="${utilisateurConnecte.nom}">
+            <span th:errors="${utilisateurConnecte.nom}" class="text-danger"></span>
           </div>
 
-          <div class="form-group"><label for="name">Nom</label><input class="form-control item"
-                                                                      name="nom" type="text"
-                                                                      id="name"
-                                                                      th:value="${utilisateurConnecte.nom}">
+          <div class="form-group"><label for="prenom">Prénom :</label><input
+              class="form-control item"
+              name="prenom" type="text"
+              id="prenom"
+              th:value="${utilisateurConnecte.prenom}">
+            <span th:errors="${utilisateurConnecte.prenom}" class="text-danger"></span>
           </div>
-          <span th:errors="${utilisateurConnecte.nom}" class="text-danger"></span>
-          <div class="form-group"><label for="prenom">Prénom</label><input class="form-control item"
-                                                                           name="prenom" type="text"
-                                                                           id="prenom"
-                                                                           th:value="${utilisateurConnecte.prenom}">
-          </div>
-          <div class="form-group"><label for="password">Mot de Passe</label><input
+
+          <div class="form-group"><label for="password">Mot de Passe :</label><input
               name="motDePasse" class="form-control item" type="password" id="password"
               th:value="${utilisateurConnecte.motDePasse}"></div>
 
           <div class="form-group"><label for="passwordConfirmation">Confirmation du Mot de
-            Passe</label><input
+            Passe :</label><input
               class="form-control item" type="password" id="passwordConfirmation"></div>
-          <div class="form-group"><label for="email">E-mail</label><input class="form-control item"
-                                                                          name="email" type="text"
-                                                                          id="email"
-                                                                          th:value="${utilisateurConnecte.email}">
+          <div class="form-group"><label for="email">E-mail :</label><input
+              class="form-control item"
+              name="email" type="text"
+              id="email"
+              th:value="${utilisateurConnecte.email}">
           </div>
-          <div class="form-group"><label for="messagePerso">Parler nous de vous</label>
+          <span th:errors="${utilisateurConnecte.email}" class="text-danger"></span>
+          <div class="form-group"><label for="messagePerso">Parler nous de vous :</label>
             <textarea class="form-control" id="messagePerso" rows="2"
                       name="presentationPersonel"
                       placeholder="Une bref présentation qui résume votre passion pour l'escalade..">

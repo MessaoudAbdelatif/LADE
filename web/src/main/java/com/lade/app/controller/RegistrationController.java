@@ -18,14 +18,14 @@ public class RegistrationController {
   private UtilisateurConnecteDao utilisateurConnecteDao;
 
   @GetMapping("/registration")
-  public String registerFormulaire(Model model) {
+  public java.lang.String registerFormulaire(Model model) {
     model.addAttribute("utilisateurConnecte", new UtilisateurConnecte());
     model.addAttribute("civilite", Civilite.values());
     return "views/registration";
   }
 
-  @PostMapping("/registration")
-  public String registration(Model model, @Valid UtilisateurConnecte utilisateurConnecte,
+  @PostMapping("/save")
+  public java.lang.String registration(Model model, @Valid UtilisateurConnecte utilisateurConnecte,
       BindingResult bindingResult) {
     model.addAttribute("civilite", Civilite.values());
     if (bindingResult.hasErrors()) {
