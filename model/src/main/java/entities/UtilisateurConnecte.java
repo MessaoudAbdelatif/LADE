@@ -1,8 +1,8 @@
 package entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,11 +13,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class UtilisateurConnecte implements Serializable {
 
   @Id
+  @NotEmpty
   @Size(min = 5, max = 60)
   private String userName;
   @Enumerated(EnumType.STRING)
@@ -31,12 +31,14 @@ public class UtilisateurConnecte implements Serializable {
 
   private String presentationPersonel;
 
+  @NotEmpty
   @Email
   private String email;
 
   private Boolean etatCompte;
+
   private String motDePasse;
-  private Date dateCreation;
+  private LocalDateTime dateCreation;
   @OneToMany(mappedBy = "userName", fetch = FetchType.LAZY)
   private Collection<DemandeLocation> demandeLocations;
 
@@ -70,7 +72,7 @@ public class UtilisateurConnecte implements Serializable {
     return civilite;
   }
 
-  public void setCivilite(Civilite  civilite) {
+  public void setCivilite(Civilite civilite) {
     this.civilite = civilite;
   }
 
@@ -122,11 +124,11 @@ public class UtilisateurConnecte implements Serializable {
     this.motDePasse = motDePasse;
   }
 
-  public Date getDateCreation() {
+  public LocalDateTime getDateCreation() {
     return dateCreation;
   }
 
-  public void setDateCreation(Date dateCreation) {
+  public void setDateCreation(LocalDateTime dateCreation) {
     this.dateCreation = dateCreation;
   }
 

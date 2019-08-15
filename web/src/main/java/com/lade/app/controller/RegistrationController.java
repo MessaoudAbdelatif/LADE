@@ -28,6 +28,7 @@ public class RegistrationController {
   public java.lang.String registration(Model model, @Valid UtilisateurConnecte utilisateurConnecte,
       BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
+      model.addAttribute("civiliteChoix", Civilite.values());
       return "views/registration";
     }
     utilisateurConnecteDao.save(utilisateurConnecte);
