@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,14 +13,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+
 @Entity
 public class UtilisateurConnecte implements Serializable {
 
   @Id
   @Size(min = 5, max = 60)
   private String userName;
-
-  private String civilite;
+  @Enumerated(EnumType.STRING)
+  private Civilite civilite;
 
   @NotEmpty
   private String nom;
@@ -45,7 +48,7 @@ public class UtilisateurConnecte implements Serializable {
   }
 
   public UtilisateurConnecte(
-      String userName, String civilite, String nom, String prenom,
+      String userName, Civilite civilite, String nom, String prenom,
       String presentationPersonel, String email) {
     this.userName = userName;
     this.civilite = civilite;
@@ -63,11 +66,11 @@ public class UtilisateurConnecte implements Serializable {
     this.userName = userName;
   }
 
-  public String getCivilite() {
+  public Civilite getCivilite() {
     return civilite;
   }
 
-  public void setCivilite(String civilite) {
+  public void setCivilite(Civilite  civilite) {
     this.civilite = civilite;
   }
 

@@ -52,8 +52,6 @@ public class SiteEscaladeController {
   public String modifierSiteEscalade(Model model,String nom){
     SiteEscalade se = siteEscaladeMetier.consulterSiteEscalade(nom);
     model.addAttribute("siteEscaladeSelected", se);
-
-
     return "/views/viewSiteEscalade";
   }
 }

@@ -18,25 +18,25 @@
             auctor in, mattis vitae leo.</p>
         </div>
 
-        <form th:action="@{/save}" method="post">
+        <form th:action="@{/save}" method="post" th:object="${utilisateurConnecte}"> <!-- //th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
           <div class="form-group"><label for="username">Pseudo :</label>
             <input
                 class="form-control item"
                 type="text" id="username" name="userName"
-                th:value="${utilisateurConnecte.userName}"/><span
-                th:errors="${utilisateurConnecte.userName}" class="text-danger"></span></div>
+            />
+            <span th:errors="${utilisateurConnecte.userName}" class="text-danger"></span></div>
 
-           <div>
-             <div class="form-group">
-               <label for="civilite">Civilite :</label>
-               <select id="civilite" th:field="*{civilite}" th:value="${utilisateurConnecte.civilite}">
-                 <option th:each="CiviliteSelection : ${civilite}"
-                         th:text="${CiviliteSelection}"
-                         th:value="${CiviliteSelection}">
-                 </option>
-               </select>
-             </div>
-           </div>
+
+          <div class="form-group">
+            <label th:for="civilite">Civilite :</label>
+            <select class="form-control" id="civilite" th:field="*{civilite}">
+              <option th:each="CiviliteSelection : ${civiliteChoix}"
+                      th:text="${CiviliteSelection.value}"
+                      th:value="${CiviliteSelection}">
+              </option>
+            </select>
+          </div>
+
 
           <div class="form-group"><label for="name">Nom :</label><input class="form-control item"
                                                                         name="nom" type="text"
