@@ -1,8 +1,11 @@
 package metier;
 
 import entities.SiteEscalade;
+import org.springframework.data.domain.Page;
 
 public interface SiteEscaladeMetier {
-  public SiteEscalade consulterSiteEscalade(String nom);
+   SiteEscalade consulterSiteEscalade(String nom);
+   Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei);
+
 
 }
