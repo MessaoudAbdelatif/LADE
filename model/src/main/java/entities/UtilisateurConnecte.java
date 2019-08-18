@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,6 +20,7 @@ public class UtilisateurConnecte implements Serializable {
   @Id
   @NotEmpty
   @Size(min = 5, max = 60)
+  @Column(unique = true)
   private String userName;
   @Enumerated(EnumType.STRING)
   private Civilite civilite;

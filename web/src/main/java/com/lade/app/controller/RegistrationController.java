@@ -1,10 +1,11 @@
 package com.lade.app.controller;
 
-import dao.UtilisateurConnecteDao;
 import entities.Civilite;
 import entities.UtilisateurConnecte;
 import javax.validation.Valid;
+import metier.UtilisateurConnecteMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegistrationController {
 
+
+  private UtilisateurConnecteMetier utilisateurConnecteMetier;
+
   @Autowired
-  private UtilisateurConnecteDao utilisateurConnecteDao;
+  public RegistrationController(
+      UtilisateurConnecteMetier utilisateurConnecteMetier) {
+    this.utilisateurConnecteMetier = utilisateurConnecteMetier;
+  }
 
   @GetMapping("/registration")
   public java.lang.String registerFormulaire(Model model) {
@@ -25,13 +32,14 @@ public class RegistrationController {
   }
 
   @PostMapping("/save")
-  public java.lang.String registration(Model model, @Valid UtilisateurConnecte utilisateurConnecte,
+  public java.lang.String registration(Model model,
+      @Valid @NonNull UtilisateurConnecte utilisateurConnecte,
       BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("civiliteChoix", Civilite.values());
       return "views/registration";
     }
-    utilisateurConnecteDao.save(utilisateurConnecte);
+    utilisateurConnecteMetier.ajouterUtilisateurConnecte(utilisateurConnecte);
     return "views/registrationConfirme";
   }
 }

@@ -4,7 +4,7 @@ package metier;
 import entities.UtilisateurConnecte;
 
 public interface UtilisateurConnecteMetier{
-  public UtilisateurConnecte consulterUtilisateurConnecte();
-
+   UtilisateurConnecte consulterUtilisateurConnecte(String userName);
+   void ajouterUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte);
 
 }

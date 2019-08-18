@@ -12,8 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
-  @Autowired
   private SiteEscaladeDao siteEscaladeDao;
+
+@Autowired
+  public SiteEscaladeMetierImp(
+      SiteEscaladeDao siteEscaladeDao) {
+    this.siteEscaladeDao = siteEscaladeDao;
+  }
 
   @Override
   public SiteEscalade consulterSiteEscalade(String nom) {
@@ -26,5 +31,10 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   public Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei) {
     return siteEscaladeDao
         .findByNomContains(sei, PageRequest.of(numPages, size));
+  }
+
+  @Override
+  public SiteEscalade AjouterModifierUnSiteEscalade(String nom) {
+    return null;
   }
 }

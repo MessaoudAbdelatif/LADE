@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SiteEscaladeController {
 
-  @Autowired
   private SiteEscaladeMetier siteEscaladeMetier;
+
+  @Autowired
+  public SiteEscaladeController(
+      SiteEscaladeMetier siteEscaladeMetier) {
+    this.siteEscaladeMetier = siteEscaladeMetier;
+  }
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
