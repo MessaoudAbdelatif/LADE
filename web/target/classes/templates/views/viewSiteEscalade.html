@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+  <meta charset="utf-8"/>
+  <title>Site d'escalade</title>
+</head>
+<body>
+<div layout:fragment="content1">
+<div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscaladeSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom}">
+      </div>
+
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Nombre de secteur(s)</th>
+            <th class="text-center" th:text="${siteEscaladeSelected.nbrSecteur}"></th>
+          </tr>
+          <tr>
+            <th>Lieu</th>
+            <th class="text-center" th:text="${siteEscaladeSelected.lieu}"></th>
+          </tr>
+          <tr>
+            <th>Ville à Proximité</th>
+            <th class="text-center" th:text="${siteEscaladeSelected.villeProximite}"></th>
+          </tr>
+          <tr>
+            <th>Type de roche</th>
+            <th class="text-center" th:text="${siteEscaladeSelected.typeRoche}"></th>
+          </tr>
+          <tr th:if="${!siteEscaladeSelected.secteurs.isEmpty()}">
+            <th>Secteur</th>
+            <th class="text-center" th:text="${siteEscaladeSelected.secteurs}"></th>
+          </tr>
+          <tr th:if="${siteEscaladeSelected.tag}">
+            <th>"Offciel les amis de l'escalade"</th>
+            <th class="text-center text-success">Approuvé</th>
+          </tr>
+          <tr>
+            <th>Liste de(s) secteur(s)</th>
+            <th> </th>
+          </tr>
+        </table>
+        <button class="btn-primary btn " type="submit"><a th:href="@{/edit}">Modifier</a></button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>
