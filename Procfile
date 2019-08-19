@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar /Users/mess/Documents/app/web/target/web-0.0.1-SNAPSHOT.jar
