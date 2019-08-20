@@ -33,6 +33,7 @@ public class SiteEscaladeController {
       model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
       model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
       model.addAttribute("currentPage", numPages);
+      model.addAttribute("currentTypeRecherche",typeRecherche);
       model.addAttribute("sei", sei);
     } catch (Exception e) {
       model.addAttribute("exceptionAucunSiteEscaladeTrouve", e);

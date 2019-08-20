@@ -19,19 +19,20 @@
           <label>Un site d'escalade en particulier ?</label>
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="nomSiteEscaladeInsere" th:value="${sei}"
-                   placeholder="Saisir mot clé.." aria-label="sei" aria-describedby="button-addon2" id="nomSiteEscaladeInsere">
+                   placeholder="Saisir mot clé.." aria-label="sei" aria-describedby="button-addon2"
+                   id="nomSiteEscaladeInsere">
             <div class="input-group-append">
               <button class="btn btn-primary" type="submit" id="button-addon2">Rechercher</button>
             </div>
           </div>
-<div class="align-content-between">
-          <input id="NOM" type="radio" name="typeRecherche" value="NOM"
-          checked="checked"><label for="NOM">Nom</label>
-          <input id="SECTEUR" type="radio" name="typeRecherche" value="SECTEUR"
-                 ><label for="SECTEUR">Secteur</label>
-          <input id="LIEU" type="radio" name="typeRecherche" value="LIEU"
-                 ><label for="LIEU">Lieu</label>
-</div>
+          <div class="align-content-between">
+            <input id="NOM" type="radio" name="typeRecherche" value="NOM"
+                   checked="checked"><label for="NOM">Nom</label>
+            <input id="LIEU" type="radio" name="typeRecherche" value="LIEU"
+            ><label for="LIEU">Lieu</label>
+            <input id="VILLEPROX" type="radio" name="typeRecherche" value="VILLEPROX"
+            ><label for="VILLEPROX">Ville à Proximité</label>
+          </div>
         </form>
       </div>
       <div class="text-danger p-3" th:if="${siteEscalade.isEmpty()}">Aucun Site D'escalade Trouvé
@@ -59,7 +60,7 @@
       <ul class="pagination justify-content-center ">
         <li class="page-item">
           <a class="page-link "
-             th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei})}"
+             th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
              aria-label="Previous" th:if="${currentPage>0}">
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -68,12 +69,12 @@
         <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
             th:each="numPages,status:${pages}">
           <a class="page-link "
-             th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei})}"
+             th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
              th:text="${status.index}"></a>
         </li>
         <li class="page-item">
           <a class="page-link"
-             th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei})}"
+             th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
              aria-label="Next" th:if="${siteEscalade.size()>4}">
             <span aria-hidden="true">&raquo;</span>
           </a>

@@ -30,8 +30,8 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   @Override
   public Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei, String typeRecherche) {
   switch (typeRecherche){
-    case "SECTEUR":return siteEscaladeDao
-        .findBySecteursContains(sei, PageRequest.of(numPages, size));
+    case "VILLEPROX":return siteEscaladeDao
+        .findByVilleProximiteContainsIgnoreCase(sei, PageRequest.of(numPages, size));
     case "LIEU":return siteEscaladeDao
         .findByLieuContainsIgnoreCase(sei, PageRequest.of(numPages, size));
     default: return siteEscaladeDao
