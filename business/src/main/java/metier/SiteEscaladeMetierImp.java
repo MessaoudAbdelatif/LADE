@@ -28,10 +28,17 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   }
 
   @Override
-  public Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei) {
-    return siteEscaladeDao
-        .findByNomContains(sei, PageRequest.of(numPages, size));
+  public Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei, String typeRecherche) {
+  switch (typeRecherche){
+    case "SECTEUR":return siteEscaladeDao
+        .findBySecteursContains(sei, PageRequest.of(numPages, size));
+    case "LIEU":return siteEscaladeDao
+        .findByLieuContainsIgnoreCase(sei, PageRequest.of(numPages, size));
+    default: return siteEscaladeDao
+        .findByNomContainsIgnoreCase(sei, PageRequest.of(numPages, size));
   }
+}
+
 
   @Override
   public SiteEscalade AjouterModifierUnSiteEscalade(String nom) {

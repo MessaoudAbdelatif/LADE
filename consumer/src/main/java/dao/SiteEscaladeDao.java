@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SiteEscaladeDao extends JpaRepository<SiteEscalade, String> {
 
-   Page<SiteEscalade> findByNomContains(String sei, Pageable pageable);
+   Page<SiteEscalade> findByNomContainsIgnoreCase(String sei, Pageable pageable);
+   Page<SiteEscalade> findBySecteursContains(String sei, Pageable pageable);
+   Page<SiteEscalade> findByLieuContainsIgnoreCase(String sei, Pageable pageable);
 
 }

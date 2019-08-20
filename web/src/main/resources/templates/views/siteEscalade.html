@@ -19,14 +19,20 @@
           <label>Un site d'escalade en particulier ?</label>
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="nomSiteEscaladeInsere" th:value="${sei}"
-                   placeholder="Saisir nom..." aria-label="sei" aria-describedby="button-addon2">
+                   placeholder="Saisir mot clé.." aria-label="sei" aria-describedby="button-addon2" id="nomSiteEscaladeInsere">
             <div class="input-group-append">
               <button class="btn btn-primary" type="submit" id="button-addon2">Rechercher</button>
             </div>
           </div>
+<div class="align-content-between">
+          <input id="NOM" type="radio" name="typeRecherche" value="NOM"
+          checked="checked"><label for="NOM">Nom</label>
+          <input id="SECTEUR" type="radio" name="typeRecherche" value="SECTEUR"
+                 ><label for="SECTEUR">Secteur</label>
+          <input id="LIEU" type="radio" name="typeRecherche" value="LIEU"
+                 ><label for="LIEU">Lieu</label>
+</div>
         </form>
-
-
       </div>
       <div class="text-danger p-3" th:if="${siteEscalade.isEmpty()}">Aucun Site D'escalade Trouvé
         !!

@@ -24,10 +24,11 @@ public class SiteEscaladeController {
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
       @RequestParam(name = "numPages", defaultValue = "0") int numPages,
-      @RequestParam(name = "nomSiteEscaladeInsere", defaultValue = "") String sei) {
+      @RequestParam(name = "nomSiteEscaladeInsere", defaultValue = "") String sei,
+      @RequestParam(name = "typeRecherche",defaultValue = "NOM") String typeRecherche) {
     try {
       Page<SiteEscalade> pagesiteEscalade = siteEscaladeMetier
-          .rechercherUnSiteEscalade(numPages, 5, sei);
+          .rechercherUnSiteEscalade(numPages, 5, sei,typeRecherche);
       model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
       model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
       model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);

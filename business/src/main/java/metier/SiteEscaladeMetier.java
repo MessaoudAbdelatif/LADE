@@ -7,7 +7,7 @@ public interface SiteEscaladeMetier {
 
   SiteEscalade consulterSiteEscalade(String nom);
 
-  Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei);
+  Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei, String typeRecherche);
 
   SiteEscalade AjouterModifierUnSiteEscalade(String nom);
 }
