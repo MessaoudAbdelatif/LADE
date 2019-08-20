@@ -15,7 +15,7 @@
 
       <div class="card-header h4 text-dark text-center">Nos Sites D'escalades</div>
       <div class=" p-3">
-        <form class="form-group" th:action="@{/siteEscalade}" method="get">
+        <form  th:action="@{/siteEscalade}" method="get">
           <label>Un site d'escalade en particulier ?</label>
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="nomSiteEscaladeInsere" th:value="${sei}"
@@ -25,14 +25,16 @@
               <button class="btn btn-primary" type="submit" id="button-addon2">Rechercher</button>
             </div>
           </div>
-          <div class="align-content-between">
-            <input id="NOM" type="radio" name="typeRecherche" value="NOM"
-                   checked="checked"><label for="NOM">Nom</label>
-            <input id="LIEU" type="radio" name="typeRecherche" value="LIEU"
-            ><label for="LIEU">Lieu</label>
-            <input id="VILLEPROX" type="radio" name="typeRecherche" value="VILLEPROX"
-            ><label for="VILLEPROX">Ville à Proximité</label>
-          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="NOM" type="radio" name="typeRecherche" value="NOM"
+                   checked="checked"><label class="form-check-label"  for="NOM">Nom</label></div>
+          <div class="form-check form-check-inline">
+            <input  class="form-check-input" id="LIEU" type="radio" name="typeRecherche" value="LIEU"
+            ><label class="form-check-label"  for="LIEU">Lieu</label>
+          </div> <div class="form-check form-check-inline">
+            <input class="form-check-input" id="VILLEPROX" type="radio" name="typeRecherche" value="VILLEPROX"
+            ><label class="form-check-label"  for="VILLEPROX">Ville à Proximité</label></div>
         </form>
       </div>
       <div class="text-danger p-3" th:if="${siteEscalade.isEmpty()}">Aucun Site D'escalade Trouvé
