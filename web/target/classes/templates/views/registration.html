@@ -11,8 +11,8 @@
 <div layout:fragment="content1">
   <main class="page registration-page">
     <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
-      <div class="container">
-        <div class="block-heading">
+      <div class="container shadow card bg-light text-dark">
+        <div class="block-heading p-3">
           <h2 class="h2">Inscription</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
@@ -21,58 +21,58 @@
         <form th:action="@{/save}" method="post" th:object="${utilisateurConnecte}">
           <!-- //th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
 
-          <div class="form-group"><label th:for="username">Pseudo :</label>
+          <div class="form-group"><label th:for="username">Pseudo :
             <input
                 class="form-control item"
-                type="text" id="username" name="userName" th:field="*{userName}"/>
+                type="text" id="username" name="userName" th:field="*{userName}" autofocus="autofocus"/>
             <span>
             <ul class="text-danger" th:each="error: ${#fields.errors('userName')}">
               <li th:each="message : ${error.split(',')}">
                 <p class="error-message" th:text="${message}"></p>
               </li>
             </ul>
-            </span>
+            </span></label>
           </div>
 
 
-            <div class="form-group">
-              <label th:for="civilite">Civilite :</label>
+            <div class="input-group ">
+              <label th:for="civilite">Civilite
               <select id="civilite" th:field="*{civilite}">
                 <option th:each="CiviliteSelection : ${civiliteChoix}"
                         th:text="${CiviliteSelection.value}"
                         th:value="${CiviliteSelection}">
                 </option>
-              </select>
-            </div>
+              </select></label>
 
 
-            <div class="form-group"><label for="name">Nom :</label><input class="form-control item"
+
+            <div class="input-group"><label for="name">Nom<input class="form-control item"
                                                                           name="nom" type="text"
                                                                           id="name"
                                                                           th:field="*{nom}">
-              <span th:errors="*{nom}" class="text-danger"></span>
-            </div>
+              <span th:errors="*{nom}" class="text-danger"></span></label>
+            </div> </div>
 
-            <div class="form-group"><label for="prenom">Prénom :</label><input
+            <div class="input-group"><label for="prenom">Prénom<input
                 class="form-control item"
                 name="prenom" type="text"
                 id="prenom"
                 th:value="${utilisateurConnecte.prenom}">
-              <span th:errors="${utilisateurConnecte.prenom}" class="text-danger"></span>
+              <span th:errors="${utilisateurConnecte.prenom}" class="text-danger"></span></label>
             </div>
 
-            <div class="form-group"><label for="password">Mot de Passe :</label><input
+            <div class="input-group"><label for="password">Mot de Passe<input
                 name="motDePasse" class="form-control item" type="password" id="password"
-                th:value="${utilisateurConnecte.motDePasse}"></div>
+                th:value="${utilisateurConnecte.motDePasse}"></label></div>
 
-            <div class="form-group"><label for="passwordConfirmation">Confirmation du Mot de
-              Passe :</label><input
-                class="form-control item" type="password" id="passwordConfirmation"></div>
-            <div class="form-group"><label for="email">E-mail :</label><input
+            <div class="input-group"><label for="passwordConfirmation">Confirmation Mot de
+              Passe<input
+                class="form-control item" type="password" id="passwordConfirmation"></label></div>
+            <div class="form-group"><label for="email">E-mail<input
                 class="form-control item"
                 name="email" type="text"
                 id="email"
-                th:value="${utilisateurConnecte.email}">
+                th:value="${utilisateurConnecte.email}"></label>
 
             <ul class="text-danger" th:each="error: ${#fields.errors('email')}">
               <li th:each="message : ${error.split(',')}">
@@ -82,7 +82,7 @@
 
             </div>
 
-            <div class="form-group"><label for="messagePerso">Parler nous de vous :</label>
+            <div class="form-group"><label for="messagePerso">Parler nous de vous</label>
               <textarea class="form-control" id="messagePerso" rows="2"
                         name="presentationPersonel"
                         placeholder="Une bref présentation résumant votre passion pour l'escalade..">
