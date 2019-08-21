@@ -33,7 +33,7 @@
             <th>Type de roche</th>
             <th class="text-center" th:text="${siteEscaladeSelected.typeRoche}"></th>
           </tr>
-          <tr th:if="${!siteEscaladeSelected.secteurs.isEmpty()}">
+          <tr th:if="${siteEscaladeSelected.secteurs.size()>0}">
             <th>Secteur</th>
             <th class="text-center" th:text="${siteEscaladeSelected.secteurs}"></th>
           </tr>
