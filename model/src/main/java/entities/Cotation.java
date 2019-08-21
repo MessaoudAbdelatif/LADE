@@ -1,9 +1,10 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Cotation {
+public abstract class Cotation implements Serializable {
 
   private static final List<String> cotations = Arrays.asList(
       "3A", "3A+", "3B", "3B+", "3C", "3C+",

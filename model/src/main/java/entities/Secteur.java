@@ -5,24 +5,31 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Secteur implements Serializable {
   @Id
+  @NotEmpty
   private String nom;
-  private String nomSiteEscalade;
+
+  @ManyToOne
+  @JoinColumn(name = "NOM_SITE")
+  private SiteEscalade siteEscalade;
   private String description;
-  @OneToMany(mappedBy = "nomSecteur", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "secteur", fetch = FetchType.LAZY)
   private Collection<Voie> voies;
 
   public Secteur() {
   }
 
-  public Secteur(String nom, String nomSiteEscalade, String description,
+  public Secteur(String nom, SiteEscalade siteEscalade, String description,
       Collection<Voie> voies) {
     this.nom = nom;
-    this.nomSiteEscalade = nomSiteEscalade;
+    this.siteEscalade = siteEscalade;
     this.description = description;
     this.voies = voies;
   }
@@ -34,12 +41,12 @@ public class Secteur implements Serializable {
     this.nom = nom;
   }
 
-  public String getNomSiteEscalade() {
-    return nomSiteEscalade;
+  public SiteEscalade getSiteEscalade() {
+    return siteEscalade;
   }
 
-  public void setNomSiteEscalade(String nomSiteEscalade) {
-    this.nomSiteEscalade = nomSiteEscalade;
+  public void setSiteEscalade(SiteEscalade siteEscalade) {
+    this.siteEscalade = siteEscalade;
   }
 
   public String getDescription() {

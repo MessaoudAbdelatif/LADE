@@ -1,8 +1,10 @@
 package com.lade.app.controller;
 
 
+import entities.Secteur;
 import entities.SiteEscalade;
 import javax.validation.Valid;
+import metier.SecteurMetier;
 import metier.SiteEscaladeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SiteEscaladeController {
 
   private SiteEscaladeMetier siteEscaladeMetier;
+  private SecteurMetier secteurMetier;
 
   @Autowired
   public SiteEscaladeController(
-      SiteEscaladeMetier siteEscaladeMetier) {
+      SiteEscaladeMetier siteEscaladeMetier, SecteurMetier secteurMetier) {
     this.siteEscaladeMetier = siteEscaladeMetier;
+    this.secteurMetier = secteurMetier;
   }
 
   @GetMapping("/siteEscalade")
@@ -77,6 +81,24 @@ public class SiteEscaladeController {
       return "views/creationSiteEscalade";
     }
       siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade);
-      return "redirect:/viewSiteEscalade?nom=" + siteEscalade.getNom();
+      return "redirect:/viewSiteEscalade?nom="+ siteEscalade.getNom();
     }
+    @GetMapping("/creationSecteur")
+    public String creationSecteur(Model model, SiteEscalade siteEscalade){
+    model.addAttribute("secteur",new Secteur());
+    model.addAttribute("nomSiteEscalade", siteEscalade);
+    return "views/creationSecteur";
+    }
+
+  @PostMapping("/ajouterSecteur")
+  public String ajouterSecteur(Model model,
+      @Valid Secteur secteur,
+      BindingResult newSecteurErrors, SiteEscalade siteEscalade) {
+    model.addAttribute("nomSitesEscalade",siteEscalade);
+    if (newSecteurErrors.hasErrors()) {
+      return "views/creationSecteur";
+    }
+   secteurMetier.ajouterSecteur(secteur);
+    return "redirect:/viewSiteEscalade?nom="+ secteur.getSiteEscalade();
+  }
 }

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -17,20 +19,22 @@ public class DemandeLocation implements Serializable {
   private Date dateDebut;
   private Date dateFin;
   private String nomTopos;
-  private String userName;
+  @ManyToOne
+  @JoinColumn(name = "CODE_UTILISATEUR")
+  private UtilisateurConnecte utilisateurConnecte;
   private String message;
   private Boolean proprioValidation;
 
   public DemandeLocation() {
   }
 
-  public DemandeLocation(Long id, Date dateDebut, Date dateFin, String nomTopos, String userName,
+  public DemandeLocation(Long id, Date dateDebut, Date dateFin, String nomTopos, UtilisateurConnecte utilisateurConnecte,
       String message, Boolean proprioValidation) {
     this.id = id;
     this.dateDebut = dateDebut;
     this.dateFin = dateFin;
     this.nomTopos = nomTopos;
-    this.userName = userName;
+    this.utilisateurConnecte = utilisateurConnecte;
     this.message = message;
     this.proprioValidation = proprioValidation;
   }
@@ -67,12 +71,12 @@ public class DemandeLocation implements Serializable {
     this.nomTopos = nomTopos;
   }
 
-  public String getUserName() {
-    return userName;
+  public UtilisateurConnecte getUserName() {
+    return utilisateurConnecte;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUserName(UtilisateurConnecte utilisateurConnecte) {
+    this.utilisateurConnecte = utilisateurConnecte;
   }
 
   public String getMessage() {

@@ -35,17 +35,16 @@ public class UtilisateurConnecte implements Serializable {
 
   @NotEmpty
   @Email
-
   private String email;
 
   private Boolean etatCompte;
 
   private String motDePasse;
   private LocalDateTime dateCreation;
-  @OneToMany(mappedBy = "userName", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
   private Collection<DemandeLocation> demandeLocations;
 
-  @OneToMany(mappedBy = "userName", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
   private Collection<Commentaire> commentaires;
 
 

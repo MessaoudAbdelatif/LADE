@@ -3,16 +3,25 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
 public class Commentaire implements Serializable {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String userName;
-  private String nomSiteEscalade;
+  @ManyToOne
+  @JoinColumn(name ="NOM_EMETTEUR")
+  private UtilisateurConnecte utilisateurConnecte;
+  @ManyToOne
+  @JoinColumn(name = "NOM_SITE_ESCALADE")
+  private SiteEscalade siteEscalade;
   private String titre;
   private String message;
   private Date dateEdition;
@@ -20,11 +29,11 @@ public class Commentaire implements Serializable {
   public Commentaire() {
   }
 
-  public Commentaire(Long id, String userName, String nomSiteEscalade, String titre,
+  public Commentaire(Long id, UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade, String titre,
       String message, Date dateEdition) {
     this.id = id;
-    this.userName = userName;
-    this.nomSiteEscalade = nomSiteEscalade;
+    this.utilisateurConnecte = utilisateurConnecte;
+    this.siteEscalade = siteEscalade;
     this.titre = titre;
     this.message = message;
     this.dateEdition = dateEdition;
@@ -38,20 +47,20 @@ public class Commentaire implements Serializable {
     this.id = id;
   }
 
-  public String getUserName() {
-    return userName;
+  public UtilisateurConnecte getUserName() {
+    return utilisateurConnecte;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUserName(UtilisateurConnecte utilisateurConnecte) {
+    this.utilisateurConnecte = utilisateurConnecte;
   }
 
-  public String getNomSiteEscalade() {
-    return nomSiteEscalade;
+  public SiteEscalade getNomSiteEscalade() {
+    return siteEscalade;
   }
 
-  public void setNomSiteEscalade(String nomSiteEscalade) {
-    this.nomSiteEscalade = nomSiteEscalade;
+  public void setNomSiteEscalade(SiteEscalade siteEscalade) {
+    this.siteEscalade = siteEscalade;
   }
 
   public String getTitre() {

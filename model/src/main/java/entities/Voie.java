@@ -5,6 +5,8 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -12,19 +14,21 @@ public class Voie implements Serializable {
 
   @Id
   private String nom;
-  private String nomSecteur;
+  @ManyToOne
+  @JoinColumn(name = "NOM_SECTEUR")
+  private Secteur secteur;
   private String descreption;
   private String cotation;
-  @OneToMany(mappedBy = "nomVoie", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "voie", fetch = FetchType.LAZY)
   private Collection<Longeur> longeurs;
 
   public Voie() {
   }
 
-  public Voie(String nom, String nomSecteur, String descreption, String cotation,
+  public Voie(String nom, Secteur secteur, String descreption, String cotation,
       Collection<Longeur> longeurs) {
     this.nom = nom;
-    this.nomSecteur = nomSecteur;
+    this.secteur = secteur;
     this.descreption = descreption;
     this.cotation = cotation;
     this.longeurs = longeurs;
@@ -38,12 +42,12 @@ public class Voie implements Serializable {
     this.nom = nom;
   }
 
-  public String getNomSecteur() {
-    return nomSecteur;
+  public Secteur getSecteur() {
+    return secteur;
   }
 
-  public void setNomSecteur(String nomSecteur) {
-    this.nomSecteur = nomSecteur;
+  public void setSecteur(Secteur secteur) {
+    this.secteur = secteur;
   }
 
   public String getDescreption() {

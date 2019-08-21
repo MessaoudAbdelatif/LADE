@@ -24,9 +24,9 @@ public class SiteEscalade implements Serializable {
   private String villeProximite;
   private String typeRoche;
   private boolean tag;
-  @OneToMany(mappedBy = "nomSiteEscalade", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "siteEscalade", fetch = FetchType.LAZY)
   private Collection<Secteur> secteurs;
-  @OneToMany(mappedBy = "nomSiteEscalade", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "siteEscalade", fetch = FetchType.LAZY)
   private Collection<Commentaire> commentaires;
 
 
