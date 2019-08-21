@@ -41,7 +41,7 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
 
   @Override
-  public SiteEscalade AjouterModifierUnSiteEscalade(String nom) {
-    return null;
+  public void ajouterUnSiteEscalade(SiteEscalade siteEscalade) {
+    siteEscaladeDao.save(siteEscalade);
   }
 }

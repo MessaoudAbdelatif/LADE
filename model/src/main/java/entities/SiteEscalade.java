@@ -2,17 +2,24 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+
+
 
 @Entity
 public class SiteEscalade implements Serializable {
 
   @Id
+  @Column(unique = true)
+  @NotEmpty
   private String nom;
   private int nbrSecteur;
+  @NotEmpty
   private String lieu;
   private String villeProximite;
   private String typeRoche;
@@ -46,7 +53,10 @@ public class SiteEscalade implements Serializable {
   }
 
   public void setNbrSecteur(int nbrSecteur) {
-    this.nbrSecteur = nbrSecteur;
+    if (secteurs.isEmpty()) {
+      this.nbrSecteur = 0;
+    }
+    this.nbrSecteur = secteurs.size();
   }
 
   public String getLieu() {

@@ -35,6 +35,7 @@ public class UtilisateurConnecte implements Serializable {
 
   @NotEmpty
   @Email
+
   private String email;
 
   private Boolean etatCompte;

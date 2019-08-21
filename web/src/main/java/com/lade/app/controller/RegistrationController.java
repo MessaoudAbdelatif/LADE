@@ -25,14 +25,14 @@ public class RegistrationController {
   }
 
   @GetMapping("/registration")
-  public java.lang.String registerFormulaire(Model model) {
+  public String registerFormulaire(Model model) {
     model.addAttribute("utilisateurConnecte", new UtilisateurConnecte());
     model.addAttribute("civiliteChoix", Civilite.values());
     return "views/registration";
   }
 
   @PostMapping("/save")
-  public java.lang.String registration(Model model,
+  public String registration(Model model,
       @Valid @NonNull UtilisateurConnecte utilisateurConnecte,
       BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {

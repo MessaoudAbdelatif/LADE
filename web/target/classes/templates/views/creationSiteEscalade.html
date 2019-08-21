@@ -8,38 +8,43 @@
   <meta charset="utf-8"/>
   <title>Home - Les Amis De L'escalade</title>
 </head>
+
+
 <body>
 <div layout:fragment="content1">
+
   <main class="page registration-page">
-    <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
-      <div class="container shadow card bg-light card-header text-dark ">
-        <div class="block-heading">
+    <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
+      <div class="container  card shadow  bg-light  text-dark p-3 ">
+        <div class="card-header">
           <h2 class="h2">Ajouter un site d'esclade</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form>
-          <div class="form-group"><label for="nameSite">Nom du site</label>
-            <input class="form-control item" type="text" id="nameSite" >
-          </div>
-          <div class="form-group"><label for="nbrSecteur">Nombre de secteur(s)</label><input
-              class="form-control item" type="text" id="nbrSecteur">
+        <form class="p-2" method="post" th:action="@{/saveSiteEscalade}" th:object="${siteEscalade}" >
+          <div class="form-group"><label for="nom">Nom du site</label>
+            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" >
+            <span th:errors="*{nom}" class="text-danger"></span>
           </div>
           <div class="form-group"><label for="lieu">Lieu</label><input class="form-control item"
-                                                                       type="text" id="lieu">
+                                                                       type="text" id="lieu" name="lieu" th:field="*{lieu}">
+            <span th:errors="*{lieu}" class="text-danger"></span>
           </div>
-          <div class="form-group"><label for="villeProx">Ville à proximité</label><input
-              class="form-control item" type="text" id="villeProx"></div>
+          <div class="form-group"><label for="villeProximite">Ville à proximité</label><input
+              class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{villeProximite}" ><span th:errors="*{villeProximite}" class="text-danger"></span></div>
           <div class="form-group"><label for="typeRoche">Type de roche</label><input
-              class="form-control item" type="text" id="typeRoche">
+              class="form-control item" type="text" id="typeRoche" name="typeRoche" th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
           </div>
-
           <button class="btn btn-primary " type="submit">Enregistrer</button>
         </form>
       </div>
     </section>
   </main>
 </div>
+
+
+
+
 </body>
 
 </html>

@@ -2,6 +2,7 @@ package metier;
 
 import dao.UtilisateurConnecteDao;
 import entities.UtilisateurConnecte;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   @Override
   public void ajouterUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
+    utilisateurConnecte.setDateCreation(LocalDateTime.now());
     utilisateurConnecteDao.save(utilisateurConnecte);
   }
 }

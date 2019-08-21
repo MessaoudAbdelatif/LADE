@@ -9,5 +9,5 @@ public interface SiteEscaladeMetier {
 
   Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei, String typeRecherche);
 
-  SiteEscalade AjouterModifierUnSiteEscalade(String nom);
+  void ajouterUnSiteEscalade(SiteEscalade siteEscalade);
 }
