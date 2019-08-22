@@ -86,7 +86,7 @@ public class SiteEscaladeController {
     @GetMapping("/creationSecteur")
     public String creationSecteur(Model model, SiteEscalade siteEscalade){
     model.addAttribute("secteur",new Secteur());
-    model.addAttribute("nomSiteEscalade", siteEscalade);
+    model.addAttribute("nomSiteEscalade", siteEscalade.getNom());
     return "views/creationSecteur";
     }
 
@@ -94,11 +94,11 @@ public class SiteEscaladeController {
   public String ajouterSecteur(Model model,
       @Valid Secteur secteur,
       BindingResult newSecteurErrors, SiteEscalade siteEscalade) {
-    model.addAttribute("nomSitesEscalade",siteEscalade);
+    model.addAttribute("nomSiteEscalade",siteEscalade.getNom());
     if (newSecteurErrors.hasErrors()) {
       return "views/creationSecteur";
     }
    secteurMetier.ajouterSecteur(secteur);
-    return "redirect:/viewSiteEscalade?nom="+ secteur.getSiteEscalade();
+    return "redirect:/viewSiteEscalade?nom="+ siteEscalade.getNom();
   }
 }

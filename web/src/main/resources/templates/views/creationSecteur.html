@@ -14,7 +14,7 @@
     <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
-          <h2 class="h2">Ajouter un secteur au site :</h2><h2 th:text="${nomSiteEscalade}"></h2>
+          <h2 class="h2 text-center">Ajouter un secteur au site :</h2><h2 class="h2 text-center" th:text="${nomSiteEscalade}"></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
@@ -27,8 +27,8 @@
           <div class="form-group"><label for="villeProximite">Description</label><input
               class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{description}" ><span th:errors="*{description}" class="text-danger"></span></div>
 
-          <div class="form-group"><label for="lieu">Nom site d'escalade associé :</label><input class="form-control item"
-                                                                                              type="hidden" id="lieu" name="lieu" th:field="*{siteEscalade}" th:text="${nomSiteEscalade}" th:value="${nomSiteEscalade}">
+          <div class="form-group"><label for="siteEscalade">Nom site d'escalade associé :</label><input class="form-control item"
+                                                                                              type="hidden" id="siteEscalade" name="siteEscalade" th:field="*{siteEscalade}" th:text="${nomSiteEscalade}" th:value="${nomSiteEscalade}">
             <span th:errors="*{siteEscalade}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
