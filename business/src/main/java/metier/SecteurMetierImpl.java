@@ -20,12 +20,14 @@ public class SecteurMetierImpl implements SecteurMetier {
   }
 
   @Override
-  public void ajouterSecteur(Secteur secteur) {
+  public Secteur ajouterSecteur(Secteur secteur) {
     secteurDao.save(secteur);
+    return secteur;
   }
 
   @Override
-  public List<Secteur> consulterListSecteur(SiteEscalade siteEscalade) {
+  public List<Secteur> consulterListSecteurPourUnSiteEscalade(SiteEscalade siteEscalade) {
+//    List<Secteur> secteurs = secteurDao.findAll().stream().filter(secteur -> secteur.getSiteEscalade().equals(siteEscalade.getSecteurs().contains()));
     return null;
   }
 }

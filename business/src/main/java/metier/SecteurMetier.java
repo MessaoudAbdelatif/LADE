@@ -5,6 +5,6 @@ import entities.SiteEscalade;
 import java.util.List;
 
 public interface SecteurMetier {
-void ajouterSecteur(Secteur secteur);
-List<Secteur> consulterListSecteur(SiteEscalade siteEscalade);
+Secteur ajouterSecteur(Secteur secteur);
+List<Secteur> consulterListSecteurPourUnSiteEscalade(SiteEscalade siteEscalade);
 }

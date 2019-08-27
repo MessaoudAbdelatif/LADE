@@ -28,7 +28,7 @@
               class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{description}" ><span th:errors="*{description}" class="text-danger"></span></div>
 
           <div class="form-group"><label for="siteEscalade">Nom site d'escalade associé :</label><input class="form-control item"
-                                                                                              type="hidden" id="siteEscalade" name="siteEscalade" th:field="*{siteEscalade}" th:text="${nomSiteEscalade}" th:value="${nomSiteEscalade}">
+                                                                                              type="hidden" id="siteEscalade" name="siteEscalade" th:field="*{siteEscalade}" th:text="${siteEscalade}" th:value="${siteEscalade}">
             <span th:errors="*{siteEscalade}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>

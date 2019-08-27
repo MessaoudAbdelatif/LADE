@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SiteEscaladeController {
 
-  private SiteEscaladeMetier siteEscaladeMetier;
-  private SecteurMetier secteurMetier;
+  private final SiteEscaladeMetier siteEscaladeMetier;
+  private final SecteurMetier secteurMetier;
 
   @Autowired
   public SiteEscaladeController(
@@ -35,7 +35,7 @@ public class SiteEscaladeController {
       @RequestParam(name = "typeRecherche", defaultValue = "NOM") String typeRecherche) {
     try {
       Page<SiteEscalade> pagesiteEscalade = siteEscaladeMetier
-          .rechercherUnSiteEscalade(numPages, 5, sei, typeRecherche);
+          .rechercherDesSitesEscalades(numPages, 5, sei, typeRecherche);
       model.addAttribute("siteEscalade", pagesiteEscalade.getContent());
       model.addAttribute("pages", new int[pagesiteEscalade.getTotalPages()]);
       model.addAttribute("nbrPagesTotal", new int[pagesiteEscalade.getTotalPages()].length);
@@ -49,11 +49,18 @@ public class SiteEscaladeController {
     return "views/siteEscalade";
   }
 
+  private SiteEscalade selectionnerUnSiteEscalade(Model model, String nom) {
+
+    SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(nom);
+    model.addAttribute("siteEscaladeSelected", siteEscaladeSelected);
+
+    return siteEscaladeSelected;
+  }
+
   @GetMapping("/viewSiteEscalade")
-  public String viewSiteEscalade(Model model, String nom) {
+  public String afficherUnSiteEscalade(Model model, String nom) {
     try {
-      SiteEscalade se = siteEscaladeMetier.consulterSiteEscalade(nom);
-      model.addAttribute("siteEscaladeSelected", se);
+      selectionnerUnSiteEscalade(model, nom);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }
@@ -62,9 +69,9 @@ public class SiteEscaladeController {
 
   @GetMapping("/edit")
   public String modifierSiteEscalade(Model model, String nom) {
-    SiteEscalade se = siteEscaladeMetier.consulterSiteEscalade(nom);
-    model.addAttribute("siteEscaladeSelected", se);
-    return "/views/viewSiteEscalade";
+    SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(nom);
+    model.addAttribute("siteEscaladeSelected", siteEscaladeSelected);
+    return "views/modifierSiteEscalade";
   }
 
   @GetMapping("/creationSiteEscalade")
@@ -74,31 +81,34 @@ public class SiteEscaladeController {
   }
 
   @PostMapping("/saveSiteEscalade")
-  public String saveSiteEscalade(Model model,
+  public String saveCreationSiteEscalade(Model model,
       @Valid SiteEscalade siteEscalade,
       BindingResult newSiteEscaladeErrors) {
+    model.addAttribute("siteEscalade", siteEscalade);
     if (newSiteEscaladeErrors.hasErrors()) {
       return "views/creationSiteEscalade";
     }
-      siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade);
-      return "redirect:/viewSiteEscalade?nom="+ siteEscalade.getNom();
-    }
-    @GetMapping("/creationSecteur")
-    public String creationSecteur(Model model, SiteEscalade siteEscalade){
-    model.addAttribute("secteur",new Secteur());
-    model.addAttribute("nomSiteEscalade", siteEscalade.getNom());
+    siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade);
+    return "redirect:/viewSiteEscalade?nom=" + siteEscalade.getNom();
+  }
+
+  @GetMapping("/creationSecteur")
+  public String creationSecteur(Model model, String nom) {
+    model.addAttribute("secteur", new Secteur());
+    model.addAttribute("nomSiteEscalade", nom);
     return "views/creationSecteur";
-    }
+  }
 
   @PostMapping("/ajouterSecteur")
   public String ajouterSecteur(Model model,
       @Valid Secteur secteur,
       BindingResult newSecteurErrors, SiteEscalade siteEscalade) {
-    model.addAttribute("nomSiteEscalade",siteEscalade.getNom());
+    model.addAttribute("nomSiteEscalade", siteEscalade.getNom());
+    model.addAttribute("siteEscalade",siteEscalade);
     if (newSecteurErrors.hasErrors()) {
       return "views/creationSecteur";
     }
-   secteurMetier.ajouterSecteur(secteur);
-    return "redirect:/viewSiteEscalade?nom="+ siteEscalade.getNom();
+    secteurMetier.ajouterSecteur(secteur);
+    return "redirect:/viewSiteEscalade?nom=" + siteEscalade.getNom();
   }
 }

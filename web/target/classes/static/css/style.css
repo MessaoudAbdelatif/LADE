@@ -66,9 +66,6 @@ tr{
   font-family: 'Roboto',Arial,Helvetica, sans-serif;
 }
 
-a{
-
-}
 #menuText {
   font-family: 'Chewy', cursive;
   font-size: larger;
@@ -80,9 +77,8 @@ a{
   padding-left: 0.8rem;
 }
 
-h1, h2,h3,h4{
+h1,h2,h3,h4{
   font-family: 'Chewy', cursive;
   font-size: larger;
-
 }
 

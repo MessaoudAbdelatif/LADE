@@ -21,25 +21,23 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   }
 
   @Override
-  public SiteEscalade consulterSiteEscalade(String nom) {
+  public SiteEscalade consulterUnSiteEscalade(String nom) {
     SiteEscalade cse= siteEscaladeDao.getOne(nom);
     if (cse==null) throw new RuntimeException("Site Escalade Introuvable");
     return cse;
   }
 
   @Override
-  public Page<SiteEscalade> rechercherUnSiteEscalade(int numPages, int size, String sei, String typeRecherche) {
+  public Page<SiteEscalade> rechercherDesSitesEscalades(int numPages, int size, String sei, String typeRecherche) {
   switch (typeRecherche){
     case "VILLEPROX":return siteEscaladeDao
         .findByVilleProximiteContainsIgnoreCase(sei, PageRequest.of(numPages, size));
     case "LIEU":return siteEscaladeDao
         .findByLieuContainsIgnoreCase(sei, PageRequest.of(numPages, size));
     default: return siteEscaladeDao
-        .findByNomContainsIgnoreCase(sei, PageRequest.of(numPages, size));
+        .findByNomContainsIgnoreCaseOrderByNom(sei, PageRequest.of(numPages, size));
   }
 }
-
-
   @Override
   public void ajouterUnSiteEscalade(SiteEscalade siteEscalade) {
     siteEscaladeDao.save(siteEscalade);
