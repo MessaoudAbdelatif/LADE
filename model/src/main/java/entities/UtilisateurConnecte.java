@@ -2,7 +2,8 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,42 +11,51 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "Utilisateur_Connecte")
 public class UtilisateurConnecte implements Serializable {
 
   @Id
-  @NotEmpty
   @Size(min = 5, max = 60)
-  @Column(unique = true)
   private String userName;
   @Enumerated(EnumType.STRING)
   private Civilite civilite;
 
   @NotEmpty
+  @Column(name = "Nom")
   private String nom;
 
   @NotEmpty
+  @Column(name = "Prenom")
   private String prenom;
 
+  @Column(name = "Presentation_Personel")
   private String presentationPersonel;
 
   @NotEmpty
   @Email
+  @Column(name = "Email")
   private String email;
 
+  @Column(name = "Etat_Compte")
   private Boolean etatCompte;
 
+  @Column(name = "Mot_De_Pass")
   private String motDePasse;
+
+  @Column(name = "Date_Creation")
   private LocalDateTime dateCreation;
-  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
-  private Collection<DemandeLocation> demandeLocations;
 
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
-  private Collection<Commentaire> commentaires;
+  private Set<DemandeLocation> demandeLocations = new HashSet<>();
+
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
+  private Set<Commentaire> commentaires = new HashSet<>();
 
 
   public UtilisateurConnecte() {
@@ -134,19 +144,19 @@ public class UtilisateurConnecte implements Serializable {
     this.dateCreation = dateCreation;
   }
 
-  public Collection<DemandeLocation> getDemandeLocations() {
+  public Set<DemandeLocation> getDemandeLocations() {
     return demandeLocations;
   }
 
-  public void setDemandeLocations(Collection<DemandeLocation> demandeLocations) {
+  public void setDemandeLocations(Set<DemandeLocation> demandeLocations) {
     this.demandeLocations = demandeLocations;
   }
 
-  public Collection<Commentaire> getCommentaires() {
+  public Set<Commentaire> getCommentaires() {
     return commentaires;
   }
 
-  public void setCommentaires(Collection<Commentaire> commentaires) {
+  public void setCommentaires(Set<Commentaire> commentaires) {
     this.commentaires = commentaires;
   }
 }

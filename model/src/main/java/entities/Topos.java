@@ -1,46 +1,75 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "Topos")
 public class Topos implements Serializable {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @NotEmpty
+  @Column(name = "Nom")
   private String nom;
+
+  @Column(name = "Description")
   private String description;
+  @Column(name = "Lieu_De_Parution")
   private String lieuDeParution;
+
+  @Column(name = "Date_De_Parution")
   @Temporal(TemporalType.TIMESTAMP)
   private Date dateDeParution;
+
+  @Column(name = "Proprietaire")
   private String proprietaire;
+
+  @Column(name = "Disponible_En_Location")
   private Boolean disponibleEnLocation;
+
+  @Column(name = "Lien")
   private String lien;
+
+  @Column(name = "Loue")
   private Boolean loue;
+
   @OneToMany(mappedBy = "nomTopos", fetch = FetchType.LAZY)
-  private Collection<DemandeLocation> demandeLocations;
+  private Set<DemandeLocation> demandeLocations  = new HashSet<>();
 
   public Topos() {
   }
 
-  public Topos(String nom, String description, String lieuDeParution, Date dateDeParution,
-      String proprietaire, Boolean disponibleEnLocation, String lien, Boolean loue,
-      Collection<DemandeLocation> demandeLocations) {
+  public Topos(@NotEmpty String nom, String description, String lieuDeParution,
+      Date dateDeParution, String proprietaire, Boolean disponibleEnLocation) {
     this.nom = nom;
     this.description = description;
     this.lieuDeParution = lieuDeParution;
     this.dateDeParution = dateDeParution;
     this.proprietaire = proprietaire;
     this.disponibleEnLocation = disponibleEnLocation;
-    this.lien = lien;
-    this.loue = loue;
-    this.demandeLocations = demandeLocations;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getNom() {
@@ -107,11 +136,11 @@ public class Topos implements Serializable {
     this.loue = loue;
   }
 
-  public Collection<DemandeLocation> getDemandeLocations() {
+  public Set<DemandeLocation> getDemandeLocations() {
     return demandeLocations;
   }
 
-  public void setDemandeLocations(Collection<DemandeLocation> demandeLocations) {
+  public void setDemandeLocations(Set<DemandeLocation> demandeLocations) {
     this.demandeLocations = demandeLocations;
   }
 }

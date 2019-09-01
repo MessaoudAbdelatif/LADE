@@ -2,36 +2,47 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "Commentaire")
 public class Commentaire implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @ManyToOne
-  @JoinColumn(name ="NOM_EMETTEUR")
+  @JoinColumn(name ="Nom_Emmetteur")
   private UtilisateurConnecte utilisateurConnecte;
   @ManyToOne
-  @JoinColumn(name = "NOM_SITE_ESCALADE")
+  @JoinColumn(name = "Nom_Site_Escalade")
   private SiteEscalade siteEscalade;
+
+  @Column(name = "Titre")
   private String titre;
+
+  @Lob
+  @Column(name = "Message")
   private String message;
+
+  @Column(name = "Date_Edition")
   private Date dateEdition;
 
   public Commentaire() {
   }
 
-  public Commentaire(Long id, UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade, String titre,
+  public Commentaire( UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade, String titre,
       String message, Date dateEdition) {
-    this.id = id;
+
     this.utilisateurConnecte = utilisateurConnecte;
     this.siteEscalade = siteEscalade;
     this.titre = titre;

@@ -1,22 +1,30 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Longeur")
 public class Longeur implements Serializable {
+
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @Column(name = "Nom")
   private String nom;
   @ManyToOne
-  @JoinColumn(name = "NOM_VOIE")
+  @JoinColumn(name = "Voie_id")
   private Voie voie;
+
+  @Column(name = "Cotation")
   private String cotation;
-
-
-
 
 
   public Longeur() {
@@ -26,6 +34,14 @@ public class Longeur implements Serializable {
     this.nom = nom;
     this.voie = voie;
     this.cotation = cotation;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getNom() {

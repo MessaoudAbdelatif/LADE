@@ -2,27 +2,42 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "Demande_Location")
 public class DemandeLocation implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(name = "Date_Debut")
   private Date dateDebut;
+
+  @Column(name = "Date_Fin")
   private Date dateFin;
+
+  @Column(name = "Nom_Topos")
   private String nomTopos;
+
   @ManyToOne
-  @JoinColumn(name = "CODE_UTILISATEUR")
+  @JoinColumn(name = "Utilisateur_id")
   private UtilisateurConnecte utilisateurConnecte;
+
+
+  @Column(name = "Message")
   private String message;
+
+  @Column(name = "Proprio_Validation")
   private Boolean proprioValidation;
 
   public DemandeLocation() {

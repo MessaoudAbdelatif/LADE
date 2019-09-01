@@ -21,8 +21,8 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   }
 
   @Override
-  public SiteEscalade consulterUnSiteEscalade(String nom) {
-    SiteEscalade cse= siteEscaladeDao.getOne(nom);
+  public SiteEscalade consulterUnSiteEscalade(Long id) {
+    SiteEscalade cse= siteEscaladeDao.getOne(id);
     if (cse==null) throw new RuntimeException("Site Escalade Introuvable");
     return cse;
   }

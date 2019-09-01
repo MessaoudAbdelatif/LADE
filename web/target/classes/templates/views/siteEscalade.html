@@ -51,9 +51,9 @@
           <th th:text="${s.nom}"></th>
           <th th:text="${s.lieu}"></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/viewSiteEscalade(nom=${s.nom})}">Consulter</a></th>
+                                     th:href="@{/viewSiteEscalade(id=${s.id})}">Consulter</a></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/edit(nom=${s.nom})}">Editer</a></th>
+                                     th:href="@{/edit(id=${s.id})}">Editer</a></th>
         </tr>
       </table>
 
