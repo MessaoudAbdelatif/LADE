@@ -17,8 +17,10 @@ public class Longeur implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   @Column(name = "Nom")
   private String nom;
+
   @ManyToOne
   @JoinColumn(name = "Voie_id")
   private Voie voie;

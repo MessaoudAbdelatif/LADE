@@ -1,6 +1,7 @@
 package com.lade.app.controller;
 
 
+import com.lade.app.dto.SiteEscaladeDto;
 import entities.SiteEscalade;
 import javax.validation.Valid;
 import metier.SiteEscaladeMetier;
@@ -67,7 +68,7 @@ public class SiteEscaladeController {
 
   @GetMapping("/creationSiteEscalade")
   public String creationSiteEscalade(Model model) {
-    model.addAttribute("newSiteEscalade", new SiteEscalade());
+    model.addAttribute("newSiteEscalade", new SiteEscaladeDto());
     return "views/creationSiteEscalade";
   }
 

@@ -1,5 +1,6 @@
 package com.lade.app.controller;
 
+import com.lade.app.dto.SecteurDto;
 import entities.Secteur;
 import entities.SiteEscalade;
 import javax.validation.Valid;
@@ -26,15 +27,15 @@ public class SecteurController {
 
   @GetMapping("/creationSecteur")
   public String creationSecteur(Model model,  Long id) {
-    model.addAttribute("newSecteur", new Secteur());
+    model.addAttribute("newSecteur", new SecteurDto());
     model.addAttribute("idSiteEscalade", id);
-    model.addAttribute("siteEscaladeParent",siteEscaladeMetier.consulterUnSiteEscalade(id) );
+    model.addAttribute("SiteEscaladeParent",siteEscaladeMetier.consulterUnSiteEscalade(id));
     return "views/creationSecteur";
   }
 
   @PostMapping("/ajouterSecteur")
   public String ajouterSecteur(Model model,
-      @Valid @ModelAttribute("newSecteur") Secteur secteur, @ModelAttribute("siteEscaladeParent") SiteEscalade siteEscalade,
+      @Valid @ModelAttribute("newSecteur") Secteur secteur, @ModelAttribute("SiteEscaladeParent") SiteEscalade siteEscalade,
       BindingResult newSecteurErrors) {
 //    model.addAttribute("nomSiteEscalade", siteEscalade.getNom());
 //   model.addAttribute("siteEscalade",siteEscalade);
@@ -43,6 +44,6 @@ public class SecteurController {
     }
 //    siteEscalade.addSecteur(secteur);
     secteurMetier.ajouterSecteur(secteur);
-    return "redirect:/viewSiteEscalade?nom=" + secteur.getSiteEscalade().getId();
+    return "redirect:/viewSiteEscalade?nom=" + siteEscalade.getId();
   }
 }
