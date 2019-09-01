@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -126,7 +126,7 @@ public class SiteEscalade implements Serializable {
   }
 
   public void setSecteurs(Set<Secteur> secteurs) {
-    this.secteurs = secteurs;
+    this.secteurs.add((Secteur) secteurs);
   }
 
   public Set<Commentaire> getCommentaires() {
@@ -137,7 +137,7 @@ public class SiteEscalade implements Serializable {
     this.commentaires = commentaires;
   }
 
-  public SiteEscalade addSecteur( Secteur secteur){
+  public SiteEscalade addSecteur( @NotNull Secteur secteur){
     secteur.setSiteEscalade(this);
     this.secteurs.add(secteur);
     return this;

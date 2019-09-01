@@ -20,9 +20,11 @@ public class Commentaire implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   @ManyToOne
   @JoinColumn(name ="Nom_Emmetteur")
   private UtilisateurConnecte utilisateurConnecte;
+
   @ManyToOne
   @JoinColumn(name = "Nom_Site_Escalade")
   private SiteEscalade siteEscalade;

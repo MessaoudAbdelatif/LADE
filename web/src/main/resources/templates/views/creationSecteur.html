@@ -14,13 +14,13 @@
     <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
-          <h2 class="h2 text-center">Ajouter un secteur au site :</h2><h2 class="h2 text-center" th:text="${nomSiteEscalade}"></h2>
+          <h2 class="h2 text-center">Ajouter un secteur au site :</h2><h2 class="h2 text-center" th:text="${siteEscaladeParent.nom}"></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/ajouterSecteur}" th:object="${secteur}" >
+        <form class="p-2" method="post" th:action="@{/ajouterSecteur}" th:object="${newSecteur}" >
           <div class="form-group"><label for="nom">Nom secteur</label>
-            <input class="form-control item" type="text" id="nom" name="nom" th:field="${secteur.nom}" >
+            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" >
             <span th:errors="*{nom}" class="text-danger"></span>
           </div>
 
@@ -28,7 +28,7 @@
               class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{description}" ><span th:errors="*{description}" class="text-danger"></span></div>
 
           <div class="form-group"><label>Nom site d'escalade associé :</label><input class="form-control item"
-                                                                                           th:field="*{siteEscalade}"   type="hidden" id="siteEscalade.nom" name="siteEscalade"  th:text="${nomSiteEscalade}">
+                                                                                           th:field="*{siteEscalade}"   type="hidden" id="siteEscalade.nom" name="siteEscalade"  th:text="${siteEscaladeParent.nom}">
             <span th:errors="*{siteEscalade}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>

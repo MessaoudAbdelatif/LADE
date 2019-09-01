@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,11 +52,14 @@ public class UtilisateurConnecte implements Serializable {
   @Column(name = "Date_Creation")
   private LocalDateTime dateCreation;
 
-  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private Set<DemandeLocation> demandeLocations = new HashSet<>();
 
-  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private Set<Commentaire> commentaires = new HashSet<>();
+
+  @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private Set<Topos> topos =new HashSet<>();
 
 
   public UtilisateurConnecte() {
@@ -158,5 +162,13 @@ public class UtilisateurConnecte implements Serializable {
 
   public void setCommentaires(Set<Commentaire> commentaires) {
     this.commentaires = commentaires;
+  }
+
+  public Set<Topos> getTopos() {
+    return topos;
+  }
+
+  public void setTopos(Set<Topos> topos) {
+    this.topos = topos;
   }
 }

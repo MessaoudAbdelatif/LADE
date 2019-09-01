@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,8 +38,9 @@ public class Topos implements Serializable {
   @Temporal(TemporalType.TIMESTAMP)
   private Date dateDeParution;
 
-  @Column(name = "Proprietaire")
-  private String proprietaire;
+  @ManyToOne
+  @JoinColumn(name = "Utilisateur_id")
+  private UtilisateurConnecte utilisateurConnecte;
 
   @Column(name = "Disponible_En_Location")
   private Boolean disponibleEnLocation;
@@ -48,19 +51,20 @@ public class Topos implements Serializable {
   @Column(name = "Loue")
   private Boolean loue;
 
-  @OneToMany(mappedBy = "nomTopos", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "topos", fetch = FetchType.LAZY)
   private Set<DemandeLocation> demandeLocations  = new HashSet<>();
 
   public Topos() {
   }
 
   public Topos(@NotEmpty String nom, String description, String lieuDeParution,
-      Date dateDeParution, String proprietaire, Boolean disponibleEnLocation) {
+      Date dateDeParution, UtilisateurConnecte utilisateurConnecte,
+      Boolean disponibleEnLocation) {
     this.nom = nom;
     this.description = description;
     this.lieuDeParution = lieuDeParution;
     this.dateDeParution = dateDeParution;
-    this.proprietaire = proprietaire;
+    this.utilisateurConnecte = utilisateurConnecte;
     this.disponibleEnLocation = disponibleEnLocation;
   }
 
@@ -104,12 +108,12 @@ public class Topos implements Serializable {
     this.dateDeParution = dateDeParution;
   }
 
-  public String getProprietaire() {
-    return proprietaire;
+  public UtilisateurConnecte getUtilisateurConnecte() {
+    return utilisateurConnecte;
   }
 
-  public void setProprietaire(String proprietaire) {
-    this.proprietaire = proprietaire;
+  public void setUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
+    this.utilisateurConnecte = utilisateurConnecte;
   }
 
   public Boolean getDisponibleEnLocation() {

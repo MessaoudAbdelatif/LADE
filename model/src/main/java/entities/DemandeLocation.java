@@ -26,8 +26,9 @@ public class DemandeLocation implements Serializable {
   @Column(name = "Date_Fin")
   private Date dateFin;
 
-  @Column(name = "Nom_Topos")
-  private String nomTopos;
+  @ManyToOne
+  @JoinColumn(name = "Topos_id")
+  private Topos topos;
 
   @ManyToOne
   @JoinColumn(name = "Utilisateur_id")
@@ -43,12 +44,11 @@ public class DemandeLocation implements Serializable {
   public DemandeLocation() {
   }
 
-  public DemandeLocation(Long id, Date dateDebut, Date dateFin, String nomTopos, UtilisateurConnecte utilisateurConnecte,
-      String message, Boolean proprioValidation) {
-    this.id = id;
+  public DemandeLocation(Date dateDebut, Date dateFin, Topos topos,
+      UtilisateurConnecte utilisateurConnecte, String message, Boolean proprioValidation) {
     this.dateDebut = dateDebut;
     this.dateFin = dateFin;
-    this.nomTopos = nomTopos;
+    this.topos = topos;
     this.utilisateurConnecte = utilisateurConnecte;
     this.message = message;
     this.proprioValidation = proprioValidation;
@@ -78,19 +78,19 @@ public class DemandeLocation implements Serializable {
     this.dateFin = dateFin;
   }
 
-  public String getNomTopos() {
-    return nomTopos;
+  public Topos getTopos() {
+    return topos;
   }
 
-  public void setNomTopos(String nomTopos) {
-    this.nomTopos = nomTopos;
+  public void setTopos(Topos topos) {
+    this.topos = topos;
   }
 
-  public UtilisateurConnecte getUserName() {
+  public UtilisateurConnecte getUtilisateurConnecte() {
     return utilisateurConnecte;
   }
 
-  public void setUserName(UtilisateurConnecte utilisateurConnecte) {
+  public void setUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
     this.utilisateurConnecte = utilisateurConnecte;
   }
 

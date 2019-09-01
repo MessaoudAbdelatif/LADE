@@ -14,9 +14,11 @@ public class SecteurMetierImpl implements SecteurMetier {
 
   private SecteurDao secteurDao;
 
+
   @Autowired
   public SecteurMetierImpl(SecteurDao secteurDao) {
     this.secteurDao = secteurDao;
+
   }
 
   @Override
