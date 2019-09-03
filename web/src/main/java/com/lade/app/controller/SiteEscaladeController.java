@@ -2,6 +2,7 @@ package com.lade.app.controller;
 
 
 import com.lade.app.dto.SiteEscaladeDto;
+import com.lade.app.dto.SiteEscaladeMapper;
 import entities.SiteEscalade;
 import javax.validation.Valid;
 import metier.SiteEscaladeMetier;
@@ -19,13 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SiteEscaladeController {
 
   private SiteEscaladeMetier siteEscaladeMetier;
-
+  private SiteEscaladeMapper siteEscaladeMapper;
 
   @Autowired
-  public SiteEscaladeController(
-      SiteEscaladeMetier siteEscaladeMetier) {
+  public SiteEscaladeController(SiteEscaladeMetier siteEscaladeMetier,
+      SiteEscaladeMapper siteEscaladeMapper) {
     this.siteEscaladeMetier = siteEscaladeMetier;
+    this.siteEscaladeMapper = siteEscaladeMapper;
   }
+
+
+
+
 
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
@@ -62,9 +68,15 @@ public class SiteEscaladeController {
   @GetMapping("/edit")
   public String modifierSiteEscalade(Model model, Long id) {
     SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(id);
-    model.addAttribute("siteEscaladeSelected", siteEscaladeSelected);
+    model.addAttribute("newSiteEscalade", siteEscaladeSelected);
     return "views/modifierSiteEscalade";
   }
+
+/*  @PostMapping("UpdateSiteEscalade")
+  public String updateSiteEscalade(Model model, @RequestParam("id") Long id) {
+    siteEscaladeMetier.updateSiteEscalade(id, siteEscalade);
+    return "redirect:/viewSiteEscalade?id=" + id;
+  }*/
 
   @GetMapping("/creationSiteEscalade")
   public String creationSiteEscalade(Model model) {
@@ -74,13 +86,19 @@ public class SiteEscaladeController {
 
   @PostMapping("/saveSiteEscalade")
   public String saveCreationSiteEscalade(Model model,
-      @Valid @ModelAttribute("newSiteEscalade") SiteEscalade siteEscalade,
+      @Valid @ModelAttribute("newSiteEscalade") SiteEscaladeDto siteEscaladeDto,
       BindingResult newSiteEscaladeErrors) {
     if (newSiteEscaladeErrors.hasErrors()) {
       return "views/creationSiteEscalade";
     }
-    siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade);
-    return "redirect:/viewSiteEscalade?id=" +siteEscalade.getId();
+
+    SiteEscalade siteEscalade = siteEscaladeMapper.toSiteEscalade(siteEscaladeDto);
+    if(siteEscalade.getId() == null){
+    siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade);}
+    else {
+      siteEscaladeMetier.updateSiteEscalade(siteEscalade.getId(),siteEscalade);
+    }
+    return "redirect:/viewSiteEscalade?id=" + siteEscalade.getId();
   }
 
 }

@@ -14,7 +14,7 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
   private SiteEscaladeDao siteEscaladeDao;
 
-@Autowired
+  @Autowired
   public SiteEscaladeMetierImp(
       SiteEscaladeDao siteEscaladeDao) {
     this.siteEscaladeDao = siteEscaladeDao;
@@ -22,25 +22,40 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
   @Override
   public SiteEscalade consulterUnSiteEscalade(long id) {
-    SiteEscalade cse= siteEscaladeDao.getOne(id);
-    if (cse==null) throw new RuntimeException("Site Escalade Introuvable");
-    cse.setNbrSecteur(cse.getSecteurs().size()) ;   // Me permet d'update le nombre de secteur.
+    SiteEscalade cse = siteEscaladeDao.getOne(id);
+    if (cse == null) {
+      throw new RuntimeException("Site Escalade Introuvable");
+    }
+    cse.setNbrSecteur(cse.getSecteurs().size());   // Me permet d'update le nombre de secteur.
     return cse;
   }
 
   @Override
-  public Page<SiteEscalade> rechercherDesSitesEscalades(int numPages, int size, String sei, String typeRecherche) {
-  switch (typeRecherche){
-    case "VILLEPROX":return siteEscaladeDao
-        .findByVilleProximiteContainsIgnoreCase(sei, PageRequest.of(numPages, size));
-    case "LIEU":return siteEscaladeDao
-        .findByLieuContainsIgnoreCase(sei, PageRequest.of(numPages, size));
-    default: return siteEscaladeDao
-        .findByNomContainsIgnoreCaseOrderByNom(sei, PageRequest.of(numPages, size));
+  public Page<SiteEscalade> rechercherDesSitesEscalades(int numPages, int size, String sei,
+      String typeRecherche) {
+    switch (typeRecherche) {
+      case "VILLEPROX":
+        return siteEscaladeDao
+            .findByVilleProximiteContainsIgnoreCase(sei, PageRequest.of(numPages, size));
+      case "LIEU":
+        return siteEscaladeDao
+            .findByLieuContainsIgnoreCase(sei, PageRequest.of(numPages, size));
+      default:
+        return siteEscaladeDao
+            .findByNomContainsIgnoreCaseOrderByNom(sei, PageRequest.of(numPages, size));
+    }
   }
-}
+
   @Override
   public void ajouterUnSiteEscalade(SiteEscalade siteEscalade) {
     siteEscaladeDao.save(siteEscalade);
+  }
+
+  @Override
+  public SiteEscalade updateSiteEscalade(Long id, SiteEscalade siteEscalade) {
+    SiteEscalade siteEscaladeToUpdate = siteEscaladeDao.getOne(id);
+    siteEscaladeToUpdate = siteEscalade;
+    siteEscaladeDao.save(siteEscaladeToUpdate);
+    return siteEscaladeToUpdate;
   }
 }

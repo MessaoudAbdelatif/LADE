@@ -15,11 +15,11 @@
     <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
-          <h2 class="h2">Modifier le site d'esclade : <label th:text="${siteEscaladeSelected.nom}"></label></h2>
+          <h2 class="h2">Modifier le site d'esclade : <label th:text="${newSiteEscalade.nom}"></label></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form  method="post" th:action="@{/saveSiteEscalade}" th:object="${siteEscaladeSelected}">
+        <form  method="post" th:action="@{/saveSiteEscalade}" th:object="${newSiteEscalade}">
           <div class="form-group">
             <input class="form-control item" type="hidden" id="nom" name="nom" th:field="*{nom}">
             <span th:errors="*{nom}" class="text-danger"></span>

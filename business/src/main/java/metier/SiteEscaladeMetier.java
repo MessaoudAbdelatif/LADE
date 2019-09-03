@@ -10,4 +10,6 @@ public interface SiteEscaladeMetier {
   Page<SiteEscalade> rechercherDesSitesEscalades(int numPages, int size, String sei, String typeRecherche);
 
   void ajouterUnSiteEscalade(SiteEscalade siteEscalade);
+
+  SiteEscalade updateSiteEscalade(Long id, SiteEscalade siteEscalade);
   }
