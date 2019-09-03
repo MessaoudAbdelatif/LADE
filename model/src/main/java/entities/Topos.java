@@ -2,8 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,20 +51,24 @@ public class Topos implements Serializable {
   private Boolean loue;
 
   @OneToMany(mappedBy = "topos", fetch = FetchType.LAZY)
-  private Set<DemandeLocation> demandeLocations  = new HashSet<>();
+  private List<DemandeLocation> demandeLocations;
 
   public Topos() {
   }
 
   public Topos(@NotEmpty String nom, String description, String lieuDeParution,
       Date dateDeParution, UtilisateurConnecte utilisateurConnecte,
-      Boolean disponibleEnLocation) {
+      Boolean disponibleEnLocation, String lien, Boolean loue,
+      List<DemandeLocation> demandeLocations) {
     this.nom = nom;
     this.description = description;
     this.lieuDeParution = lieuDeParution;
     this.dateDeParution = dateDeParution;
     this.utilisateurConnecte = utilisateurConnecte;
     this.disponibleEnLocation = disponibleEnLocation;
+    this.lien = lien;
+    this.loue = loue;
+    this.demandeLocations = demandeLocations;
   }
 
   public Long getId() {
@@ -140,11 +143,11 @@ public class Topos implements Serializable {
     this.loue = loue;
   }
 
-  public Set<DemandeLocation> getDemandeLocations() {
+  public List<DemandeLocation> getDemandeLocations() {
     return demandeLocations;
   }
 
-  public void setDemandeLocations(Set<DemandeLocation> demandeLocations) {
+  public void setDemandeLocations(List<DemandeLocation> demandeLocations) {
     this.demandeLocations = demandeLocations;
   }
 }

@@ -1,8 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,23 +21,28 @@ public class Voie implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   @Column(name = "Nom")
   private String nom;
+
   @ManyToOne
   @JoinColumn(name = "Secteur_id")
   private Secteur secteur;
+
   @Column(name = "Descreption")
   private String descreption;
+
   @Column(name = "Cotation")
   private String cotation;
+
   @OneToMany(mappedBy = "voie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Longeur> longeurs = new HashSet<>();
+  private List<Longeur> longeurs;
 
   public Voie() {
   }
 
   public Voie(String nom, Secteur secteur, String descreption, String cotation,
-      Set<Longeur> longeurs) {
+      List<Longeur> longeurs) {
     this.nom = nom;
     this.secteur = secteur;
     this.descreption = descreption;
@@ -86,11 +90,11 @@ public class Voie implements Serializable {
     this.cotation = cotation;
   }
 
-  public Set<Longeur> getLongeurs() {
+  public List<Longeur> getLongeurs() {
     return longeurs;
   }
 
-  public void setLongeurs(Set<Longeur> longeurs) {
+  public void setLongeurs(List<Longeur> longeurs) {
     this.longeurs = longeurs;
   }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 
 public interface SiteEscaladeMetier {
 
-  SiteEscalade consulterUnSiteEscalade(Long id);
+  SiteEscalade consulterUnSiteEscalade(long id);
 
   Page<SiteEscalade> rechercherDesSitesEscalades(int numPages, int size, String sei, String typeRecherche);
 

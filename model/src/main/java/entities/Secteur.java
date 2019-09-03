@@ -1,8 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "Secteur")
 public class Secteur implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -34,14 +34,14 @@ public class Secteur implements Serializable {
   @Column(name = "Description")
   private String description;
 
-  @OneToMany(mappedBy = "secteur",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Voie> voies = new HashSet<>();
+  @OneToMany(mappedBy = "secteur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Voie> voies;
 
   public Secteur() {
   }
 
   public Secteur(@NotEmpty String nom, SiteEscalade siteEscalade, String description,
-      Set<Voie> voies) {
+      List<Voie> voies) {
     this.nom = nom;
     this.siteEscalade = siteEscalade;
     this.description = description;
@@ -73,11 +73,11 @@ public class Secteur implements Serializable {
     this.description = description;
   }
 
-  public Set<Voie> getVoies() {
+  public List<Voie> getVoies() {
     return voies;
   }
 
-  public void setVoies(Set<Voie> voies) {
+  public void setVoies(List<Voie> voies) {
     this.voies = voies;
   }
 
@@ -92,9 +92,9 @@ public class Secteur implements Serializable {
 
   // Methode afin de liée ce Secteur avec une Voie lors de création Secteur
   // M'évite la creation de DTO pour le moment.
-  public Secteur addVoie( Voie voie){
-       voie.setSecteur(this);
-       this.voies.add(voie);
-       return this;
+  public Secteur addVoie(Voie voie) {
+    voie.setSecteur(this);
+    this.voies.add(voie);
+    return this;
   }
 }

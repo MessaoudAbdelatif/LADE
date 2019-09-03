@@ -21,9 +21,10 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   }
 
   @Override
-  public SiteEscalade consulterUnSiteEscalade(Long id) {
+  public SiteEscalade consulterUnSiteEscalade(long id) {
     SiteEscalade cse= siteEscaladeDao.getOne(id);
     if (cse==null) throw new RuntimeException("Site Escalade Introuvable");
+    cse.setNbrSecteur(cse.getSecteurs().size()) ;   // Me permet d'update le nombre de secteur.
     return cse;
   }
 

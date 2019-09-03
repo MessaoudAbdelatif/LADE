@@ -2,8 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,27 +52,31 @@ public class UtilisateurConnecte implements Serializable {
   private LocalDateTime dateCreation;
 
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private Set<DemandeLocation> demandeLocations = new HashSet<>();
+  private List<DemandeLocation> demandeLocations;
 
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private Set<Commentaire> commentaires = new HashSet<>();
+  private List<Commentaire> commentaires;
 
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  private Set<Topos> topos =new HashSet<>();
+  private List<Topos> topos;
 
 
   public UtilisateurConnecte() {
   }
 
   public UtilisateurConnecte(
-      String userName, Civilite civilite, String nom, String prenom,
-      String presentationPersonel, String email) {
+      @Size(min = 5, max = 60) String userName, Civilite civilite,
+      @NotEmpty String nom, @NotEmpty String prenom,
+      @NotEmpty @Email String email, Boolean etatCompte, String motDePasse,
+      LocalDateTime dateCreation) {
     this.userName = userName;
     this.civilite = civilite;
     this.nom = nom;
     this.prenom = prenom;
-    this.presentationPersonel = presentationPersonel;
     this.email = email;
+    this.etatCompte = etatCompte;
+    this.motDePasse = motDePasse;
+    this.dateCreation = dateCreation;
   }
 
   public String getUserName() {
@@ -148,27 +151,27 @@ public class UtilisateurConnecte implements Serializable {
     this.dateCreation = dateCreation;
   }
 
-  public Set<DemandeLocation> getDemandeLocations() {
+  public List<DemandeLocation> getDemandeLocations() {
     return demandeLocations;
   }
 
-  public void setDemandeLocations(Set<DemandeLocation> demandeLocations) {
+  public void setDemandeLocations(List<DemandeLocation> demandeLocations) {
     this.demandeLocations = demandeLocations;
   }
 
-  public Set<Commentaire> getCommentaires() {
+  public List<Commentaire> getCommentaires() {
     return commentaires;
   }
 
-  public void setCommentaires(Set<Commentaire> commentaires) {
+  public void setCommentaires(List<Commentaire> commentaires) {
     this.commentaires = commentaires;
   }
 
-  public Set<Topos> getTopos() {
+  public List<Topos> getTopos() {
     return topos;
   }
 
-  public void setTopos(Set<Topos> topos) {
+  public void setTopos(List<Topos> topos) {
     this.topos = topos;
   }
 }

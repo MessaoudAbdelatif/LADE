@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ToposDao extends JpaRepository<Topos, String> {
+public interface ToposDao extends JpaRepository<Topos, Long> {
 
 }

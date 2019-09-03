@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Commentaire")
+
 public class Commentaire implements Serializable {
 
   @Id
@@ -42,9 +43,8 @@ public class Commentaire implements Serializable {
   public Commentaire() {
   }
 
-  public Commentaire( UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade, String titre,
-      String message, Date dateEdition) {
-
+  public Commentaire(UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade,
+      String titre, String message, Date dateEdition) {
     this.utilisateurConnecte = utilisateurConnecte;
     this.siteEscalade = siteEscalade;
     this.titre = titre;

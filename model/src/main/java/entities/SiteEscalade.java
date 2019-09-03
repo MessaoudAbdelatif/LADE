@@ -1,8 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ public class SiteEscalade implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @NotEmpty
   @Column(name = "Nom")
@@ -45,28 +44,34 @@ public class SiteEscalade implements Serializable {
   private boolean tag;
 
   @OneToMany(mappedBy = "siteEscalade",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Secteur> secteurs = new HashSet<>();
+  private List<Secteur> secteurs;
 
   @OneToMany(mappedBy = "siteEscalade",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Commentaire> commentaires = new HashSet<>();
+  private List<Commentaire> commentaires;
 
 
   public SiteEscalade() {
 
   }
 
-  public SiteEscalade( String nom, int nbrSecteur, String lieu, String villeProximite) {
+  public SiteEscalade(@NotEmpty String nom, int nbrSecteur,
+      @NotEmpty String lieu, String villeProximite, String typeRoche, boolean tag,
+      List<Secteur> secteurs, List<Commentaire> commentaires) {
     this.nom = nom;
     this.nbrSecteur = nbrSecteur;
     this.lieu = lieu;
     this.villeProximite = villeProximite;
+    this.typeRoche = typeRoche;
+    this.tag = tag;
+    this.secteurs = secteurs;
+    this.commentaires = commentaires;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -121,19 +126,19 @@ public class SiteEscalade implements Serializable {
     this.tag = tag;
   }
 
-  public Set<Secteur> getSecteurs() {
+  public List<Secteur> getSecteurs() {
     return secteurs;
   }
 
-  public void setSecteurs(Set<Secteur> secteurs) {
-    this.secteurs.add((Secteur) secteurs);
+  public void setSecteurs(List<Secteur> secteurs) {
+    this.secteurs = secteurs;
   }
 
-  public Set<Commentaire> getCommentaires() {
+  public List<Commentaire> getCommentaires() {
     return commentaires;
   }
 
-  public void setCommentaires(Set<Commentaire> commentaires) {
+  public void setCommentaires(List<Commentaire> commentaires) {
     this.commentaires = commentaires;
   }
 

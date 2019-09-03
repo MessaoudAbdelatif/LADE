@@ -1,9 +1,14 @@
 package com.lade.app.dto;
 
 import entities.Secteur;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Mapper
+
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface SecteurMapper {
-SecteurDto map(Secteur secteur);
+
+  @Mapping(target = "siteEscalade.id",source = "siteEscalade")
+  Secteur toSecteur(SecteurDto secteurDto);
 }

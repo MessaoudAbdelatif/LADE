@@ -35,21 +35,23 @@
           </tr>
           <tr th:if="${siteEscaladeSelected.secteurs.size()>0}">
             <th>Secteur</th>
-            <th class="text-center" th:text="${siteEscaladeSelected.secteurs}"></th>
-          </tr>
+            <th>
+            <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
+          <li class="list-inline" th:text="${secteur.nom}"></li></ul>
+            </th>
           <tr th:if="${siteEscaladeSelected.tag}">
             <th>"Offciel les amis de l'escalade"</th>
             <th class="text-center text-success">Approuvé</th>
           </tr>
-          <tr>
-            <th>Liste de(s) secteur(s)</th>
-            <th></th>
+          <tr th:if="${!siteEscaladeSelected.tag}">
+            <th>"Offciel les amis de l'escalade"</th>
+            <th class="text-center text-danger ">Non Approuvé</th>
           </tr>
         </table>
         <a class="btn btn-primary"
            th:href="@{/edit(id=${siteEscaladeSelected.id})}">Editer</a>
         <a class="btn btn-primary"
-           th:href="@{/creationSecteur(id=${siteEscaladeSelected.id})}">Ajouter un secteur</a>
+           th:href="@{/creationSecteur(id=${siteEscaladeSelected.id})}">+ Ajouter un secteur</a>
       </div>
     </div>
   </div>
