@@ -3,9 +3,11 @@ package com.lade.app.dto;
 import entities.Voie;
 import java.util.List;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
+@NoArgsConstructor
 public class SecteurDto {
   // __________Attributes____________
   protected Long id;

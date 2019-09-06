@@ -21,7 +21,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/saveSiteEscalade}" th:object="${newSiteEscalade}" >
+        <form class="p-2" method="post" th:action="@{/saveCreationSiteEscalade}" th:object="${newSiteEscalade}" >
           <div class="form-group"><label for="nom">Nom du site</label>
             <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" >
             <span th:errors="*{nom}" class="text-danger"></span>

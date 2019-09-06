@@ -21,7 +21,7 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
   }
 
   @Override
-  public SiteEscalade consulterUnSiteEscalade(long id) {
+  public SiteEscalade consulterUnSiteEscalade(Long id) {
     SiteEscalade cse = siteEscaladeDao.getOne(id);
     if (cse == null) {
       throw new RuntimeException("Site Escalade Introuvable");
@@ -53,9 +53,8 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
   @Override
   public SiteEscalade updateSiteEscalade(Long id, SiteEscalade siteEscalade) {
-    SiteEscalade siteEscaladeToUpdate = siteEscaladeDao.getOne(id);
-    siteEscaladeToUpdate = siteEscalade;
-    siteEscaladeDao.save(siteEscaladeToUpdate);
+    SiteEscalade siteEscaladeToUpdate = consulterUnSiteEscalade(id);
+    siteEscaladeToUpdate = siteEscaladeDao.save(siteEscalade);
     return siteEscaladeToUpdate;
   }
 }
