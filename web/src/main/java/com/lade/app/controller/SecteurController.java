@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,7 @@ public class SecteurController {
   private SiteEscaladeMetier siteEscaladeMetier;
   private SecteurMapperImpl secteurMapper;
 
-  @Autowired
+  @Autowired     // Annotation facultative (Injection via Constructeur)
   public SecteurController(SecteurMetier secteurMetier, SiteEscaladeMetier siteEscaladeMetier
       , SecteurMapperImpl secteurMapper
   ) {
@@ -30,6 +31,33 @@ public class SecteurController {
     this.siteEscaladeMetier = siteEscaladeMetier;
     this.secteurMapper = secteurMapper;
   }
+//______________________________________________________________________________________
+
+  //--------------------- Consulter un site d'escalade en particulier ---------------
+
+  @GetMapping("/viewSecteur/{id}")
+  public String afficherUnSecteur(Model model,@PathVariable("id") Long id) {
+    try {
+      Secteur secteurSelected = secteurMetier.consulterUnSecteur(id);
+      model.addAttribute("secteurSelected", secteurSelected);
+    } catch (Exception e) {
+      model.addAttribute("exception", e);
+    }
+    return "views/viewSecteur";
+  }
+
+  //___________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
 
 
   @GetMapping("/creationSecteur")

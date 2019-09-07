@@ -9,12 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class SecteurDto {
+
   // __________Attributes____________
   protected Long id;
   protected String nom;
   protected String siteEscalade;
   protected String description;
   protected List<Voie> voies;
+
+
+  // __________Constructor____________
 
   public SecteurDto(String siteEscalade) {
     this.siteEscalade = siteEscalade;

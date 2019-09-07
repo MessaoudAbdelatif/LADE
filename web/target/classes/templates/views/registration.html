@@ -38,6 +38,7 @@
             <div class="input-group ">
               <label th:for="civilite">Civilite
               <select id="civilite" th:field="*{civilite}">
+                <option value=""> -- </option>
                 <option th:each="CiviliteSelection : ${civiliteChoix}"
                         th:text="${CiviliteSelection.value}"
                         th:value="${CiviliteSelection}">

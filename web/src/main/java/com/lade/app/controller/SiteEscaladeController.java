@@ -23,14 +23,14 @@ public class SiteEscaladeController {
   private SiteEscaladeMetier siteEscaladeMetier;
   private SiteEscaladeMapper siteEscaladeMapper;
 
-  @Autowired   // Annotation facultative (Injection via Constructeur
+  @Autowired   // Annotation facultative (Injection via Constructeur)
   public SiteEscaladeController(SiteEscaladeMetier siteEscaladeMetier,
       SiteEscaladeMapper siteEscaladeMapper) {
     this.siteEscaladeMetier = siteEscaladeMetier;
     this.siteEscaladeMapper = siteEscaladeMapper;
   }
 
-//--------------------- Consulte & Affiche NOS SITES ESCALADES ---------------
+//--------------------- Consulte & Affiche "NOS SITES ESCALADES" ---------------
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
       @RequestParam(name = "numPages", defaultValue = "0") int numPages,
@@ -121,7 +121,5 @@ public class SiteEscaladeController {
 
     return "redirect:/viewSiteEscalade?id=" + siteEscalade1.getId();
   }
-
   //___________________________________________________________________________
-
 }

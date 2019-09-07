@@ -32,4 +32,16 @@ public class SecteurMetierImpl implements SecteurMetier {
 //    List<Secteur> secteurs = secteurDao.findAll().stream().filter(secteur -> secteur.getSiteEscalade().equals(siteEscalade.getSecteurs().contains()));
     return null;
   }
+
+
+
+
+  @Override
+  public Secteur consulterUnSecteur(Long id) {
+    Secteur secteurSelected = secteurDao.getOne(id);
+    if (secteurSelected == null) {
+      throw new RuntimeException("Secteur Introuvable");
+    }
+    return secteurSelected;
+  }
 }

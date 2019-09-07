@@ -14,21 +14,40 @@
     <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
-          <h2 class="h2 text-center">Ajouter une voie au secteur</h2><h2 class="h2 text-center" th:text="${SiteEscaladeParent.nom}"></h2>
+          <h2 class="h2 text-center">Ajouter une voie au secteur</h2>
+          <h2 class="h2 text-center" th:text="${SecteurParent.nom}"></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/ajouterVoie}" th:object="${newVoie}" >
+        <form class="p-2" method="post" th:action="@{/ajouterVoie}" th:object="${newVoie}">
           <div class="form-group"><label for="nom">Nom secteur</label>
-            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" >
+            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
             <span th:errors="*{nom}" class="text-danger"></span>
           </div>
-          <div class="form-group"><label for="description">Description</label><input
-              class="form-control item" type="text" name="description" id="description" th:field="*{description}" ><span th:errors="*{description}" class="text-danger"></span></div>
 
-          <div class="form-group"><label for="siteEscalade">ID site d'escalade associé :</label><input class="form-control item"
-                                                                                                       th:field="*{siteEscalade}" type="hidden" id="siteEscalade" name="siteEscalade"  th:text="${idSiteEscalade}">
-            <span th:errors="*{siteEscalade}" class="text-danger"></span>
+          <div class="input-group ">
+            <label th:for="cotation">Cotation
+              <select id="cotation" th:field="*{cotation}">
+                <option value=""> -- </option>
+                <option th:each="CotationSelection : ${cotationList}"
+                        th:text="${CotationSelection}"
+                        th:value="${CotationSelection}">
+                </option>
+              </select>
+            </label>
+          </div>
+
+
+          <div class="form-group"><label for="description">Description</label><input
+              class="form-control item" type="text" name="description" id="description"
+              th:field="*{descreption}"><span th:errors="*{descreption}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group"><label for="siteEscalade">ID secteur associé
+            :</label><input class="form-control item"
+                            th:field="*{secteur}" type="hidden" id="siteEscalade"
+                            name="siteEscalade" th:text="${idSecteur}">
+            <span th:errors="*{secteur}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
         </form>

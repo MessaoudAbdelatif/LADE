@@ -37,7 +37,7 @@
             <th>Secteur</th>
             <th>
             <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
-          <li class="list-inline" th:text="${secteur.nom}"></li></ul>
+              <a th:href="@{/viewSecteur/{id}(id=${secteur.id})}"><li class="list-inline" th:text="${secteur.nom}"></a> </li></ul>
             </th>
           <tr th:if="${siteEscaladeSelected.tag}">
             <th>"Offciel les amis de l'escalade"</th>
