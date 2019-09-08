@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SiteEscaladeController {
 
+  private static final String VIEWS_CREATION_SITE_ESCALADE = "views/creationSiteEscalade";
   private SiteEscaladeMetier siteEscaladeMetier;
   private SiteEscaladeMapper siteEscaladeMapper;
 
@@ -87,7 +88,7 @@ public class SiteEscaladeController {
       @Valid @ModelAttribute("newSiteEscalade") SiteEscaladeDto siteEscaladeDto,
       BindingResult newSiteEscaladeErrors, @PathVariable("id") Long id) {
     if (newSiteEscaladeErrors.hasErrors()) {
-      return "views/creationSiteEscalade";
+      return VIEWS_CREATION_SITE_ESCALADE;
     }
     SiteEscalade siteEscalade1 = siteEscaladeMapper.toSiteEscalade(siteEscaladeDto);
     siteEscalade1.setId(id);
@@ -104,7 +105,7 @@ public class SiteEscaladeController {
   @GetMapping("/creationSiteEscalade")
   public String creationSiteEscalade(Model model) {
     model.addAttribute("newSiteEscalade", new SiteEscaladeDto());
-    return "views/creationSiteEscalade";
+    return VIEWS_CREATION_SITE_ESCALADE;
   }
 
 
@@ -114,7 +115,7 @@ public class SiteEscaladeController {
       BindingResult newSiteEscaladeErrors
   ) {
     if (newSiteEscaladeErrors.hasErrors()) {
-      return "views/creationSiteEscalade";
+      return VIEWS_CREATION_SITE_ESCALADE;
     }
     SiteEscalade siteEscalade1 = siteEscaladeMapper.toSiteEscalade(siteEscaladeDto);
     siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade1);

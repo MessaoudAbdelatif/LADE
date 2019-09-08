@@ -12,7 +12,7 @@
   <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscaladeSelected}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom}">
+      <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom.toUpperCase()}">
       </div>
 
       <div class="p-2">
@@ -39,6 +39,7 @@
             <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
               <a th:href="@{/viewSecteur/{id}(id=${secteur.id})}"><li class="list-inline" th:text="${secteur.nom}"></a> </li></ul>
             </th>
+          </tr>
           <tr th:if="${siteEscaladeSelected.tag}">
             <th>"Offciel les amis de l'escalade"</th>
             <th class="text-center text-success">Approuvé</th>

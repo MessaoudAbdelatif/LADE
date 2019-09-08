@@ -32,6 +32,22 @@ public class VoieController {
     this.secteurMetier = secteurMetier;
   }
 
+
+  //--------------------- Consulter une Voie ---------------------------------
+
+  @GetMapping("/viewVoie/{id}")
+  public String afficherUneVoie(Model model,@PathVariable("id") Long id) {
+    try {
+      Voie voieSelected = voieMetier.consulterUneVoie(id);
+      model.addAttribute("voieSelected", voieSelected);
+    } catch (Exception e) {
+      model.addAttribute("exception", e);
+    }
+    return "views/viewVoie";
+  }
+
+  //___________________________________________________________________________
+
   @GetMapping("/creationVoie/{id}")
   public String creationVoie(Model model, @PathVariable("id") Long id) {
     model.addAttribute("newVoie", new VoieDto(Long.toString(id)));
@@ -55,6 +71,4 @@ public class VoieController {
 
     return "redirect:/siteEscalade";
   }
-
-
 }

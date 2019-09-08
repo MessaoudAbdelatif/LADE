@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+  <meta charset="utf-8"/>
+  <title>Site d'escalade</title>
+</head>
+<body>
+<div layout:fragment="content1">
+
+
+  <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${voieSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center" th:text="${voieSelected.nom.toUpperCase()}">
+      </div>
+      <div class="card-header h5  text-center text-info" th:if="${voieSelected.cotation}">
+        <label>Cotation :</label>
+        <span class="text-center" th:text="${voieSelected.cotation}"></span>
+      </div>
+
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Description</th>
+            <th class="text-center" th:text="${voieSelected.descreption}"></th>
+          </tr>
+          <tr th:if="${voieSelected.longeurs.size()>0}">
+            <th>Voies</th>
+            <th>
+              <ul th:each="longeurs : ${voieSelected.longeurs}">
+                <li class="list-inline" th:text="${longeurs.nom}"></li></ul>
+            </th>
+        </table>
+        <a class="btn btn-primary"
+           th:href="@{/creationLongeur/{id}(id=${voieSelected.id})}">+ Ajouter une longeur</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+
+</html>

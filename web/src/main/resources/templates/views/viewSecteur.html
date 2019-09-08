@@ -11,30 +11,34 @@
 <div layout:fragment="content1">
 
 
-    <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
-    <div class="container mt-5 ml-md-5 col-md-6" th:if="${secteurSelected}">
-      <div class="shadow card bg-light">
-        <div class="card-header h4 text-dark text-center" th:text="${secteurSelected.nom}">
-        </div>
+  <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${secteurSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center" th:text="${secteurSelected.nom.toUpperCase()}">
+      </div>
 
-        <div class="p-2">
-          <table class="table table-hover table-bordered table-striped">
-            <tr>
-              <th>Description</th>
-              <th class="text-center" th:text="${secteurSelected.description}"></th>
-            </tr>
-            <tr th:if="${secteurSelected.voies.size()>0}">
-              <th>Voies</th>
-              <th>
-                <ul th:each="voies : ${secteurSelected.voies}">
-                  <li class="list-inline" th:text="${voies.nom}"></li></ul>
-              </th>
-          </table>
-          <a class="btn btn-primary"
-             th:href="@{/creationVoie/{id}(id=${secteurSelected.id})}">+ Ajouter une voie</a>
-        </div>
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Description</th>
+            <th class="text-center" th:text="${secteurSelected.description}"></th>
+          </tr>
+          <tr th:if="${secteurSelected.voies.size()>0}">
+            <th>Voies</th>
+            <th>
+              <ul th:each="voies : ${secteurSelected.voies}">
+                <a th:href="@{/viewVoie/{id}(id=${voies.id})}">
+                  <li class="list-inline" th:text="${voies.nom}">
+                </li></a>
+              </ul>
+            </th>
+          </tr>
+        </table>
+        <a class="btn btn-primary"
+           th:href="@{/creationVoie/{id}(id=${secteurSelected.id})}">+ Ajouter une voie</a>
       </div>
     </div>
+  </div>
 
 
 </div>

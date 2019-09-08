@@ -88,13 +88,4 @@ public class Secteur implements Serializable {
   public void setId(Long id) {
     this.id = id;
   }
-
-
-  // Methode afin de liée ce Secteur avec une Voie lors de création Secteur
-  // M'évite la creation de DTO pour le moment.
-  public Secteur addVoie(Voie voie) {
-    voie.setSecteur(this);
-    this.voies.add(voie);
-    return this;
-  }
 }

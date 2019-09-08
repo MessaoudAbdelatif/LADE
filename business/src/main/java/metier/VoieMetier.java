@@ -3,8 +3,11 @@ package metier;
 import entities.Voie;
 import java.util.Collection;
 
-public interface VoieMetier    {
+public interface VoieMetier {
 
   Voie ajouterVoie(Voie voie);
-  Collection <Voie> afficherListeToutesVoieBySecteur();
+
+  Collection<Voie> afficherListeToutesVoieBySecteur();
+
+  Voie consulterUneVoie(Long id);
 }

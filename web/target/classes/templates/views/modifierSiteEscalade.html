@@ -15,25 +15,58 @@
     <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
-          <h2 class="h2">Modifier le site d'esclade : <label th:text="${updateSiteEscalade.nom}"></label></h2>
+          <h2 class="h2">Modifier le site d'esclade : <label
+              th:text="${updateSiteEscalade.nom}"></label></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form  method="post" th:action="@{/saveModificationSiteEscalade/{id}(id=${updateSiteEscalade.id})}" th:object="${updateSiteEscalade}">
+        <form method="post"
+              th:action="@{/saveModificationSiteEscalade/{id}(id=${updateSiteEscalade.id})}"
+              th:object="${updateSiteEscalade}">
           <div class="form-group">
             <input class="form-control item" type="hidden" id="nom" name="nom" th:field="*{nom}">
             <span th:errors="*{nom}" class="text-danger"></span>
           </div>
           <div class="form-group"><label for="lieu">Lieu</label><input class="form-control item"
-                                                                       type="text" id="lieu" name="lieu" th:field="*{lieu}">
+                                                                       type="text" id="lieu"
+                                                                       name="lieu"
+                                                                       th:field="*{lieu}">
             <span th:errors="*{lieu}" class="text-danger"></span>
           </div>
           <div class="form-group"><label for="villeProximite">Ville à proximité</label><input
-              class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{villeProximite}" ><span th:errors="*{villeProximite}" class="text-danger"></span></div>
+              class="form-control item" type="text" name="villeProximite" id="villeProximite"
+              th:field="*{villeProximite}"><span th:errors="*{villeProximite}"
+                                                 class="text-danger"></span></div>
           <div class="form-group"><label for="typeRoche">Type de roche</label><input
-              class="form-control item" type="text" id="typeRoche" name="typeRoche" th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
+              class="form-control item" type="text" id="typeRoche" name="typeRoche"
+              th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
           </div>
-          <button class="btn btn-primary " type="submit">Enregistrer</button>
+
+
+          <!--          ADMIN FONCTION TODO    START-->
+<div class="btn-group">
+          <div th:if="${!updateSiteEscalade.isTag()}">
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-info">
+                <input type="checkbox" th:field="*{tag}" th:checked="${updateSiteEscalade.isTag()}"
+                       checked autocomplete="off"> Approuvé
+              </label>
+            </div>
+          </div>
+
+          <div th:if="${updateSiteEscalade.isTag()}">
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-danger active">
+                <input type="checkbox" th:field="*{tag}"
+                       th:checked="${updateSiteEscalade.setTag(false)}" autocomplete="off">
+                Dé-Approuvé
+              </label>
+            </div>
+          </div>
+          <!--          ADMIN FONCTION TODO    END-->
+
+
+          <button class="btn btn-primary align-content-end" type="submit">Enregistrer</button></div>
         </form>
       </div>
     </section>

@@ -33,7 +33,7 @@ public class SecteurController {
   }
 //______________________________________________________________________________________
 
-  //--------------------- Consulter un site d'escalade en particulier ---------------
+  //--------------------- Consulter un secteur en particulier ---------------
 
   @GetMapping("/viewSecteur/{id}")
   public String afficherUnSecteur(Model model,@PathVariable("id") Long id) {
@@ -48,18 +48,7 @@ public class SecteurController {
 
   //___________________________________________________________________________
 
-
-
-
-
-
-
-
-
-
-
-
-
+//--------------------- Création d'Un Secteur -------------------------
   @GetMapping("/creationSecteur")
   public String creationSecteur(Model model,  @RequestParam (name = "id")Long id) {
     model.addAttribute("newSecteur", new SecteurDto(Long.toString(id)));
@@ -76,7 +65,7 @@ public class SecteurController {
       return "views/creationSecteur";
     }
 
-   Secteur newSecteur = secteurMapper.toSecteur(secteurDto);
+   Secteur newSecteur = secteurMapper.toSecteur(secteurDto);      // Mapping DTO form into JPA Entity
     secteurMetier.ajouterSecteur(newSecteur);
 
     return "redirect:/siteEscalade";
