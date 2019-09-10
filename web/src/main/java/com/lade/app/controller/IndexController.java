@@ -19,9 +19,12 @@ public class IndexController {
   }
 
   @GetMapping("/coco1")
-  public String creationTopos() {
+  public String demandeDeLocationTopo() {
     return "views/requeteLocationTopos";
   }
 
-
+  @GetMapping("/coco11")
+  public String creationTopos() {
+    return "views/creationTopos";
+  }
 }

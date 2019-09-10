@@ -9,7 +9,7 @@
 </head>
 <body>
 <div layout:fragment="content1">
-  <div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+  <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscaladeSelected}">
     <div class="shadow card bg-light">
       <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom.toUpperCase()}">

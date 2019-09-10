@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SiteEscaladeController {
 
-  private static final String VIEWS_CREATION_SITE_ESCALADE = "views/creationSiteEscalade";
+  private static final String VIEWS_CREATION_SITE_ESCALADE ="views/creationSiteEscalade";
   private SiteEscaladeMetier siteEscaladeMetier;
   private SiteEscaladeMapper siteEscaladeMapper;
 
@@ -112,8 +112,7 @@ public class SiteEscaladeController {
   @PostMapping("/saveCreationSiteEscalade")
   public String saveCreationSiteEscalade(Model model,
       @Valid @ModelAttribute("newSiteEscalade") SiteEscaladeDto siteEscaladeDto,
-      BindingResult newSiteEscaladeErrors
-  ) {
+      BindingResult newSiteEscaladeErrors) {
     if (newSiteEscaladeErrors.hasErrors()) {
       return VIEWS_CREATION_SITE_ESCALADE;
     }

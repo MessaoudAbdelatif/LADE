@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = VoieMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface SecteurMapper {
 
   @Mapping(target = "siteEscalade.id",source = "siteEscalade")

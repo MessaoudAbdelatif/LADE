@@ -2,16 +2,17 @@ package com.lade.app.dto;
 
 import entities.Voie;
 import java.util.List;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 public class SecteurDto {
 
   // __________Attributes____________
   protected Long id;
+  @NotEmpty
   protected String nom;
   protected String siteEscalade;
   protected String description;
@@ -19,9 +20,8 @@ public class SecteurDto {
 
 
   // __________Constructor____________
-
-  public SecteurDto(String siteEscalade) {
+ /* public SecteurDto(String siteEscalade) {
     this.siteEscalade = siteEscalade;
-  }
+  }*/
 }
 

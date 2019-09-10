@@ -6,6 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(uses = SecteurMapper.class,  componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface SiteEscaladeMapper {
-//  SiteEscaladeDto map(SiteEscalade siteEscalade);
   SiteEscalade toSiteEscalade(SiteEscaladeDto siteEscaladeDto);
 }

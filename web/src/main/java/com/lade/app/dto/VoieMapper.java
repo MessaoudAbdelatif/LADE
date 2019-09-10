@@ -5,7 +5,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = LongeurMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface VoieMapper {
 
   @Mapping(target = "secteur.id", source = "secteur")

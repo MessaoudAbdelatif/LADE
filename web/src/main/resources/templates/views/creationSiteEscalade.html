@@ -18,31 +18,44 @@
       <div class="container  card shadow  bg-light  text-dark p-3 ">
         <div class="card-header">
           <h2 class="h2">Ajouter un site d'esclade</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/saveCreationSiteEscalade}" th:object="${newSiteEscalade}" >
-          <div class="form-group"><label for="nom">Nom du site</label>
-            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" >
-            <span th:errors="*{nom}" class="text-danger"></span>
+
+        <form class="p-2" method="post" th:action="@{/saveCreationSiteEscalade}"
+              th:object="${newSiteEscalade}">
+
+          <div class="form-group">
+            <label for="nom">Nom du site</label>
+              <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
+                <span th:errors="*{nom}" class="text-danger"></span>
           </div>
-          <div class="form-group"><label for="lieu">Lieu</label><input class="form-control item"
-                                                                       type="text" id="lieu" name="lieu" th:field="*{lieu}">
-            <span th:errors="*{lieu}" class="text-danger"></span>
+
+          <div class="form-group">
+            <label for="lieu">Lieu</label>
+              <input class="form-control item" type="text" id="lieu" name="lieu" th:field="*{lieu}">
+                <span th:errors="*{lieu}" class="text-danger"></span>
           </div>
-          <div class="form-group"><label for="villeProximite">Ville à proximité</label><input
-              class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{villeProximite}" ><span th:errors="*{villeProximite}" class="text-danger"></span></div>
-          <div class="form-group"><label for="typeRoche">Type de roche</label><input
-              class="form-control item" type="text" id="typeRoche" name="typeRoche" th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
+
+          <div class="form-group">
+            <label for="villeProximite">Ville à proximité</label>
+              <input class="form-control item" type="text" name="villeProximite" id="villeProximite" th:field="*{villeProximite}">
+                <span th:errors="*{villeProximite}" class="text-danger"></span>
           </div>
+
+          <div class="form-group">
+            <label for="typeRoche">Type de roche</label>
+              <input class="form-control item" type="text" id="typeRoche" name="typeRoche" th:field="*{typeRoche}">
+                <span th:errors="*{typeRoche}" class="text-danger"></span>
+          </div>
+
           <button class="btn btn-primary " type="submit">Enregistrer</button>
+
         </form>
       </div>
     </section>
   </main>
 </div>
-
-
 
 
 </body>

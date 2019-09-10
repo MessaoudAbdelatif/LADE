@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table(name = "Topos")
@@ -45,6 +46,7 @@ public class Topos implements Serializable {
   private Boolean disponibleEnLocation;
 
   @Column(name = "Lien")
+  @URL
   private String lien;
 
   @Column(name = "Loue")

@@ -3,6 +3,7 @@ package com.lade.app.dto;
 import entities.Commentaire;
 import entities.Secteur;
 import java.util.List;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -10,8 +11,10 @@ public class SiteEscaladeDto {
 
   // __________Attributes____________
   protected Long id;
+  @NotEmpty
   protected String nom;
   protected Integer nbrSecteur;
+  @NotEmpty
   protected String lieu;
   protected String villeProximite;
   protected String typeRoche;
