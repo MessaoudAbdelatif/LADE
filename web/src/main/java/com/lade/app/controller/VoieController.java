@@ -1,12 +1,12 @@
 package com.lade.app.controller;
 
-import com.lade.app.dto.VoieDto;
-import com.lade.app.dto.VoieMapperImpl;
+import com.lade.app.dto.contract.VoieMapperImpl;
+import com.lade.app.dto.impl.VoieDto;
 import entities.Cotation;
 import entities.Voie;
 import javax.validation.Valid;
-import metier.SecteurMetier;
-import metier.VoieMetier;
+import metier.contract.SecteurMetier;
+import metier.contract.VoieMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

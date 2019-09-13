@@ -1,4 +1,4 @@
-package metier;
+package metier.contract;
 
 import entities.Secteur;
 import entities.SiteEscalade;

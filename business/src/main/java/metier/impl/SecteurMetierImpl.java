@@ -1,15 +1,15 @@
-package metier;
+package metier.impl;
 
 import dao.SecteurDao;
 import entities.Secteur;
 import entities.SiteEscalade;
 import java.util.List;
+import metier.contract.SecteurMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
+
 public class SecteurMetierImpl implements SecteurMetier {
 
   private SecteurDao secteurDao;

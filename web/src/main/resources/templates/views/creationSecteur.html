@@ -21,21 +21,23 @@
         </div>
 
 
-        <form class="p-2" method="post" th:action="@{/ajouterSecteur/{siteEscalade}(siteEscalade=${SiteEscaladeParent.getId()})}" th:object="${newSecteur}">
-          <div class="form-group"><label for="nom">Nom secteur</label>
-            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
-            <span th:errors="*{nom}" class="text-danger"></span>
+        <form class="p-2" method="post"
+              th:action="@{/ajouterSecteur/{siteEscalade}(siteEscalade=${SiteEscaladeParent.getId()})}"
+              th:object="${newSecteur}">
+          <input type="hidden" th:field="*{id}"/>
+          <div class="form-group" th:class="${#fields.hasErrors('nom')}
+                ? 'form-group has-error' : 'form-group'">
+            <label for="nom">Nom secteur</label>
+            <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}"
+                   th:errorclass="has-error"/>
+            <span th:if="${#fields.hasErrors('nom')}" class="form-text"></span>
+            <ul>
+              <li th:each="errNom : ${#fields.errors('nom')}" th:text="${errNom}"></li>
+            </ul>
           </div>
           <div class="form-group"><label for="description">Description</label><input
               class="form-control item" type="text" name="description" id="description"
-              th:field="*{description}"><span th:errors="*{description}" class="text-danger"></span>
-          </div>
-
-          <div class="form-group" hidden="hidden"><label for="siteEscalade">ID site d'escalade associé
-            :</label><input class="form-control item"
-                            th:field="*{siteEscalade}" type="text" id="siteEscalade"
-                            name="siteEscalade" th:text="${SiteEscaladeParent.getId()}" th:value="${SiteEscaladeParent.getId()}">
-          <span th:errors="*{siteEscalade}" class="text-danger"></span>
+              th:field="*{description}"/><span th:errors="*{description}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
         </form>

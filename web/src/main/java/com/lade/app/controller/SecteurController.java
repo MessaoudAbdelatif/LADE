@@ -1,11 +1,11 @@
 package com.lade.app.controller;
 
-import com.lade.app.dto.SecteurDto;
-import com.lade.app.dto.SecteurMapperImpl;
+import com.lade.app.dto.contract.SecteurMapperImpl;
+import com.lade.app.dto.impl.SecteurDto;
 import entities.Secteur;
 import javax.validation.Valid;
-import metier.SecteurMetier;
-import metier.SiteEscaladeMetier;
+import metier.contract.SecteurMetier;
+import metier.contract.SiteEscaladeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SecteurController {
 
-  private SecteurMetier secteurMetier;
-  private SiteEscaladeMetier siteEscaladeMetier;
-  private SecteurMapperImpl secteurMapper;
+  private final SecteurMetier secteurMetier;
+  private final SiteEscaladeMetier siteEscaladeMetier;
+  private final SecteurMapperImpl secteurMapper;
 
   private static final String VIEWS_CREATION_SECTEUR = "views/creationSecteur";
 
@@ -51,29 +50,35 @@ public class SecteurController {
   //___________________________________________________________________________
 
   //--------------------- Création d'Un Secteur -------------------------
-  @GetMapping("/creationSecteur")
-  public String creationSecteur(Model model, @RequestParam("id") String id) {
-    model.addAttribute("newSecteur", new SecteurDto());
-    model.addAttribute("idSiteEscalade", id);
+  @ModelAttribute("newSecteur")
+  public SecteurDto secteurDto(){
+    return new SecteurDto();
+  }
+
+  @GetMapping("/creationSecteur/{siteEscaladeID}")
+  public String creationSecteur(Model model, @PathVariable("siteEscaladeID") String siteEscaladeID) {
+   // model.addAttribute("newSecteur", new SecteurDto());
+    model.addAttribute("idSiteEscalade", siteEscaladeID);
     model.addAttribute("SiteEscaladeParent",
-        siteEscaladeMetier.consulterUnSiteEscalade(Long.valueOf(id)));
+        siteEscaladeMetier.consulterUnSiteEscalade(Long.valueOf(siteEscaladeID)));
     return VIEWS_CREATION_SECTEUR;
   }
 
-  @PostMapping("/ajouterSecteur/{siteEscalade}")
+  @PostMapping("/ajouterSecteur/{siteEscaladeID}")
   public String ajouterSecteur(Model model,
-      @Valid @ModelAttribute("newSecteur") SecteurDto secteurDto, BindingResult newSecteurErrors,
-      @PathVariable("siteEscalade") String siteEscalade) {
-    secteurDto.setSiteEscalade(siteEscalade);
+      @ModelAttribute("newSecteur")  @Valid SecteurDto secteurDto, BindingResult newSecteurErrors,
+      @PathVariable("siteEscaladeID") String siteEscaladeID) {
+    secteurDto.setSiteEscalade(siteEscaladeID);
     if (newSecteurErrors.hasErrors()) {
-      return VIEWS_CREATION_SECTEUR+"?id="+siteEscalade;
+      return VIEWS_CREATION_SECTEUR;
     }
 
-    Secteur newSecteur = secteurMapper
-        .toSecteur(secteurDto);      // Mapping DTO form --> into JPA Entity
+   /* Secteur newSecteur = secteurMapper
+        .toSecteur(secteurDto);      // Mapping DTO form --> into JPA Entity*/
+//
+    secteurMetier.ajouterSecteur(secteurMapper
+        .toSecteur(secteurDto));
 
-    secteurMetier.ajouterSecteur(newSecteur);
-
-    return "redirect:/siteEscalade";
+    return "redirect:/viewSiteEscalade?id="+siteEscaladeID;
   }
 }

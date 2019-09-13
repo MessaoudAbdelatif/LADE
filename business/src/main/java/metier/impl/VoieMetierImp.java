@@ -1,8 +1,9 @@
-package metier;
+package metier.impl;
 
 import dao.VoieDao;
 import entities.Voie;
 import java.util.Collection;
+import metier.contract.VoieMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

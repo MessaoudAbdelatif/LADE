@@ -1,4 +1,4 @@
-package com.lade.app.dto;
+package com.lade.app.dto.impl;
 
 import entities.Longeur;
 import java.util.List;

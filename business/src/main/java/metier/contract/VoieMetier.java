@@ -1,4 +1,4 @@
-package metier;
+package metier.contract;
 
 import entities.Voie;
 import java.util.Collection;

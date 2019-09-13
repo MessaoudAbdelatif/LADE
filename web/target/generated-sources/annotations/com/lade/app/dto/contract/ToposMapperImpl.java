@@ -1,5 +1,6 @@
-package com.lade.app.dto;
+package com.lade.app.dto.contract;
 
+import com.lade.app.dto.impl.ToposDto;
 import entities.DemandeLocation;
 import entities.Topos;
 import entities.UtilisateurConnecte;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-10T23:10:02+0200",
+    date = "2019-09-14T00:20:30+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component

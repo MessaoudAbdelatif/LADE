@@ -13,9 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -35,7 +34,8 @@ public class Topos implements Serializable {
   private String lieuDeParution;
 
   @Column(name = "Date_De_Parution")
-  @Temporal(TemporalType.TIMESTAMP)
+  //@Temporal(TemporalType.TIMESTAMP)
+  @CreationTimestamp
   private Date dateDeParution;
 
   @ManyToOne

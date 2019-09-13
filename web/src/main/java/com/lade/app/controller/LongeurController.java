@@ -1,12 +1,12 @@
 package com.lade.app.controller;
 
-import com.lade.app.dto.LongeurDto;
-import com.lade.app.dto.LongeurMapperImpl;
+import com.lade.app.dto.contract.LongeurMapperImpl;
+import com.lade.app.dto.impl.LongeurDto;
 import entities.Cotation;
 import entities.Longeur;
 import javax.validation.Valid;
-import metier.LongeurMetier;
-import metier.VoieMetier;
+import metier.contract.LongeurMetier;
+import metier.contract.VoieMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

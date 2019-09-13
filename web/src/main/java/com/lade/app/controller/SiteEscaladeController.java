@@ -1,11 +1,11 @@
 package com.lade.app.controller;
 
 
-import com.lade.app.dto.SiteEscaladeDto;
-import com.lade.app.dto.SiteEscaladeMapper;
+import com.lade.app.dto.contract.SiteEscaladeMapper;
+import com.lade.app.dto.impl.SiteEscaladeDto;
 import entities.SiteEscalade;
 import javax.validation.Valid;
-import metier.SiteEscaladeMetier;
+import metier.contract.SiteEscaladeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

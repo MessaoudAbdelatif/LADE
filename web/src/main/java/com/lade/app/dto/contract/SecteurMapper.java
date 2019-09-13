@@ -1,5 +1,6 @@
-package com.lade.app.dto;
+package com.lade.app.dto.contract;
 
+import com.lade.app.dto.impl.SecteurDto;
 import entities.Secteur;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;

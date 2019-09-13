@@ -1,4 +1,4 @@
-package metier;
+package metier.contract;
 
 import entities.SiteEscalade;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.lade.app.dto;
+package com.lade.app.dto.impl;
 
 import entities.DemandeLocation;
 import java.util.Date;
@@ -7,6 +7,8 @@ import lombok.Data;
 
 @Data
 public class ToposDto {
+
+
   // __________Attributes____________
 protected Long id;
 protected String nom;

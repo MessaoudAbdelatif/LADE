@@ -3,7 +3,7 @@ package com.lade.app.controller;
 import entities.Civilite;
 import entities.UtilisateurConnecte;
 import javax.validation.Valid;
-import metier.UtilisateurConnecteMetier;
+import metier.contract.UtilisateurConnecteMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;

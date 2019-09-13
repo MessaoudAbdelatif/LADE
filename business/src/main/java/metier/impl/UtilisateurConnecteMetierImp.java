@@ -1,14 +1,14 @@
-package metier;
+package metier.impl;
 
 import dao.UtilisateurConnecteDao;
 import entities.UtilisateurConnecte;
 import java.time.LocalDateTime;
+import metier.contract.UtilisateurConnecteMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
+
 public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   private final UtilisateurConnecteDao utilisateurConnecteDao;

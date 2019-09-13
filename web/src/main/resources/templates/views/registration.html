@@ -18,20 +18,24 @@
             auctor in, mattis vitae leo.</p>
         </div>
 
-        <form th:action="@{/save}" method="post" th:object="${utilisateurConnecte}">
+        <form class="needs-validation" novalidate th:action="@{/save}" method="post" th:object="${utilisateurConnecte}">
           <!-- //th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
 
           <div class="form-group"><label th:for="username">Pseudo :
             <input
                 class="form-control item"
-                type="text" id="username" name="userName" th:field="*{userName}" autofocus="autofocus"/>
+                type="text" id="username" name="userName" th:field="*{userName}" autofocus="autofocus" placeholder="Pseudo" />
             <span>
             <ul class="text-danger" th:each="error: ${#fields.errors('userName')}">
               <li th:each="message : ${error.split(',')}">
                 <p class="error-message" th:text="${message}"></p>
               </li>
             </ul>
-            </span></label>
+            </span>
+            <small id="passwordHelpInline" class="text-muted">
+              Doit être de 5-60 caractères.
+            </small>
+          </label>
           </div>
 
 
