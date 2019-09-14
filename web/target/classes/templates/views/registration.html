@@ -3,11 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
-<head>
-  <meta charset="utf-8"/>
-  <title>Accueil - Les Amis De L'escalade</title>
-</head>
-<body>
+
 <div layout:fragment="content1">
   <main class="page registration-page">
     <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
@@ -18,7 +14,7 @@
             auctor in, mattis vitae leo.</p>
         </div>
 
-        <form class="needs-validation" novalidate th:action="@{/save}" method="post" th:object="${utilisateurConnecte}">
+        <form class="needs-validation" novalidate th:action="@{/save}" method="post" th:object="${utilisateurConnecte}" name="registrationForm" onsubmit="return retapeMotDePass()">
           <!-- //th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
 
           <div class="form-group"><label th:for="username">Pseudo :
@@ -49,8 +45,6 @@
                 </option>
               </select></label>
 
-
-
             <div class="input-group"><label for="name">Nom<input class="form-control item"
                                                                           name="nom" type="text"
                                                                           id="name"
@@ -72,7 +66,7 @@
 
             <div class="input-group"><label for="passwordConfirmation">Confirmation Mot de
               Passe<input
-                class="form-control item" type="password" id="passwordConfirmation"></label></div>
+                class="form-control item" type="password" id="passwordConfirmation" name="passwordConfirmation"></label></div>
             <div class="form-group"><label for="email">E-mail<input
                 class="form-control item"
                 name="email" type="text"
@@ -96,7 +90,13 @@
       </div>
     </section>
   </main>
+  <!--
+############### Validation FRONT-END Script  #############*START*###########
+-->
+  <script type="text/javascript" src="../../js/validationForm/registrationForm.js"></script>
+  <!--
+  ############### Validation FRONT-END Script  #############*END*#############
+  -->
 </div>
-</body>
 
 </html>

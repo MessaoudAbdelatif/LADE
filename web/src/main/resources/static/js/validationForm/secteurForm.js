@@ -5,7 +5,7 @@ function validateform(){
     alert("Votre secteur doit avoir un Nom !");
     return false;
   }else if(nom.length<3){
-    alert("Nom doit contenir au moins 3 caractères");
+    alert("Nom du secteur doit contenir au moins 3 caractères");
     return false;
   }
 }

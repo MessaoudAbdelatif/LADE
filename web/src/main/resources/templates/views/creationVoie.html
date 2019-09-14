@@ -3,11 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
-<head>
-  <meta charset="utf-8"/>
-  <title>Ajouter une voie</title>
-</head>
-<body>
+
 <div layout:fragment="content1">
 
   <main class="page registration-page">
@@ -19,8 +15,8 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/ajouterVoie}" th:object="${newVoie}">
-          <div class="form-group"><label for="nom">Nom secteur</label>
+        <form class="p-2" method="post" th:action="@{/ajouterVoie}" th:object="${newVoie}" name="voieForm" onsubmit="return validateform()">
+          <div class="form-group"><label for="nom">Nom Voie</label>
             <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
             <span th:errors="*{nom}" class="text-danger"></span>
           </div>
@@ -54,8 +50,14 @@
       </div>
     </section>
   </main>
+  <!--
+############### Validation FRONT-END Script  #############*START*###########
+-->
+  <script type="text/javascript" src="../../js/validationForm/voieForm.js"></script>
+  <!--
+  ############### Validation FRONT-END Script  #############*END*#############
+-->
 </div>
 
-</body>
 
 </html>
