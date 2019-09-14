@@ -48,8 +48,8 @@
 
 body{
   font-family: 'Roboto',Arial,Helvetica, sans-serif;
-  background-size: contain;
-  background: url(../img/bgEscalade2.jpeg) center no-repeat fixed ;
+  background-size: cover;
+  background: url(../img/bgEscalade25.jpeg) no-repeat center center fixed;
 
   /*
   background: #fffcd3;
@@ -61,7 +61,7 @@ body{
 }
 
 #sticky-footer {
-  flex-shrink: none;
+  flex-shrink: unset;
 }
 tr{
   font-family: 'Roboto',Arial,Helvetica, sans-serif;
