@@ -45,6 +45,7 @@ public class UtilisateurConnecte implements Serializable {
   @Column(name = "Etat_Compte")
   private Boolean etatCompte;
 
+  @NotEmpty
   @Column(name = "Mot_De_Pass")
   private String motDePasse;
 

@@ -5,23 +5,31 @@
       layout:decorate="layout">
 
 <div layout:fragment="content1">
-  <main class="page registration-page">
+  <main class="page registration-page mb-3">
     <section class=" clean-form dark  mt-5 ml-md-5 col-md-6">
       <div class="container shadow card bg-light text-dark">
-        <div class="block-heading p-3">
-          <h2 class="h2">Inscription</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
-            auctor in, mattis vitae leo.</p>
+        <div class="block-heading p-2 pm-3 mb-3">
+          <h2 class="h2 text-center p-2">✏ Inscription️</h2>
+          <p>
+            Rejoinez nous maintenant ! et Accédez :</p>
+          <small class="small shadow">
+            # Tous nous sites d'escalades approuvées par la communauté <br># Nos topos ! Oooui tous les topos des membres de notre communauté <br># Échangez, Louez, évoluez avec tous les grimpeurs professionnels & amateurs</small>
         </div>
 
-        <form class="needs-validation" novalidate th:action="@{/save}" method="post" th:object="${utilisateurConnecte}" name="registrationForm" onsubmit="return retapeMotDePass()">
-          <!-- //th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
 
-          <div class="form-group"><label th:for="username">Pseudo :
-            <input
-                class="form-control item"
-                type="text" id="username" name="userName" th:field="*{userName}" autofocus="autofocus" placeholder="Pseudo" />
-            <span>
+        <form class="needs-validation" novalidate th:action="@{/save}" method="post" th:object="${utilisateurConnecte}" name="registrationForm" onsubmit="return retapeMotDePass()">
+         <!-- th:object je declare quel object sera attribue les *{attribues} le concernant pendant le POST -->
+
+          <div class="form-group">
+            <label th:for="username">Pseudo</label>
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">@️️</span>
+
+              <input
+                  class="form-control"
+                  type="text" id="username" name="userName" th:field="*{userName}"
+                  autofocus="autofocus" placeholder="Pseudo" aria-describedby="inputGroupPrepend" required />
+            </div><span>
             <ul class="text-danger" th:each="error: ${#fields.errors('userName')}">
               <li th:each="message : ${error.split(',')}">
                 <p class="error-message" th:text="${message}"></p>
@@ -31,47 +39,57 @@
             <small id="passwordHelpInline" class="text-muted">
               Doit être de 5-60 caractères.
             </small>
-          </label>
+
           </div>
 
 
-            <div class="input-group ">
-              <label th:for="civilite">Civilite
-              <select id="civilite" th:field="*{civilite}">
-                <option value=""> -- </option>
+            <div class="form-group ">
+              <label th:for="civilite">Civilite</label>
+              <select id="civilite" class="group" th:field="*{civilite}">
+                <option value=""> &#45;&#45; </option>
                 <option th:each="CiviliteSelection : ${civiliteChoix}"
                         th:text="${CiviliteSelection.value}"
                         th:value="${CiviliteSelection}">
                 </option>
-              </select></label>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Nom</label>
+                <input class="form-control item" name="nom" type="text" id="name" th:field="*{nom}"/>
+                  <span th:errors="*{nom}" class="text-danger"></span>
+            </div>
 
-            <div class="input-group"><label for="name">Nom<input class="form-control item"
-                                                                          name="nom" type="text"
-                                                                          id="name"
-                                                                          th:field="*{nom}">
-              <span th:errors="*{nom}" class="text-danger"></span></label>
-            </div> </div>
-
-            <div class="input-group"><label for="prenom">Prénom<input
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input
                 class="form-control item"
                 name="prenom" type="text"
                 id="prenom"
-                th:value="${utilisateurConnecte.prenom}">
-              <span th:errors="${utilisateurConnecte.prenom}" class="text-danger"></span></label>
+                th:value="${utilisateurConnecte.prenom}"/>
+              <span th:errors="${utilisateurConnecte.prenom}" class="text-danger"></span>
             </div>
 
-            <div class="input-group"><label for="password">Mot de Passe<input
+            <div class="form-group">
+              <label for="password">Mot de Passe</label>
+                <input
                 name="motDePasse" class="form-control item" type="password" id="password"
-                th:value="${utilisateurConnecte.motDePasse}"></label></div>
+                th:value="${utilisateurConnecte.motDePasse}">
+              <span th:errors="*{motDePasse}" class="text-danger"></span>
+            </div>
 
-            <div class="input-group"><label for="passwordConfirmation">Confirmation Mot de
-              Passe<input
-                class="form-control item" type="password" id="passwordConfirmation" name="passwordConfirmation"></label></div>
-            <div class="form-group"><label for="email">E-mail<input
+
+            <div class="form-group">
+              <label for="passwordConfirmation">Confirmation <i>Mot de Passe*</i></label>
+                <input
+                class="form-control item" type="password" id="passwordConfirmation" name="passwordConfirmation"/>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input
                 class="form-control item"
                 name="email" type="text"
                 id="email"
-                th:value="${utilisateurConnecte.email}"></label>
+                th:value="${utilisateurConnecte.email}"/>
 
             <ul class="text-danger" th:each="error: ${#fields.errors('email')}">
               <li th:each="message : ${error.split(',')}">
@@ -79,13 +97,14 @@
               </li>
             </ul>
             </div>
-            <div class="form-group"><label for="messagePerso">Parler nous de vous
-              <textarea class="form-control" id="messagePerso" rows="2"
+            <div class="form-group">
+              <label for="messagePerso">Parler nous de vous</label>
+              <textarea class="form-control shadow-textarea" id="messagePerso" rows="2"
                         name="presentationPersonel"
                         placeholder="Une bref présentation..">
-            </textarea></label>
+            </textarea>
             </div>
-            <button class="btn btn-primary " type="submit">S'enregistrer</button>
+            <button class="btn btn-primary mb-3 btn-lg offset-1" type="submit">S'enregistrer 💾</button>
         </form>
       </div>
     </section>
