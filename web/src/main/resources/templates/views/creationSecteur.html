@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout">
-<head>
-  <meta charset="utf-8"/>
-  <title>Accueil - Les Amis De L'escalade</title>
-</head>
-<body>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
 <div layout:fragment="content1">
 
   <main class="page registration-page">
@@ -21,7 +17,7 @@
         </div>
 
 
-        <form class="p-2" method="post"
+        <form class="p-2" method="post" name="secteurForm" onsubmit="return validateform()"
               th:action="@{/ajouterSecteur/{siteEscalade}(siteEscalade=${SiteEscaladeParent.getId()})}"
               th:object="${newSecteur}">
           <input type="hidden" th:field="*{id}"/>
@@ -37,15 +33,21 @@
           </div>
           <div class="form-group"><label for="description">Description</label><input
               class="form-control item" type="text" name="description" id="description"
-              th:field="*{description}"/><span th:errors="*{description}" class="text-danger"></span>
+              th:field="*{description}"/><span th:errors="*{description}"
+                                               class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
         </form>
       </div>
     </section>
   </main>
+  <!--
+  ############### Validation FRONT-END Script  #############*START*###########
+  -->
+  <script type="text/javascript" src="../../js/validationForm/secteurForm.js"></script>
+  <!--
+  ############### Validation FRONT-END Script  #############*END*#############
+-->
 </div>
-
-</body>
 
 </html>
