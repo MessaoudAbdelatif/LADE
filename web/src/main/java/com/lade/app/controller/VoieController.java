@@ -32,11 +32,10 @@ public class VoieController {
     this.secteurMetier = secteurMetier;
   }
 
-
   //--------------------- Consulter une Voie ---------------------------------
 
   @GetMapping("/viewVoie/{id}")
-  public String afficherUneVoie(Model model,@PathVariable("id") Long id) {
+  public String afficherUneVoie(Model model, @PathVariable("id") Long id) {
     try {
       Voie voieSelected = voieMetier.consulterUneVoie(id);
       model.addAttribute("voieSelected", voieSelected);
@@ -47,28 +46,31 @@ public class VoieController {
   }
 
   //___________________________________________________________________________
+  //--------------------- Création d'Une Voie -------------------------
+  @ModelAttribute("newVoie")
+  public VoieDto voieDto() {
+    return new VoieDto();
+  }
 
-  @GetMapping("/creationVoie/{id}")
-  public String creationVoie(Model model, @PathVariable("id") Long id) {
-    model.addAttribute("newVoie", new VoieDto(Long.toString(id)));
-    model.addAttribute("idSecteur", id);
-    model.addAttribute("SecteurParent", secteurMetier.consulterUnSecteur(id));
+  @GetMapping("/creationVoie/{secteurID}")
+  public String creationVoie(Model model, @PathVariable("secteurID") String secteurID) {
+    model.addAttribute("secteurID", secteurID);
+    model.addAttribute("SecteurParent", secteurMetier.consulterUnSecteur(Long.valueOf(secteurID)));
     model.addAttribute("cotationList", Cotation.getCotations());
     return "views/creationVoie";
   }
 
-  @PostMapping("/ajouterVoie")
+  @PostMapping("/ajouterVoie/{secteurID}")
   public String ajouterVoie(Model model,
       @Valid @ModelAttribute("newVoie") VoieDto voieDto, BindingResult newVoieErrors,
-      @ModelAttribute("idSecteur") String id) {
-
+      @ModelAttribute("secteurID") String secteurID) {
+    model.addAttribute("SecteurParent", secteurMetier.consulterUnSecteur(Long.valueOf(secteurID)));
+    voieDto.setSecteur(secteurID);
     if (newVoieErrors.hasErrors()) {
       return "views/creationVoie";
     }
+    voieMetier.ajouterVoie(voieMapper.toVoie(voieDto));
 
-    Voie newVoie = voieMapper.toVoie(voieDto);
-    voieMetier.ajouterVoie(newVoie);
-
-    return "redirect:/siteEscalade";
+    return "redirect:/viewSecteur/" + secteurID;
   }
 }

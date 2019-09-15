@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-
 public interface SiteEscaladeDao extends JpaRepository<SiteEscalade, Long> {
 
    Page<SiteEscalade> findByNomContainsIgnoreCaseOrderByNom(String sei, Pageable pageable);

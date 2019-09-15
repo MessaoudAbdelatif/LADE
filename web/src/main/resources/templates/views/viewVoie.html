@@ -28,10 +28,11 @@
             <th class="text-center" th:text="${voieSelected.descreption}"></th>
           </tr>
           <tr th:if="${voieSelected.longeurs.size()>0}">
-            <th>Voies</th>
+            <th>Longeurs</th>
             <th>
               <ul th:each="longeurs : ${voieSelected.longeurs}">
-                <li class="list-inline" th:text="${longeurs.nom}"></li></ul>
+                <a th:href="@{/viewLongeur/{id}(id=${longeurs.getId()})}">
+                <li class="list-inline" th:text="${longeurs.nom}"></li></a></ul>
             </th>
         </table>
         <a class="btn btn-primary"

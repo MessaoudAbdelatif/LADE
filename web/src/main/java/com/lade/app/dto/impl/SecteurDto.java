@@ -8,7 +8,6 @@ import lombok.Data;
 
 
 @Data
-//@NoArgsConstructor
 public class SecteurDto {
 
   // __________Attributes____________
@@ -20,10 +19,5 @@ public class SecteurDto {
   protected String description;
   protected List<Voie> voies;
 
-
-  // __________Constructor____________
- /* public SecteurDto(String siteEscalade) {
-    this.siteEscalade = siteEscalade;
-  }*/
 }
 

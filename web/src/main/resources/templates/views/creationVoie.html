@@ -15,9 +15,10 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
             auctor in, mattis vitae leo.</p>
         </div>
-        <form class="p-2" method="post" th:action="@{/ajouterVoie}" th:object="${newVoie}" name="voieForm" onsubmit="return validateform()">
+        <form class="p-2" method="post" th:action="@{/ajouterVoie/{secteurID}(secteurID=${SecteurParent.getId()})}" th:object="${newVoie}" name="voieForm" onsubmit="return validateform()">
+          <input type="hidden" th:field="*{id}"/>
           <div class="form-group"><label for="nom">Nom Voie</label>
-            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
+            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" required>
             <span th:errors="*{nom}" class="text-danger"></span>
           </div>
 
@@ -37,13 +38,6 @@
           <div class="form-group"><label for="description">Description</label><input
               class="form-control item" type="text" name="description" id="description"
               th:field="*{descreption}"><span th:errors="*{descreption}" class="text-danger"></span>
-          </div>
-
-          <div class="form-group"><label for="siteEscalade">ID secteur associé
-            :</label><input class="form-control item"
-                            th:field="*{secteur}" type="hidden" id="siteEscalade"
-                            name="siteEscalade" th:text="${idSecteur}">
-            <span th:errors="*{secteur}" class="text-danger"></span>
           </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
         </form>

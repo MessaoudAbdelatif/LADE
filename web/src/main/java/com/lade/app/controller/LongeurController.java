@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LongeurController {
 
-private LongeurMetier longeurMetier;
-private VoieMetier voieMetier;
-private LongeurMapperImpl longeurMapper;
+  private LongeurMetier longeurMetier;
+  private VoieMetier voieMetier;
+  private LongeurMapperImpl longeurMapper;
 
-@Autowired
+  @Autowired
   public LongeurController(LongeurMetier longeurMetier, VoieMetier voieMetier,
       LongeurMapperImpl longeurMapper) {
     this.longeurMetier = longeurMetier;
@@ -31,11 +31,10 @@ private LongeurMapperImpl longeurMapper;
     this.longeurMapper = longeurMapper;
   }
 
-
   //--------------------- Consulter une Longeur en particulier ---------------
 
   @GetMapping("/viewLongeur/{id}")
-  public String afficherUneLongeur(Model model,@PathVariable("id") Long id) {
+  public String afficherUneLongeur(Model model, @PathVariable("id") Long id) {
     try {
       Longeur longeurSelected = longeurMetier.consulterUneLongeur(id);
       model.addAttribute("longeurSelected", longeurSelected);
@@ -48,26 +47,31 @@ private LongeurMapperImpl longeurMapper;
   //___________________________________________________________________________
 
   //--------------------- Création d'Une Longeur -------------------------
-  @GetMapping("/creationLongeur/{id}")
-  public String creationLongeur(Model model,  @PathVariable("id")Long id) {
-    model.addAttribute("newLongeur", new LongeurDto(Long.toString(id)));
-    model.addAttribute("idVoie", id);
-    model.addAttribute("VoieParent",voieMetier.consulterUneVoie(id));
+  @ModelAttribute("newLongeur")
+  public LongeurDto longeurDto() {
+    return new LongeurDto();
+  }
+
+
+  @GetMapping("/creationLongeur/{voieID}")
+  public String creationLongeur(Model model, @PathVariable("voieID") String id) {
+    model.addAttribute("voieID", id);
+    model.addAttribute("VoieParent", voieMetier.consulterUneVoie(Long.valueOf(id)));
     model.addAttribute("cotationList", Cotation.getCotations());
     return "views/creationLongeur";
   }
 
-  @PostMapping("/ajouterLongeur")
+  @PostMapping("/ajouterLongeur/{voieID}")
   public String ajouterLongeur(Model model,
-      @Valid @ModelAttribute("newLongeur") LongeurDto longeurDto, BindingResult newLongeurErrors,@ModelAttribute("idVoie") String id) {
-
+      @Valid @ModelAttribute("newLongeur") LongeurDto longeurDto, BindingResult newLongeurErrors,
+      @PathVariable("voieID") String voieID) {
+    model.addAttribute("VoieParent", voieMetier.consulterUneVoie(Long.valueOf(voieID)));
+    longeurDto.setVoie(voieID);
     if (newLongeurErrors.hasErrors()) {
       return "views/creationLongeur";
     }
-
-    Longeur newLongeur = longeurMapper.toLongeur(longeurDto);      // Mapping DTO form into JPA Entity
-    longeurMetier.ajouterUneLongeur(newLongeur);
-
-    return "redirect:/viewVoie";
+    // Mapping DTO form into JPA Entity
+    longeurMetier.ajouterUneLongeur(longeurMapper.toLongeur(longeurDto));
+    return "redirect:/viewVoie/" + voieID;
   }
 }

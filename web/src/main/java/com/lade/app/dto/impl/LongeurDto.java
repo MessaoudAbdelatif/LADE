@@ -2,10 +2,8 @@ package com.lade.app.dto.impl;
 
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class LongeurDto {
 
 
@@ -16,8 +14,4 @@ public class LongeurDto {
   protected String voie;
   protected String cotation;
 
-  // __________Constructor____________
-  public LongeurDto(String voie) {
-    this.voie = voie;
-  }
 }

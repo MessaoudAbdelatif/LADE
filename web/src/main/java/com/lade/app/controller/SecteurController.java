@@ -48,16 +48,15 @@ public class SecteurController {
   }
 
   //___________________________________________________________________________
-
   //--------------------- Création d'Un Secteur -------------------------
   @ModelAttribute("newSecteur")
-  public SecteurDto secteurDto(){
+  public SecteurDto secteurDto() {
     return new SecteurDto();
   }
 
   @GetMapping("/creationSecteur/{siteEscaladeID}")
-  public String creationSecteur(Model model, @PathVariable("siteEscaladeID") String siteEscaladeID) {
-   // model.addAttribute("newSecteur", new SecteurDto());
+  public String creationSecteur(Model model,
+      @PathVariable("siteEscaladeID") String siteEscaladeID) {
     model.addAttribute("idSiteEscalade", siteEscaladeID);
     model.addAttribute("SiteEscaladeParent",
         siteEscaladeMetier.consulterUnSiteEscalade(Long.valueOf(siteEscaladeID)));
@@ -66,7 +65,7 @@ public class SecteurController {
 
   @PostMapping("/ajouterSecteur/{siteEscaladeID}")
   public String ajouterSecteur(Model model,
-      @ModelAttribute("newSecteur")  @Valid SecteurDto secteurDto, BindingResult newSecteurErrors,
+      @ModelAttribute("newSecteur") @Valid SecteurDto secteurDto, BindingResult newSecteurErrors,
       @PathVariable("siteEscaladeID") String siteEscaladeID) {
     model.addAttribute("SiteEscaladeParent",
         siteEscaladeMetier.consulterUnSiteEscalade(Long.valueOf(siteEscaladeID)));
@@ -75,12 +74,9 @@ public class SecteurController {
       return VIEWS_CREATION_SECTEUR;
     }
 
-   /* Secteur newSecteur = secteurMapper
-        .toSecteur(secteurDto);      // Mapping DTO form --> into JPA Entity*/
-//
     secteurMetier.ajouterSecteur(secteurMapper
         .toSecteur(secteurDto));
 
-    return "redirect:/viewSiteEscalade?id="+siteEscaladeID;
+    return "redirect:/viewSiteEscalade?id=" + siteEscaladeID;
   }
 }
