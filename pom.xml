@@ -48,9 +48,8 @@
   <!-- Modules -->
   <dependencyManagement>
 
-
-
      <dependencies>
+
       <dependency>
         <groupId>com.lade</groupId>
         <artifactId>consumer</artifactId>
@@ -71,7 +70,6 @@
         <artifactId>web</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
-
 
       <!-- Bibliothèques Externes -->
 
@@ -139,22 +137,22 @@
         <artifactId>popper.js</artifactId>
         <version>1.15.0</version>
       </dependency>
-      <!--<dependency>
+      <dependency>
         <groupId>org.thymeleaf.extras</groupId>
         <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-        <version>2.1.2.RELEASE</version>
-      </dependency>-->
-       <!-- <dependency>
+        <version>3.0.4.RELEASE</version>
+      </dependency>
+        <dependency>
              <groupId>org.springframework.boot</groupId>
              <artifactId>spring-boot-starter-security</artifactId>
              <version>2.1.6.RELEASE</version>
-           </dependency>-->
-       <!--<dependency>
+           </dependency>
+       <dependency>
        <groupId>org.springframework.security</groupId>
        <artifactId>spring-security-test</artifactId>
        <version>5.1.5.RELEASE</version>
        <scope>test</scope>
-     </dependency>-->
+     </dependency>
        <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -172,12 +170,12 @@
          <scope>runtime</scope>
          <optional>true</optional>
        </dependency>
-       <dependency>
+     <!--  <dependency>
          <groupId>com.zaxxer</groupId>
          <artifactId>HikariCP</artifactId>
          <version>2.7.8</version>
          <scope>compile</scope>
-       </dependency>
+       </dependency>-->
 
 
 

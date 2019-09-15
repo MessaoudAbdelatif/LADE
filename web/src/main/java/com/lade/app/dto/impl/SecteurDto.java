@@ -14,7 +14,7 @@ public class SecteurDto {
   // __________Attributes____________
   protected Long id;
   @NotEmpty
-  @Size(min = 3)
+  @Size(min = 3, max = 50)
   protected String nom;
   protected String siteEscalade;
   protected String description;

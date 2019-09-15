@@ -68,6 +68,8 @@ public class SecteurController {
   public String ajouterSecteur(Model model,
       @ModelAttribute("newSecteur")  @Valid SecteurDto secteurDto, BindingResult newSecteurErrors,
       @PathVariable("siteEscaladeID") String siteEscaladeID) {
+    model.addAttribute("SiteEscaladeParent",
+        siteEscaladeMetier.consulterUnSiteEscalade(Long.valueOf(siteEscaladeID)));
     secteurDto.setSiteEscalade(siteEscaladeID);
     if (newSecteurErrors.hasErrors()) {
       return VIEWS_CREATION_SECTEUR;
