@@ -5,35 +5,26 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="layout">
 
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Login - Les Amis De L'escalade</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/> <!-- 1er lien juste pour IDE afin d'ajouter l'intellisense , mon moteur de template utilisera le 2nd lien-->
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/style.css}"/>
-</head>
-
-<body>
-
 <div layout:fragment="content1">
     <main class="page login-page">
-        <section class="clean-block clean-form dark mt-5 ml-md-5 col-md-6">
-            <div class="container ">
-                <div class="block-heading">
+        <section class="container dark col-md-6 p-2">
+            <div class="card shadow bg-light text-dark">
+                <div class="card-header">
                     <h2 class="h2">Se connecter</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <div class="alert alert-danger" th:if="${#request.getParameter('error') == 'true'}">
+                        <i class="fas fa-exclamation-triangle"></i> Connexion Impossible !!<br /><small>Pseudo/Mot de passe: Incorrecte </small>
+                    </div>
                 </div>
-                <form>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="text" id="email"></div>
-                    <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password"></div>
-                    <div class="form-group">
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label class="form-check-label" for="checkbox">Enregistrer mon E-mail</label></div>
-                    </div><button class="btn btn-primary " type="button">Connexion</button></form>
+                <form class="card-body" th:action="@{/j_spring_security_check}" method="post">
+                    <div class="form-group"><label for="username">Pseudo</label><i class="fas fa-user" id="iconeUser"></i><input class="form-control" type="text" id="username" name="username" aria-describedby="iconeUser" autofocus REQUIRED></div>
+                    <div class="form-group"><label for="password">Mot de passe</label><input class="form-control" type="password" id="password" name="password"></div>
+                    <button class="btn btn-primary" type="submit">Connexion</button>
+                </form>
             </div>
         </section>
     </main>
 </div>
 
-</body>
+
 
 </html>
