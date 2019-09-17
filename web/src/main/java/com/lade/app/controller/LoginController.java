@@ -12,15 +12,26 @@ public class LoginController {
     return "views/login";
   }
 
-  @GetMapping("/logout")
-  public String logout(Model model) {
-    return "views/logoutConfirme";
-  }
 
   @GetMapping("/loginConfirme")
   public String loginConfirme(Model model) {
     return "views/loginConfirme";
   }
+
+
+
+  @GetMapping("/logout")
+  public String logout(Model model) {
+    return "views/logoutConfirme";
+  }
+
+
+
+  @GetMapping("/logoutConfirme")
+  public String logoutConfirme(Model model) {
+    return "views/logoutConfirme";
+  }
+
 
   @GetMapping("/403")
   public String error403() {

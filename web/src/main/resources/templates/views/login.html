@@ -7,16 +7,16 @@
 
 <div layout:fragment="content1">
     <main class="page login-page">
-        <section class="container dark col-md-6 p-2">
+        <section class="container dark ml-md-5 col-md-6 p-2">
             <div class="card shadow bg-light text-dark">
                 <div class="card-header">
                     <h2 class="h2">Se connecter</h2>
                     <div class="alert alert-danger" th:if="${#request.getParameter('error') == 'true'}">
-                        <i class="fas fa-exclamation-triangle"></i> Connexion Impossible !!<br /><small>Pseudo/Mot de passe: Incorrecte </small>
+                        <span class="fas fa-exclamation-triangle"></span> Connexion Impossible !!<br /><small>Pseudo/Mot de passe: Incorrecte </small>
                     </div>
                 </div>
-                <form class="card-body" th:action="@{/j_spring_security_check}" method="post">
-                    <div class="form-group"><label for="username">Pseudo</label><i class="fas fa-user" id="iconeUser"></i><input class="form-control" type="text" id="username" name="username" aria-describedby="iconeUser" autofocus REQUIRED></div>
+                <form class="card-body" th:action="@{/login}" method="post">
+                    <div class="form-group"><label for="username">Pseudo</label><span class="fas fa-user" id="iconeUser"></span><input class="form-control" type="text" id="username" name="username" aria-describedby="iconeUser" autofocus REQUIRED></div>
                     <div class="form-group"><label for="password">Mot de passe</label><input class="form-control" type="password" id="password" name="password"></div>
                     <button class="btn btn-primary" type="submit">Connexion</button>
                 </form>
