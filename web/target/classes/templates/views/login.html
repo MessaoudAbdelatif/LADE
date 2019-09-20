@@ -16,8 +16,8 @@
                     </div>
                 </div>
                 <form class="card-body" th:action="@{/login}" method="post">
-                    <div class="form-group"><label for="username">Pseudo</label><span class="fas fa-user" id="iconeUser"></span><input class="form-control" type="text" id="username" name="username" aria-describedby="iconeUser" autofocus REQUIRED></div>
-                    <div class="form-group"><label for="password">Mot de passe</label><input class="form-control" type="password" id="password" name="password"></div>
+                   <div class="form-group"> <label for="username">Pseudo</label> <div class="input-group"><div class="input-group-prepend"><span class="fas fa-user input-group-text fa-1x" id="iconeUser"></span></div> <input class="form-control" type="text" id="username" name="username" aria-describedby="iconeUser" autofocus REQUIRED></div></div>
+                    <div class="form-group"><label for="password">Mot de passe</label><div class="input-group"><div class="input-group-prepend"><span class="fas fa-lock input-group-text fa-1x" id="iconpassword"></span></div><input class="form-control" type="password" id="password" name="password"></div></div>
                     <button class="btn btn-primary" type="submit">Connexion</button>
                 </form>
             </div>

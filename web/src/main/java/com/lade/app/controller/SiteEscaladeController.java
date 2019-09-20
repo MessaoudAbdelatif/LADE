@@ -31,6 +31,15 @@ public class SiteEscaladeController {
     this.siteEscaladeMapper = siteEscaladeMapper;
   }
 
+
+/*
+  @InitBinder
+  public void initBinder(WebDataBinder dataBinder){
+    StringTrimmerEditor stringTrimmerEditor= new StringTrimmerEditor(true);
+    dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+  }
+*/
+
 //--------------------- Consulte & Affiche "NOS SITES ESCALADES" ---------------
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,

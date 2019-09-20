@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 public class UtilisateurConnecte implements Serializable {
 
   @Id
+  @NotEmpty
   @Size(min = 5, max = 60)
   private String userName;
   @Enumerated(EnumType.STRING)

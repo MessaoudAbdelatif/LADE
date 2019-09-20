@@ -2,13 +2,9 @@
 <html lang="fr"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="layout">
 
-<head>
-  <meta charset="utf-8"/>
-  <title>Modifier un site d'escalade</title>
-</head>
-<body>
 <div layout:fragment="content1">
 
   <main class="page registration-page">
@@ -42,9 +38,9 @@
               th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
           </div>
 
-
           <!--          ADMIN FONCTION TODO    START-->
 <div class="btn-group">
+  <div sec:authorize="hasRole('ROLE_ADMIN')">
           <div th:if="${!updateSiteEscalade.isTag()}">
             <div class="btn-group-toggle" data-toggle="buttons">
               <label class="btn btn-info">
@@ -65,13 +61,13 @@
           </div>
           <!--          ADMIN FONCTION TODO    END-->
 
-
+  </div>
           <button class="btn btn-primary align-content-end" type="submit">Enregistrer</button></div>
         </form>
       </div>
     </section>
   </main>
 </div>
-</body>
+
 
 </html>

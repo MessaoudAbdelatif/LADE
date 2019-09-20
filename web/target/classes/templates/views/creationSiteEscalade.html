@@ -2,25 +2,27 @@
 <html
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
       layout:decorate="layout">
 
 <div layout:fragment="content1">
 
-  <main class="page registration-page">
-    <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
-      <div class="container  card shadow  bg-light  text-dark p-3 ">
-        <div class="card-header">
-          <h2 class="h2">Ajouter un site d'esclade</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
-            auctor in, mattis vitae leo.</p>
+  <main>
+    <section class="container dark ml-sm-5 col-md-6 p-2">
+      <div class="card shadow bg-light text-dark">
+        <div class="card-header text-center">
+          <h2 class="h2" th:if="${newSiteEscalade.id == null}">Ajouter un nouveau site d'esclade</h2>
+          <h2 class="h2" th:if="${newSiteEscalade.id != null}">Modifier site d'esclade</h2>
+            <p>Faites bénéficier la communauté de votre expérience</p>
         </div>
 
         <form class="p-2" method="post" th:action="@{/saveCreationSiteEscalade}"
               th:object="${newSiteEscalade}">
-
+          <input th:if="${newSiteEscalade.id!=null}" type="hidden" th:field="*{id}"/>
           <div class="form-group">
-            <label for="nom">Nom du site</label>
-              <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}">
+            <label for="nom">Nom</label>
+              <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" required>
                 <span th:errors="*{nom}" class="text-danger"></span>
           </div>
 
@@ -41,9 +43,29 @@
               <input class="form-control item" type="text" id="typeRoche" name="typeRoche" th:field="*{typeRoche}">
                 <span th:errors="*{typeRoche}" class="text-danger"></span>
           </div>
+          <div class="btn-group">
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+              <div th:if="${!newSiteEscalade.tag}">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-info">
+                    <input type="checkbox" th:field="*{tag}" th:checked="${newSiteEscalade.tag}"
+                           checked autocomplete="off"> Approuvé
+                  </label>
+                </div>
+              </div>
 
+              <div th:if="${newSiteEscalade.tag}">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-danger active">
+                    <input type="checkbox" th:field="*{tag}"
+                           th:checked="${newSiteEscalade.setTag(false)}" autocomplete="off">
+                    Dé-Approuvé
+                  </label>
+                </div>
+              </div>
+            </div>
           <button class="btn btn-primary " type="submit">Enregistrer</button>
-
+          </div>
         </form>
       </div>
     </section>
