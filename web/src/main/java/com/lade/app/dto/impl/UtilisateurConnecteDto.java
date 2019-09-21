@@ -13,10 +13,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
+@FieldMatch.List({
+    @FieldMatch(first = "motDePasse", second = "confirmationMdp",errorMessage = "Confirmation du Mot de passe incorrect !!")})
 
-@FieldMatch(first = "confirmationMdp", second = "motDePasse",message = "Mot de passe incorrect !!")
 @Data
 public class UtilisateurConnecteDto {
+
   @Id
   @NotEmpty
   @Size(min = 5, max = 60)

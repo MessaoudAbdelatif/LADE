@@ -1,8 +1,8 @@
 function retapeMotDePass(){
   var motDePasse=document.registrationForm.motDePasse.value;
-  var passwordConfirmation=document.registrationForm.passwordConfirmation.value;
+  var confirmationMdp=document.registrationForm.confirmationMdp.value;
 
-  if(motDePasse==passwordConfirmation){
+  if(motDePasse==confirmationMdp){
     return true;
   }
   else{

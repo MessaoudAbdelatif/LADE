@@ -48,6 +48,11 @@ public @interface FieldMatch {
   String second();
 
   /**
+   @return the Error Message
+   */
+  String errorMessage();
+
+  /**
    * Defines several <code>@FieldMatch</code> annotations on the same element
    *
    * @see FieldMatch

@@ -24,15 +24,16 @@ public class RegistrationController {
 
   private UtilisateurConnecteMetier utilisateurConnecteMetier;
   private UtilisateurConnecteMapper utilisateurConnecteMapper;
-  @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
   @Autowired
   public RegistrationController(UtilisateurConnecteMetier utilisateurConnecteMetier,
-      UtilisateurConnecteMapper utilisateurConnecteMapper) {
+      UtilisateurConnecteMapper utilisateurConnecteMapper,
+      BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.utilisateurConnecteMetier = utilisateurConnecteMetier;
     this.utilisateurConnecteMapper = utilisateurConnecteMapper;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   /* @InitBinder -> Spring execute cette méthode quand RegistrationController est appelé

@@ -24,6 +24,7 @@ public class UtilisateurConnecte implements Serializable {
   @NotEmpty
   @Size(min = 5, max = 60)
   private String userName;
+
   @Enumerated(EnumType.STRING)
   private Civilite civilite;
 
@@ -61,6 +62,8 @@ public class UtilisateurConnecte implements Serializable {
 
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topos> topos;
+
+
 
 
   public UtilisateurConnecte() {

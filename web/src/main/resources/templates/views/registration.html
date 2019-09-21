@@ -79,9 +79,9 @@
 
 
             <div class="form-group">
-              <label for="passwordConfirmation">Confirmation <em>Mot de Passe*</em></label>
+              <label for="confirmationMdp">Confirmation <em>Mot de Passe*</em></label>
                 <input
-                class="form-control item" type="password" id="passwordConfirmation" name="passwordConfirmation"
+                class="form-control item" type="password" id="confirmationMdp" name="confirmationMdp"
                 th:value="${utilisateurConnecte.confirmationMdp}"/>
               <span th:errors="*{confirmationMdp}" class="text-danger"></span>
             </div>
