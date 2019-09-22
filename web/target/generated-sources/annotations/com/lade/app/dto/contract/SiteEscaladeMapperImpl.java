@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-22T02:56:45+0200",
+    date = "2019-09-22T16:57:46+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -46,5 +46,32 @@ public class SiteEscaladeMapperImpl implements SiteEscaladeMapper {
         }
 
         return siteEscalade;
+    }
+
+    @Override
+    public SiteEscaladeDto toSiteEscaladeDto(SiteEscalade siteEscalade) {
+        if ( siteEscalade == null ) {
+            return null;
+        }
+
+        SiteEscaladeDto siteEscaladeDto = new SiteEscaladeDto();
+
+        siteEscaladeDto.setId( siteEscalade.getId() );
+        siteEscaladeDto.setNom( siteEscalade.getNom() );
+        siteEscaladeDto.setNbrSecteur( siteEscalade.getNbrSecteur() );
+        siteEscaladeDto.setLieu( siteEscalade.getLieu() );
+        siteEscaladeDto.setVilleProximite( siteEscalade.getVilleProximite() );
+        siteEscaladeDto.setTypeRoche( siteEscalade.getTypeRoche() );
+        siteEscaladeDto.setTag( siteEscalade.isTag() );
+        List<Secteur> list = siteEscalade.getSecteurs();
+        if ( list != null ) {
+            siteEscaladeDto.setSecteurs( new ArrayList<Secteur>( list ) );
+        }
+        List<Commentaire> list1 = siteEscalade.getCommentaires();
+        if ( list1 != null ) {
+            siteEscaladeDto.setCommentaires( new ArrayList<Commentaire>( list1 ) );
+        }
+
+        return siteEscaladeDto;
     }
 }

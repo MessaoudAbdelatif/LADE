@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-22T02:56:45+0200",
+    date = "2019-09-22T16:59:07+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -37,6 +37,29 @@ public class SecteurMapperImpl implements SecteurMapper {
         return secteur;
     }
 
+    @Override
+    public SecteurDto toSecteurDto(Secteur secteur) {
+        if ( secteur == null ) {
+            return null;
+        }
+
+        SecteurDto secteurDto = new SecteurDto();
+
+        Long id = secteurSiteEscaladeId( secteur );
+        if ( id != null ) {
+            secteurDto.setSiteEscalade( String.valueOf( id ) );
+        }
+        secteurDto.setId( secteur.getId() );
+        secteurDto.setNom( secteur.getNom() );
+        secteurDto.setDescription( secteur.getDescription() );
+        List<Voie> list = secteur.getVoies();
+        if ( list != null ) {
+            secteurDto.setVoies( new ArrayList<Voie>( list ) );
+        }
+
+        return secteurDto;
+    }
+
     protected SiteEscalade secteurDtoToSiteEscalade(SecteurDto secteurDto) {
         if ( secteurDto == null ) {
             return null;
@@ -49,5 +72,20 @@ public class SecteurMapperImpl implements SecteurMapper {
         }
 
         return siteEscalade;
+    }
+
+    private Long secteurSiteEscaladeId(Secteur secteur) {
+        if ( secteur == null ) {
+            return null;
+        }
+        SiteEscalade siteEscalade = secteur.getSiteEscalade();
+        if ( siteEscalade == null ) {
+            return null;
+        }
+        Long id = siteEscalade.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

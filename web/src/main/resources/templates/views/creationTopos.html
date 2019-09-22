@@ -15,9 +15,8 @@
           <small>Sauvegarder votre expérience</small>
         </div>
 
-        <form class="p-2" method="post" th:action="@{/saveCreationTopos}"
+        <form class="p-3" method="post" th:action="@{/saveCreationTopos}"
               th:object="${newTopos}">
-          <input>
           <div class="form-group">
             <label for="nom">Nom</label>
             <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}"
@@ -26,14 +25,14 @@
           </div>
 
           <div class="form-group">
-            <label for="description">Lieu</label>
+            <label for="description">Description</label>
             <input class="form-control item" type="text" id="description" name="description"
                    th:field="*{description}">
             <span th:errors="*{description}" class="text-danger"></span>
           </div>
 
           <div class="form-group">
-            <label for="lieuDeParution">Ville à proximité</label>
+            <label for="lieuDeParution">Lieu De Parution</label>
             <input class="form-control item" type="text" name="lieuDeParution" id="lieuDeParution"
                    th:field="*{lieuDeParution}">
             <span th:errors="*{lieuDeParution}" class="text-danger"></span>

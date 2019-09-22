@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-22T02:56:45+0200",
+    date = "2019-09-22T17:00:03+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -30,6 +30,25 @@ public class LongeurMapperImpl implements LongeurMapper {
         return longeur;
     }
 
+    @Override
+    public LongeurDto toLongeurDto(Longeur longeur) {
+        if ( longeur == null ) {
+            return null;
+        }
+
+        LongeurDto longeurDto = new LongeurDto();
+
+        Long id = longeurVoieId( longeur );
+        if ( id != null ) {
+            longeurDto.setVoie( String.valueOf( id ) );
+        }
+        longeurDto.setId( longeur.getId() );
+        longeurDto.setNom( longeur.getNom() );
+        longeurDto.setCotation( longeur.getCotation() );
+
+        return longeurDto;
+    }
+
     protected Voie longeurDtoToVoie(LongeurDto longeurDto) {
         if ( longeurDto == null ) {
             return null;
@@ -42,5 +61,20 @@ public class LongeurMapperImpl implements LongeurMapper {
         }
 
         return voie;
+    }
+
+    private Long longeurVoieId(Longeur longeur) {
+        if ( longeur == null ) {
+            return null;
+        }
+        Voie voie = longeur.getVoie();
+        if ( voie == null ) {
+            return null;
+        }
+        Long id = voie.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

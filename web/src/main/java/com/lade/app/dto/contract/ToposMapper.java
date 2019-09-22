@@ -9,6 +9,10 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ToposMapper {
-@Mapping(target = "utilisateurConnecte.username",source = "utilisateurConnecte")
+
+  @Mapping(target = "utilisateurConnecte.username", source = "utilisateurConnecte")
   Topos toTopos(ToposDto toposDto);
+
+  @Mapping(target = "utilisateurConnecte", source = "utilisateurConnecte.username")
+  ToposDto toToposDto(Topos topos);
 }

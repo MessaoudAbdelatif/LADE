@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-22T02:56:44+0200",
+    date = "2019-09-22T16:56:46+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -38,6 +38,30 @@ public class VoieMapperImpl implements VoieMapper {
         return voie;
     }
 
+    @Override
+    public VoieDto toVoieDto(Voie voie) {
+        if ( voie == null ) {
+            return null;
+        }
+
+        VoieDto voieDto = new VoieDto();
+
+        Long id = voieSecteurId( voie );
+        if ( id != null ) {
+            voieDto.setSecteur( String.valueOf( id ) );
+        }
+        voieDto.setId( voie.getId() );
+        voieDto.setNom( voie.getNom() );
+        voieDto.setDescreption( voie.getDescreption() );
+        voieDto.setCotation( voie.getCotation() );
+        List<Longeur> list = voie.getLongeurs();
+        if ( list != null ) {
+            voieDto.setLongeurs( new ArrayList<Longeur>( list ) );
+        }
+
+        return voieDto;
+    }
+
     protected Secteur voieDtoToSecteur(VoieDto voieDto) {
         if ( voieDto == null ) {
             return null;
@@ -50,5 +74,20 @@ public class VoieMapperImpl implements VoieMapper {
         }
 
         return secteur;
+    }
+
+    private Long voieSecteurId(Voie voie) {
+        if ( voie == null ) {
+            return null;
+        }
+        Secteur secteur = voie.getSecteur();
+        if ( secteur == null ) {
+            return null;
+        }
+        Long id = secteur.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 }

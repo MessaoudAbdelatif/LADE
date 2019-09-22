@@ -12,4 +12,7 @@ public interface SecteurMapper {
 
   @Mapping(target = "siteEscalade.id",source = "siteEscalade")
   Secteur toSecteur(SecteurDto secteurDto);
+
+  @Mapping(target = "siteEscalade",source = "siteEscalade.id")
+  SecteurDto toSecteurDto(Secteur secteur);
 }

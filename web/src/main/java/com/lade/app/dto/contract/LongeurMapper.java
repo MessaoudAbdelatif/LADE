@@ -11,4 +11,7 @@ public interface LongeurMapper {
 
   @Mapping(target = "voie.id", source = "voie")
   Longeur toLongeur(LongeurDto longeurDto);
+
+  @Mapping(target = "voie", source = "voie.id")
+  LongeurDto toLongeurDto(Longeur longeur);
 }

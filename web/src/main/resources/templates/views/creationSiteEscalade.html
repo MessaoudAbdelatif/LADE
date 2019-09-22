@@ -17,7 +17,7 @@
             <p>Faites bénéficier la communauté de votre expérience</p>
         </div>
 
-        <form class="p-2" method="post" th:action="@{/saveCreationSiteEscalade}"
+        <form class="p-3" method="post" th:action="@{/saveCreationSiteEscalade}"
               th:object="${newSiteEscalade}">
           <input th:if="${newSiteEscalade.id!=null}" type="hidden" th:field="*{id}"/>
           <div class="form-group">

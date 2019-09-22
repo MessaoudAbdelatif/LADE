@@ -11,4 +11,7 @@ public interface VoieMapper {
 
   @Mapping(target = "secteur.id", source = "secteur")
   Voie toVoie(VoieDto voieDto);
+
+  @Mapping(target = "secteur", source = "secteur.id")
+  VoieDto toVoieDto(Voie voie);
 }
