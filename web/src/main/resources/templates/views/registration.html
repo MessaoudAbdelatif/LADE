@@ -27,10 +27,10 @@
               <span class="input-group-text" id="inputGroupPrepend">@️️</span></div>
               <input
                   class="form-control"
-                  type="text" id="username" name="userName" th:field="*{userName}"
+                  type="text" id="username" name="userName" th:field="*{username}"
                   autofocus="autofocus" placeholder="Pseudo" aria-describedby="inputGroupPrepend" required />
             </div><span>
-            <ul class="text-danger" th:each="error: ${#fields.errors('userName')}">
+            <ul class="text-danger" th:each="error: ${#fields.errors('username')}">
               <li th:each="message : ${error.split(',')}">
                 <p class="error-message" th:text="${message}"></p>
               </li>
@@ -114,7 +114,7 @@
   <!--
 ############### Validation FRONT-END Script  #############*START*###########
 -->
-<!--  <script type="text/javascript" src="../../js/validationForm/registrationForm.js"></script>-->
+  <script type="text/javascript" src="../../js/validationForm/registrationForm.js"></script>
   <!--
   ############### Validation FRONT-END Script  #############*END*#############
   -->

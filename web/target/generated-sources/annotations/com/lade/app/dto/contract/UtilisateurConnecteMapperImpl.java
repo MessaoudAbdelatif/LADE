@@ -3,6 +3,7 @@ package com.lade.app.dto.contract;
 import com.lade.app.dto.impl.UtilisateurConnecteDto;
 import entities.Commentaire;
 import entities.DemandeLocation;
+import entities.Role;
 import entities.Topos;
 import entities.UtilisateurConnecte;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-20T02:04:53+0200",
+    date = "2019-09-22T01:04:14+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -26,7 +27,7 @@ public class UtilisateurConnecteMapperImpl implements UtilisateurConnecteMapper 
 
         UtilisateurConnecte utilisateurConnecte = new UtilisateurConnecte();
 
-        utilisateurConnecte.setUserName( utilisateurConnecteDto.getUserName() );
+        utilisateurConnecte.setUsername( utilisateurConnecteDto.getUsername() );
         utilisateurConnecte.setCivilite( utilisateurConnecteDto.getCivilite() );
         utilisateurConnecte.setNom( utilisateurConnecteDto.getNom() );
         utilisateurConnecte.setPrenom( utilisateurConnecteDto.getPrenom() );
@@ -47,6 +48,10 @@ public class UtilisateurConnecteMapperImpl implements UtilisateurConnecteMapper 
         if ( list2 != null ) {
             utilisateurConnecte.setTopos( new ArrayList<Topos>( list2 ) );
         }
+        List<Role> list3 = utilisateurConnecteDto.getRoles();
+        if ( list3 != null ) {
+            utilisateurConnecte.setRoles( new ArrayList<Role>( list3 ) );
+        }
 
         return utilisateurConnecte;
     }
@@ -59,7 +64,7 @@ public class UtilisateurConnecteMapperImpl implements UtilisateurConnecteMapper 
 
         UtilisateurConnecteDto utilisateurConnecteDto = new UtilisateurConnecteDto();
 
-        utilisateurConnecteDto.setUserName( utilisateurConnecte.getUserName() );
+        utilisateurConnecteDto.setUsername( utilisateurConnecte.getUsername() );
         utilisateurConnecteDto.setCivilite( utilisateurConnecte.getCivilite() );
         utilisateurConnecteDto.setNom( utilisateurConnecte.getNom() );
         utilisateurConnecteDto.setPrenom( utilisateurConnecte.getPrenom() );
@@ -79,6 +84,10 @@ public class UtilisateurConnecteMapperImpl implements UtilisateurConnecteMapper 
         List<Topos> list2 = utilisateurConnecte.getTopos();
         if ( list2 != null ) {
             utilisateurConnecteDto.setTopos( new ArrayList<Topos>( list2 ) );
+        }
+        List<Role> list3 = utilisateurConnecte.getRoles();
+        if ( list3 != null ) {
+            utilisateurConnecteDto.setRoles( new ArrayList<Role>( list3 ) );
         }
 
         return utilisateurConnecteDto;

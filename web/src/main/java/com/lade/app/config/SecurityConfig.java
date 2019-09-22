@@ -32,9 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     auth.jdbcAuthentication()
         .dataSource(dataSource) /*Set la DB concernée */
         .usersByUsernameQuery(
-            "select username as principal, password as credentials, active from users where username=?") /*Requête SQL indiquant à Spring Security ou trouver le username  */
+            "select username as principal, mot_de_pass as credentials, etat_compte from utilisateur_connecte where username=?") /*Requête SQL indiquant à Spring Security ou trouver le username  */
         .authoritiesByUsernameQuery(
-            "select username as principal, role as role from users_roles where username=?") /*Requête SQL indiquant à Spring Security ou trouver les roles -> username  */
+            "select username as principal, role as role from utilisateur_connecte_roles inner join role on utilisateur_connecte_roles.role_id = id where username=?") /*Requête SQL indiquant à Spring Security ou trouver les roles -> username  */
         .rolePrefix("ROLE_")
         .passwordEncoder(getBCPE()); /*Crypte le mdp avec Bcrypte*/
   }

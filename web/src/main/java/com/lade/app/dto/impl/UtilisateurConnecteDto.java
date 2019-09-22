@@ -4,6 +4,7 @@ import com.lade.app.validation.FieldMatch;
 import entities.Civilite;
 import entities.Commentaire;
 import entities.DemandeLocation;
+import entities.Role;
 import entities.Topos;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,7 +23,7 @@ public class UtilisateurConnecteDto {
   @Id
   @NotEmpty
   @Size(min = 5, max = 60)
-  protected String userName;
+  protected String username;
   protected Civilite civilite;
   @NotEmpty
   protected String nom;
@@ -40,5 +41,6 @@ public class UtilisateurConnecteDto {
   protected List<DemandeLocation> demandeLocations;
   protected List<Commentaire> commentaires;
   protected List<Topos> topos;
+  protected List<Role>roles;
 
 }

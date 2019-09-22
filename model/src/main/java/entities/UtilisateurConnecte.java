@@ -10,6 +10,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -23,7 +26,7 @@ public class UtilisateurConnecte implements Serializable {
   @Id
   @NotEmpty
   @Size(min = 5, max = 60)
-  private String userName;
+  private String username;
 
   @Enumerated(EnumType.STRING)
   private Civilite civilite;
@@ -63,18 +66,23 @@ public class UtilisateurConnecte implements Serializable {
   @OneToMany(mappedBy = "utilisateurConnecte", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Topos> topos;
 
-
+  @ManyToMany
+  @JoinTable(
+      name = "utilisateurConnecte_roles",
+      joinColumns = { @JoinColumn(name = "username") },
+      inverseJoinColumns = { @JoinColumn(name = "role_id") } )
+  private List< Role > roles;
 
 
   public UtilisateurConnecte() {
   }
 
   public UtilisateurConnecte(
-      @Size(min = 5, max = 60) String userName, Civilite civilite,
+      @Size(min = 5, max = 60) String username, Civilite civilite,
       @NotEmpty String nom, @NotEmpty String prenom,
       @NotEmpty @Email String email, Boolean etatCompte, String motDePasse,
       LocalDateTime dateCreation) {
-    this.userName = userName;
+    this.username = username;
     this.civilite = civilite;
     this.nom = nom;
     this.prenom = prenom;
@@ -84,12 +92,12 @@ public class UtilisateurConnecte implements Serializable {
     this.dateCreation = dateCreation;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public Civilite getCivilite() {
@@ -178,5 +186,13 @@ public class UtilisateurConnecte implements Serializable {
 
   public void setTopos(List<Topos> topos) {
     this.topos = topos;
+  }
+
+  public List<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
   }
 }

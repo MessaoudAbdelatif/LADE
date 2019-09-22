@@ -1,5 +1,6 @@
 package metier.impl;
 
+import dao.RoleDao;
 import dao.UtilisateurConnecteDao;
 import entities.UtilisateurConnecte;
 import java.time.LocalDateTime;
@@ -12,11 +13,13 @@ import org.springframework.stereotype.Service;
 public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   private final UtilisateurConnecteDao utilisateurConnecteDao;
+  private final RoleDao roleDao;
 
   @Autowired
   public UtilisateurConnecteMetierImp(
-      UtilisateurConnecteDao utilisateurConnecteDao) {
+      UtilisateurConnecteDao utilisateurConnecteDao, RoleDao roleDao) {
     this.utilisateurConnecteDao = utilisateurConnecteDao;
+    this.roleDao = roleDao;
   }
 
   @Override
@@ -26,6 +29,8 @@ public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   @Override
   public void ajouterUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
+    utilisateurConnecte.setRoles(roleDao.findRolesByRoleContains("USER"));
+    utilisateurConnecte.setEtatCompte(true);
     utilisateurConnecte.setDateCreation(LocalDateTime.now());
     utilisateurConnecteDao.save(utilisateurConnecte);
   }
