@@ -2,8 +2,11 @@ package metier.impl;
 
 import dao.RoleDao;
 import dao.UtilisateurConnecteDao;
+import entities.Role;
 import entities.UtilisateurConnecte;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import metier.contract.UtilisateurConnecteMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +32,17 @@ public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   @Override
   public void ajouterUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
-    utilisateurConnecte.setRoles(roleDao.findRolesByRoleContains("USER"));
+    List<Role> roles = new ArrayList<>();
+
+    /* Ajouter Role USER à tous les nouveau membre et Role User & Admin aux ceux avec le prénom : Franck */
+
+    roles.add(roleDao.findRolesByRoleContains("USER"));
+
+    if (utilisateurConnecte.getPrenom().equals("Franck")) {
+      roles.add(roleDao.findRolesByRoleContains("ADMIN"));
+    }
+
+    utilisateurConnecte.setRoles(roles);
     utilisateurConnecte.setEtatCompte(true);
     utilisateurConnecte.setDateCreation(LocalDateTime.now());
     utilisateurConnecteDao.save(utilisateurConnecte);
