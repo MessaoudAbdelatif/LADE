@@ -6,14 +6,18 @@ import entities.Topos;
 import javax.validation.Valid;
 import metier.contract.ToposMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/user")
 public class ToposController {
 
   private ToposMetier toposMetier;
@@ -32,15 +36,22 @@ public class ToposController {
     model.addAttribute("newTopos", new ToposDto());
     return "views/creationTopos";
   }
-@PostMapping("/saveCreationTopos")
+  @PostMapping("/saveCreationTopos")
   public String saveCreationTopos(Model model, @Valid @ModelAttribute("newTopos") ToposDto toposDto,
       BindingResult newToposErrors) {
     if (newToposErrors.hasErrors()) {
       return "views/creationTopos";
     }
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String currentPrincipalName = authentication.getName();
+    toposDto.setUtilisateurConnecte(currentPrincipalName);
+
+    toposDto.setDisponibleEnLocation(false);
+
     Topos topos1= toposMapper.toTopos(toposDto);
     toposMetier.ajouterUnTopos(topos1);
-    return "redirect:/viewTopos?id=" + topos1.getId();
+    return "redirect:/user/viewTopos?id=" + topos1.getId();
   }
 
   //___________________________________________________________________________
@@ -52,7 +63,8 @@ public class ToposController {
   public String afficherUnTopos(Model model, Long id) {
     try {
       Topos toposSelected = toposMetier.consulterUnTopos(id);
-      model.addAttribute("toposSelected", toposSelected);
+      ToposDto toposDtoSelected = toposMapper.toToposDto(toposSelected);
+      model.addAttribute("toposSelected", toposDtoSelected);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }

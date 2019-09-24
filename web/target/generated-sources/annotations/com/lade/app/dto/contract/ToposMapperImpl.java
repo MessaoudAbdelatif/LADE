@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-22T16:55:03+0200",
+    date = "2019-09-23T10:21:58+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -31,8 +31,8 @@ public class ToposMapperImpl implements ToposMapper {
         topos.setDescription( toposDto.getDescription() );
         topos.setLieuDeParution( toposDto.getLieuDeParution() );
         topos.setDateDeParution( toposDto.getDateDeParution() );
+        topos.setDisponibleEnLocation( toposDto.getDisponibleEnLocation() );
         topos.setLien( toposDto.getLien() );
-        topos.setLoue( toposDto.getLoue() );
         List<DemandeLocation> list = toposDto.getDemandeLocations();
         if ( list != null ) {
             topos.setDemandeLocations( new ArrayList<DemandeLocation>( list ) );
@@ -55,8 +55,8 @@ public class ToposMapperImpl implements ToposMapper {
         toposDto.setDescription( topos.getDescription() );
         toposDto.setDateDeParution( topos.getDateDeParution() );
         toposDto.setLieuDeParution( topos.getLieuDeParution() );
+        toposDto.setDisponibleEnLocation( topos.getDisponibleEnLocation() );
         toposDto.setLien( topos.getLien() );
-        toposDto.setLoue( topos.getLoue() );
         List<DemandeLocation> list = topos.getDemandeLocations();
         if ( list != null ) {
             toposDto.setDemandeLocations( new ArrayList<DemandeLocation>( list ) );

@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,10 +34,12 @@ public class Topos implements Serializable {
   @Column(name = "Lieu_De_Parution")
   private String lieuDeParution;
 
-  @Column(name = "Date_De_Parution")
+
   //@Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "Date_De_Parution")
   @CreationTimestamp
   private Date dateDeParution;
+
 
   @ManyToOne
   @JoinColumn(name = "Utilisateur_id")
@@ -49,10 +52,7 @@ public class Topos implements Serializable {
   @URL
   private String lien;
 
-  @Column(name = "Loue")
-  private Boolean loue;
-
-  @OneToMany(mappedBy = "topos", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "topos",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<DemandeLocation> demandeLocations;
 
   public Topos() {
@@ -69,7 +69,6 @@ public class Topos implements Serializable {
     this.utilisateurConnecte = utilisateurConnecte;
     this.disponibleEnLocation = disponibleEnLocation;
     this.lien = lien;
-    this.loue = loue;
     this.demandeLocations = demandeLocations;
   }
 
@@ -137,13 +136,6 @@ public class Topos implements Serializable {
     this.lien = lien;
   }
 
-  public Boolean getLoue() {
-    return loue;
-  }
-
-  public void setLoue(Boolean loue) {
-    this.loue = loue;
-  }
 
   public List<DemandeLocation> getDemandeLocations() {
     return demandeLocations;

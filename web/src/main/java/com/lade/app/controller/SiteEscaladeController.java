@@ -69,7 +69,8 @@ public class SiteEscaladeController {
   public String afficherUnSiteEscalade(Model model, Long id) {
     try {
       SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(id);
-      model.addAttribute("siteEscaladeSelected", siteEscaladeSelected);
+      SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper.toSiteEscaladeDto(siteEscaladeSelected);
+      model.addAttribute("siteEscaladeSelected", siteEscaladeDtoSelected);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }
@@ -85,7 +86,8 @@ public class SiteEscaladeController {
   @GetMapping("/edit/{id}")
   public String modifierSiteEscalade(Model model, @PathVariable("id") Long id) {
     SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(id);
-    model.addAttribute("updateSiteEscalade", siteEscaladeSelected);
+    SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper.toSiteEscaladeDto(siteEscaladeSelected);
+    model.addAttribute("updateSiteEscalade", siteEscaladeDtoSelected);
     model.addAttribute("idSiteEscaladePresent", siteEscaladeSelected.getId());
     return "views/modifierSiteEscalade";
   }

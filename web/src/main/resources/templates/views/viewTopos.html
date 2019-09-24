@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+  <meta charset="utf-8"/>
+  <title>Site d'escalade</title>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${toposSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center" th:text="${toposSelected.nom.toUpperCase()}">
+      </div>
+
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Lieu De Parution</th>
+            <th class="text-center" th:text="${toposSelected.lieuDeParution}"></th>
+          </tr>
+          <tr>
+            <th>Adresse URL</th>
+            <th class="text-center" th:text="${toposSelected.lien}"></th>
+          </tr>
+          <tr>
+            <th>description</th>
+            <th class="text-center" th:text="${toposSelected.description}"></th>
+          </tr>
+
+          <tr th:if="${toposSelected.disponibleEnLocation}">
+            <th>Location</th>
+            <th class="text-center text-info">Loué</th>
+          </tr>
+          <tr th:if="${!toposSelected.disponibleEnLocation}">
+            <th>Location</th>
+            <th class="text-center text-success">Disponible</th>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>
