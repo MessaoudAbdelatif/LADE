@@ -57,7 +57,7 @@
               <h1 class="dropdown-item" th:inline="text">Coucou
                 [[${#httpServletRequest.remoteUser}]] <i class="fas fa-hiking"></i></h1>
               <form class="dropdown-item-text" th:action="@{/logout}" method="post">
-                <input type="submit" value="Se déconnecté"/>
+                <input class=" alert-info" type="submit" value="Se déconnecté"/>
               </form>
             </div>
             <a class="dropdown-item" th:href="@{/registration}">S'inscrire</a>
