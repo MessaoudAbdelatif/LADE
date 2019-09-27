@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,6 +37,7 @@ public class ToposController {
     model.addAttribute("newTopos", new ToposDto());
     return "views/creationTopos";
   }
+
   @PostMapping("/saveCreationTopos")
   public String saveCreationTopos(Model model, @Valid @ModelAttribute("newTopos") ToposDto toposDto,
       BindingResult newToposErrors) {
@@ -49,18 +51,17 @@ public class ToposController {
 
     toposDto.setDisponibleEnLocation(false);
 
-    Topos topos1= toposMapper.toTopos(toposDto);
+    Topos topos1 = toposMapper.toTopos(toposDto);
     toposMetier.ajouterUnTopos(topos1);
     return "redirect:/user/viewTopos?id=" + topos1.getId();
   }
 
   //___________________________________________________________________________
 
-
 //--------------------- Consulter un topos en particulier ---------------
 
-  @GetMapping("/viewTopos")
-  public String afficherUnTopos(Model model, Long id) {
+  @GetMapping("/viewTopos/{id}")
+  public String afficherUnTopos(Model model, @PathVariable("id") Long id) {
     try {
       Topos toposSelected = toposMetier.consulterUnTopos(id);
       ToposDto toposDtoSelected = toposMapper.toToposDto(toposSelected);

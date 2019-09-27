@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface CommentaireDao extends JpaRepository <Commentaire, Long>{
+public interface CommentaireDao extends JpaRepository<Commentaire, Long> {
 
 }

@@ -56,6 +56,7 @@
             <div th:if="${#httpServletRequest.remoteUser}">
               <h1 class="dropdown-item" th:inline="text">Coucou
                 [[${#httpServletRequest.remoteUser}]] <i class="fas fa-hiking"></i></h1>
+              <a th:href="@{/user/espacePerso/{username}(username=${#httpServletRequest.remoteUser})}"><h1 class=" dropdown-item"><i class="fas fa-address-book"></i> Accèder à Mon Espace</h1></a>
               <form class="dropdown-item-text" th:action="@{/logout}" method="post">
                 <input class=" alert-info" type="submit" value="Se déconnecté"/>
               </form>

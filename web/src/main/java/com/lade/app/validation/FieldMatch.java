@@ -53,7 +53,7 @@ public @interface FieldMatch {
   String errorMessage();
 
   /**
-   * Defines several <code>@FieldMatch</code> annotations on the same element
+   * Defines several <code>@FieldMatch</code> annotations on the same element.
    *
    * @see FieldMatch
    */

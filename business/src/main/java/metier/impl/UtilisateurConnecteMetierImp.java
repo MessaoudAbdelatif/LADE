@@ -27,7 +27,12 @@ public class UtilisateurConnecteMetierImp implements UtilisateurConnecteMetier {
 
   @Override
   public UtilisateurConnecte consulterUtilisateurConnecte(String userName) {
-    return null;
+
+    UtilisateurConnecte utilisateurConnecteSelected = utilisateurConnecteDao.getOne(userName);
+    if (utilisateurConnecteSelected == null) {
+      throw new RuntimeException("Utilisateur Introuvable");
+    }
+    return utilisateurConnecteSelected;
   }
 
   @Override

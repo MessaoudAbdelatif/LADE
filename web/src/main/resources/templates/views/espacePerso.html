@@ -1,64 +1,106 @@
-<!--
 <!DOCTYPE html>
 <html lang="fr"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
-<head>
-  <meta charset="utf-8"/>
-  <title>Site d'escalade</title>
-</head>
-<body>
+
 <div layout:fragment="content1">
   <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${toposSelected}">
-    <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center" th:text="${toposSelected.nom.toUpperCase()}">
-      </div>
 
+  <!-- Fiche d'information personnel CARD START-->
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center">
+        <div
+            th:text="${utilisateur.civilite} + (${' '}) +(${utilisateur.nom.toUpperCase()}) +(${' '})+ (${utilisateur.prenom.toUpperCase()})"></div>
+      </div>
       <div class="p-2">
         <table class="table table-hover table-bordered table-striped">
           <tr>
-            <th>Nombre de secteur(s)</th>
-            <th class="text-center" th:text="${siteEscaladeSelected.nbrSecteur}"></th>
+            <th>Email</th>
+            <th class="text-center" th:text="${utilisateur.email}"></th>
+          </tr>
+          <tr th:if="${utilisateur.presentationPersonel}">
+            <th>Présentation Personel</th>
+            <th class="text-center" th:text="${utilisateur.presentationPersonel}"></th>
           </tr>
           <tr>
-            <th>Lieu</th>
-            <th class="text-center" th:text="${siteEscaladeSelected.lieu}"></th>
+            <th>Membre depuis</th>
+            <th class="text-center"
+                th:text="${#temporals.format(utilisateur.dateCreation, 'dd-MM-yyyy')}"></th>
           </tr>
-          <tr>
-            <th>Ville à Proximité</th>
-            <th class="text-center" th:text="${siteEscaladeSelected.villeProximite}"></th>
+          <tr th:if="${utilisateur.topos.size()>0}">
+            <th>Nombre de topos</th>
+            <th class="text-center" th:text="${utilisateur.topos.size()}"></th>
           </tr>
-          <tr>
-            <th>Type de roche</th>
-            <th class="text-center" th:text="${siteEscaladeSelected.typeRoche}"></th>
-          </tr>
-          <tr th:if="${siteEscaladeSelected.secteurs.size()>0}">
-            <th>Secteur</th>
-            <th>
-              <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
-                <a th:href="@{/viewSecteur/{id}(id=${secteur.id})}"><li class="list-inline" th:text="${secteur.nom}"></a> </li></ul>
-            </th>
-          </tr>
-          <tr th:if="${siteEscaladeSelected.tag}">
-            <th>"Offciel les amis de l'escalade"</th>
-            <th class="text-center text-success">Approuvé</th>
-          </tr>
-          <tr th:if="${!siteEscaladeSelected.tag}">
-            <th>"Offciel les amis de l'escalade"</th>
-            <th class="text-center text-danger ">Non Approuvé</th>
+          <tr th:if="${utilisateur.etatCompte}">
+            <th>Status</th>
+            <th class="text-center text-success" th:text="Active"></th>
           </tr>
         </table>
-        <a class="btn btn-primary"
-           th:href="@{/edit/{id}(id=${siteEscaladeSelected.id})}">Editer</a>
-        <a class="btn btn-primary"
-           th:href="@{/creationSecteur/{id}(id=${siteEscaladeSelected.id})}">+ Ajouter un secteur</a>
       </div>
     </div>
   </div>
+  <!-- Fiche d'information personnel CARD END -->
 
+  <!-- Mes Topos CARD START -->
+
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.topos.size()>0}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center">
+        <div>MES TOPOS</div>
+      </div>
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th class="text-center" th:each="topo : ${utilisateur.topos}">
+             <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Mes Topos CARD END -->
+
+  <!-- Demande de Location Reçu CARD START -->
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.demandeLocations.size()>0}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center">
+        <div>MES TOPOS</div>
+      </div>
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th class="text-center" th:each="topo : ${utilisateur.topos}">
+              <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Demande de Location Reçu CARD END -->
+
+  <!-- Demande de Location Emise CARD START -->
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.topos.size()>0}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center">
+        <div>MES TOPOS</div>
+      </div>
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th class="text-center" th:each="topo : ${utilisateur.topos}">
+              <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Demande de Location Emise CARD END -->
 </div>
-</body>
 
-</html>-->
+
+</html>

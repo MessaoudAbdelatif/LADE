@@ -31,7 +31,7 @@ public class DemandeLocation implements Serializable {
   private Topos topos;
 
   @ManyToOne
-  @JoinColumn(name = "Utilisateur_id")
+  @JoinColumn(name = "Utilisateur_id") /* il s'agit de l'utilisateur qui demande la location! */
   private UtilisateurConnecte utilisateurConnecte;
 
 

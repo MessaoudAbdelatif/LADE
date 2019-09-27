@@ -21,7 +21,7 @@ public class Role implements Serializable {
   private String role;
 
   @ManyToMany(mappedBy = "roles")
-  private List< UtilisateurConnecte > utilisateurConnectes;
+  private List<UtilisateurConnecte> utilisateurConnectes;
 
   public Role() {
   }

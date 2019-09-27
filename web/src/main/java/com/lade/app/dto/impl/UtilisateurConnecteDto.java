@@ -24,23 +24,36 @@ public class UtilisateurConnecteDto {
   @NotEmpty
   @Size(min = 5, max = 60)
   protected String username;
+
   protected Civilite civilite;
+
   @NotEmpty
   protected String nom;
+
   @NotEmpty
   protected String prenom;
+
   protected String presentationPersonel;
+
   @NotEmpty
   @Email
   protected String email;
+
   protected Boolean etatCompte;
+
   @NotEmpty
   protected String motDePasse;
+
   protected String confirmationMdp;
+
   protected LocalDateTime dateCreation;
+
   protected List<DemandeLocation> demandeLocations;
+
   protected List<Commentaire> commentaires;
+
   protected List<Topos> topos;
+
   protected List<Role>roles;
 
 }

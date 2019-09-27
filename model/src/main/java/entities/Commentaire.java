@@ -23,7 +23,7 @@ public class Commentaire implements Serializable {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name ="Nom_Emetteur")
+  @JoinColumn(name = "Nom_Emetteur")
   private UtilisateurConnecte utilisateurConnecte;
 
   @ManyToOne

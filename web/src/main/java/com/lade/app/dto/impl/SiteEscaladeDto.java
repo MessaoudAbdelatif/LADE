@@ -22,6 +22,4 @@ public class SiteEscaladeDto {
   protected List<Secteur> secteurs;
   protected List<Commentaire> commentaires;
 // _________________________________
-
-
 }

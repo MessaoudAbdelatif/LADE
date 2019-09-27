@@ -61,7 +61,8 @@ public class RegistrationController {
       model.addAttribute("civiliteChoix", Civilite.values());
       return "views/registration";
     }
-    utilisateurConnecteDto.setMotDePasse(bCryptPasswordEncoder.encode(utilisateurConnecteDto.getMotDePasse()));
+    utilisateurConnecteDto
+        .setMotDePasse(bCryptPasswordEncoder.encode(utilisateurConnecteDto.getMotDePasse()));
     utilisateurConnecteMetier.ajouterUtilisateurConnecte(
         utilisateurConnecteMapper.toUtilisateurConnecte(utilisateurConnecteDto));
     return "views/registrationConfirme";

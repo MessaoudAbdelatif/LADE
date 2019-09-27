@@ -54,6 +54,7 @@ public class UtilisateurConnecte implements Serializable {
   @Column(name = "Mot_De_Pass")
   private String motDePasse;
 
+
   @Column(name = "Date_Creation")
   private LocalDateTime dateCreation;
 
