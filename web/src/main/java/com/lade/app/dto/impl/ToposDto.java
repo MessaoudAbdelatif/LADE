@@ -20,7 +20,6 @@ public class ToposDto {
   @CreationTimestamp
   protected Date dateDeParution;
   protected String lieuDeParution;
-
   protected String utilisateurConnecte;
   private Boolean disponibleEnLocation;
   @URL
