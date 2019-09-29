@@ -33,6 +33,23 @@
           <th class="text-center text-danger">Loué</th>
         </tr>
       </table>
+
+      <!--
+Button Demnade de location
+-->
+
+      <button class="btn btn-primary p-2"
+              th:if="${#authentication.name != toposSelected.utilisateurConnecte}">
+        <a class="text-dark"
+           th:href="@{/user/creationDemandeLocation/{topos_id}(topos_id=${toposSelected.getId()})}">Demande
+          de location</a>
+      </button>
+
+      <!--
+    Button Demnade de location
+    -->
+
+
       <div class="btn-group btn">
         <div
             th:if="${#authentication.name == toposSelected.utilisateurConnecte and toposSelected.disponibleEnLocation != true}">
@@ -69,27 +86,29 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container mt-5 ml-md-5 col-md-6"
-       th:if="${toposSelected.demandeLocations.size() > 0 and #authentication.name == toposSelected.utilisateurConnecte}">
-    <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center">
-        <div>Demande Location</div>
+
+    <div class="container mt-5 ml-md-5 col-md-6"
+         th:if="${toposSelected.demandeLocations.size() > 0 and #authentication.name == toposSelected.utilisateurConnecte}">
+      <div class="shadow card bg-light">
+        <div class="card-header h4 text-dark text-center">
+          <div>Demande Location</div>
+        </div>
+        <div class="p-2">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-center bg-light"
+                th:each="demandeLoc : ${toposSelected.demandeLocations}">
+              <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
+                <div class="text-info"
+                     th:text="('Emise par: ')+${demandeLoc.utilisateurConnecte.getUsername().toUpperCase()}+(' Email: ')+${demandeLoc.utilisateurConnecte.getEmail()}"></div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="p-2">
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-center bg-light"
-              th:each="demandeLoc : ${toposSelected.demandeLocations}">
-            <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
-              <div class="text-info"
-                   th:text="('Emise par: ')+${demandeLoc.utilisateurConnecte.getUsername().toUpperCase()}+(' Email: ')+${demandeLoc.utilisateurConnecte.getEmail()}"></div>
-            </a>
-          </li>
-        </ul>
-      </div>
+
     </div>
-  </div>
 
+  </div>
 </div>
 </html>

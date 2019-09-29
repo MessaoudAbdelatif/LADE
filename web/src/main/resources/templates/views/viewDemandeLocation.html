@@ -27,6 +27,19 @@
             <th>Date de fin</th>
             <th class="text-center" th:text="${demandeLocationDtoSelected.dateFin}"></th>
           </tr>
+
+          <div th:if="${demandeLocationDtoSelected.proprioValidation == true}">
+          <tr>
+            <th>Réponse du proprietaire</th>
+            <th class="text-center text-success" th:text="Approuvé"></th>
+            </tr>
+            <tr>
+              <th>Email du proprietaire</th>
+              <th class="text-center text-info"
+                  th:text="${unUtilisateurConnecte.getEmail()}"></th>
+            </tr>
+
+          </div>
         </table>
         <div class="btn btn-group">
           <div

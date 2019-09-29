@@ -64,42 +64,23 @@
   <!-- Mes Topos CARD END -->
 
   <!-- Demande de Location Reçu CARD START -->
-  <div class="container mt-5 ml-md-5 col-md-6">    <!--th:if="${utilisateur.demandeLocations.size()>0}"-->
-    <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center">
-        <div>DEMANDE DE LOCATION RECU</div>
-      </div>
-      <div class="p-2">
-        <table class="table table-hover table-bordered table-striped">
-          <tr>
-            <th class="text-center" th:each="topo : ${utilisateur.topos}">
-              <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
-            </th>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!-- Demande de Location Reçu CARD END -->
-
-  <!-- Demande de Location Emise CARD START -->
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.topos.size()>0}">
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.demandeLocations.size()>0}">    <!--th:if="${utilisateur.demandeLocations.size()>0}"-->
     <div class="shadow card bg-light">
       <div class="card-header h4 text-dark text-center">
         <div>DEMANDE DE LOCATION EMISE</div>
       </div>
       <div class="p-2">
         <table class="table table-hover table-bordered table-striped">
-          <tr>
-            <th class="text-center" th:each="topo : ${utilisateur.topos}">
-              <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
-            </th>
+          <tr  th:each="demandeLoc : ${utilisateur.demandeLocations}">
+              <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
+                <div
+                  class="card card-body h5 btn-secondary text-center" th:text="${demandeLoc.topos.nom}"></div></a>
           </tr>
         </table>
       </div>
     </div>
   </div>
-  <!-- Demande de Location Emise CARD END -->
+  <!-- Demande de Location Reçu CARD END -->
 </div>
 
 

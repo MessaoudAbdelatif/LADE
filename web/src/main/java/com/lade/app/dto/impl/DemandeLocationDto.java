@@ -15,7 +15,6 @@ public class DemandeLocationDto {
   protected String dateDebut;
   @NotNull
   protected String dateFin;
-
   protected Long topos;
   protected String utilisateurConnecte;
   protected String message;

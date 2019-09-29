@@ -6,9 +6,11 @@ import com.lade.app.dto.impl.DemandeLocationDto;
 import com.lade.app.dto.impl.ToposDto;
 import entities.DemandeLocation;
 import entities.Topos;
+import entities.UtilisateurConnecte;
 import javax.validation.Valid;
 import metier.contract.DemandeLocationMetier;
 import metier.contract.ToposMetier;
+import metier.contract.UtilisateurConnecteMetier;
 import metier.exception.ToposIntrouvableException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,16 +30,18 @@ public class DemandeLocationController {
   private final DemandeLocationMetier demandeLocationMetier;
   private final ToposMetier toposMetier;
   private final ToposMapper toposMapper;
+  private final UtilisateurConnecteMetier utilisateurConnecteMetier;
 
   public DemandeLocationController(
       DemandeLocationMapper demandeLocationMapper,
       DemandeLocationMetier demandeLocationMetier, ToposMetier toposMetier,
-      ToposMapper toposMapper) {
+      ToposMapper toposMapper, UtilisateurConnecteMetier utilisateurConnecteMetier) {
     this.demandeLocationMapper = demandeLocationMapper;
     this.demandeLocationMetier = demandeLocationMetier;
     this.toposMetier = toposMetier;
 
     this.toposMapper = toposMapper;
+    this.utilisateurConnecteMetier = utilisateurConnecteMetier;
   }
 
 /*//--------------------- Création d'Une Demande de Location -------------------------*/
@@ -87,6 +91,8 @@ public class DemandeLocationController {
       Topos unTopos = toposMetier.consulterUnTopos(demandeLocationDtoSelected.getTopos());
       ToposDto unToposDto = toposMapper.toToposDto(unTopos);
       model.addAttribute("unTopos", unToposDto);
+      UtilisateurConnecte unUtilisateurConnecte =utilisateurConnecteMetier.consulterUtilisateurConnecte(unToposDto.getUtilisateurConnecte());
+model.addAttribute("unUtilisateurConnecte",unUtilisateurConnecte);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }
