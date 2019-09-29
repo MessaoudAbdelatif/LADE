@@ -52,6 +52,7 @@ public class ToposMetierImpl implements ToposMetier {
     toposUpdate.setDisponibleEnLocation(true);
     updateTopos(toposUpdate);
   }
+
   @Override
   public void toposIndisponibleLocation(Long id) throws ToposIntrouvableException {
     Topos toposUpdate = consulterUnTopos(id);

@@ -28,7 +28,7 @@ public class SiteEscalade implements Serializable {
   private String nom;
 
   @Column(name = "Nombre_Secteur")
-  private int nbrSecteur;
+  private Integer nbrSecteur;
 
   @Column(name = "Lieu")
   @NotEmpty
@@ -41,12 +41,12 @@ public class SiteEscalade implements Serializable {
   private String typeRoche;
 
   @Column(name = "Tag")
-  private boolean tag;
+  private Boolean tag;
 
-  @OneToMany(mappedBy = "siteEscalade",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "siteEscalade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Secteur> secteurs;
 
-  @OneToMany(mappedBy = "siteEscalade",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "siteEscalade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Commentaire> commentaires;
 
 
@@ -83,7 +83,7 @@ public class SiteEscalade implements Serializable {
     this.nom = nom;
   }
 
-  public int getNbrSecteur() {
+  public Integer getNbrSecteur() {
     return nbrSecteur;
   }
 
@@ -118,11 +118,11 @@ public class SiteEscalade implements Serializable {
     this.typeRoche = typeRoche;
   }
 
-  public boolean isTag() {
+  public Boolean isTag() {
     return tag;
   }
 
-  public void setTag(boolean tag) {
+  public void setTag(Boolean tag) {
     this.tag = tag;
   }
 
@@ -142,7 +142,7 @@ public class SiteEscalade implements Serializable {
     this.commentaires = commentaires;
   }
 
-  public SiteEscalade addSecteur( @NotNull Secteur secteur){
+  public SiteEscalade addSecteur(@NotNull Secteur secteur) {
     secteur.setSiteEscalade(this);
     this.secteurs.add(secteur);
     return this;

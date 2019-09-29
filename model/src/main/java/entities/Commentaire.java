@@ -43,6 +43,14 @@ public class Commentaire implements Serializable {
   public Commentaire() {
   }
 
+  /**
+   *  Constructeur avec quelques attribues.
+   * @param utilisateurConnecte la personne qui dépose le commentaire.
+   * @param siteEscalade le site d'escalde conçerner par le commentaire.
+   * @param titre titre du message.
+   * @param message corps du message.
+   * @param dateEdition la date de création du message.
+   */
   public Commentaire(UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade,
       String titre, String message, Date dateEdition) {
     this.utilisateurConnecte = utilisateurConnecte;

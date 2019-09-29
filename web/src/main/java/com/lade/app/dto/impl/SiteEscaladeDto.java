@@ -21,5 +21,5 @@ public class SiteEscaladeDto {
   protected Boolean tag;
   protected List<Secteur> secteurs;
   protected List<Commentaire> commentaires;
-// _________________________________
+  // _________________________________
 }

@@ -25,14 +25,14 @@ public class SecteurController {
   private static final String VIEWS_CREATION_SECTEUR = "views/creationSecteur";
 
   @Autowired     // Annotation facultative (Injection via Constructeur)
-  public SecteurController(SecteurMetier secteurMetier, SiteEscaladeMetier siteEscaladeMetier
-      , SecteurMapperImpl secteurMapper
+  public SecteurController(SecteurMetier secteurMetier, SiteEscaladeMetier siteEscaladeMetier,
+      SecteurMapperImpl secteurMapper
   ) {
     this.secteurMetier = secteurMetier;
     this.siteEscaladeMetier = siteEscaladeMetier;
     this.secteurMapper = secteurMapper;
   }
-//______________________________________________________________________________________
+  //______________________________________________________________________________________
 
   //--------------------- Consulter un secteur en particulier ---------------
 

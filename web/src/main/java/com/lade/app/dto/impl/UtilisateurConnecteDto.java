@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 @FieldMatch.List({
-    @FieldMatch(first = "motDePasse", second = "confirmationMdp",errorMessage = "Confirmation du Mot de passe incorrect !!")})
+    @FieldMatch(first = "motDePasse", second = "confirmationMdp", errorMessage = "Confirmation du Mot de passe incorrect !!")})
 
 @Data
 public class UtilisateurConnecteDto {
@@ -54,6 +54,6 @@ public class UtilisateurConnecteDto {
 
   protected List<Topos> topos;
 
-  protected List<Role>roles;
+  protected List<Role> roles;
 
 }

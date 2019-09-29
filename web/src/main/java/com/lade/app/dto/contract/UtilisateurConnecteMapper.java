@@ -6,7 +6,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
 
-@Mapper(uses = ToposMapper.class ,componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = ToposMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UtilisateurConnecteMapper {
 
   UtilisateurConnecte toUtilisateurConnecte(UtilisateurConnecteDto utilisateurConnecteDto);

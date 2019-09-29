@@ -36,7 +36,7 @@ public class DemandeLocationMetierImpl implements DemandeLocationMetier {
   public DemandeLocation findDemandeLocationById(Long id) {
 
     if (id != null) {
-        Optional<DemandeLocation> demandeLocationSelected = demandeLocationDao.findById(id);
+      Optional<DemandeLocation> demandeLocationSelected = demandeLocationDao.findById(id);
       if (demandeLocationSelected.isPresent()) {
         return demandeLocationSelected.get();
       }

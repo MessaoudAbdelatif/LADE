@@ -1,6 +1,5 @@
 package com.lade.app.controller;
 
-
 import com.lade.app.dto.contract.SiteEscaladeMapper;
 import com.lade.app.dto.impl.SiteEscaladeDto;
 import entities.SiteEscalade;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SiteEscaladeController {
 
-  private static final String VIEWS_CREATION_SITE_ESCALADE ="views/creationSiteEscalade";
+  private static final String VIEWS_CREATION_SITE_ESCALADE = "views/creationSiteEscalade";
   private SiteEscaladeMetier siteEscaladeMetier;
   private SiteEscaladeMapper siteEscaladeMapper;
 
@@ -32,15 +31,15 @@ public class SiteEscaladeController {
   }
 
 
-/*
+  /*
   @InitBinder
   public void initBinder(WebDataBinder dataBinder){
     StringTrimmerEditor stringTrimmerEditor= new StringTrimmerEditor(true);
     dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
   }
-*/
+  */
 
-//--------------------- Consulte & Affiche "NOS SITES ESCALADES" ---------------
+  //--------------------- Consulte & Affiche "NOS SITES ESCALADES" ---------------
   @GetMapping("/siteEscalade")
   public String siteEscalade(Model model,
       @RequestParam(name = "numPages", defaultValue = "0") int numPages,
@@ -63,13 +62,14 @@ public class SiteEscaladeController {
   }
   //___________________________________________________________________________
 
-//--------------------- Consulter un site d'escalade en particulier ---------------
+  //--------------------- Consulter un site d'escalade en particulier ---------------
 
   @GetMapping("/viewSiteEscalade")
   public String afficherUnSiteEscalade(Model model, Long id) {
     try {
       SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(id);
-      SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper.toSiteEscaladeDto(siteEscaladeSelected);
+      SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper
+          .toSiteEscaladeDto(siteEscaladeSelected);
       model.addAttribute("siteEscaladeSelected", siteEscaladeDtoSelected);
     } catch (Exception e) {
       model.addAttribute("exception", e);
@@ -79,19 +79,18 @@ public class SiteEscaladeController {
 
   //___________________________________________________________________________
 
-
-//--------------------- Editer Un Site d'Escalade existant--------------------
+  //--------------------- Editer Un Site d'Escalade existant--------------------
 
 
   @GetMapping("/edit/{id}")
   public String modifierSiteEscalade(Model model, @PathVariable("id") Long id) {
     SiteEscalade siteEscaladeSelected = siteEscaladeMetier.consulterUnSiteEscalade(id);
-    SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper.toSiteEscaladeDto(siteEscaladeSelected);
+    SiteEscaladeDto siteEscaladeDtoSelected = siteEscaladeMapper
+        .toSiteEscaladeDto(siteEscaladeSelected);
     model.addAttribute("updateSiteEscalade", siteEscaladeDtoSelected);
     model.addAttribute("idSiteEscaladePresent", siteEscaladeSelected.getId());
     return "views/modifierSiteEscalade";
   }
-
 
 
   @PostMapping("/saveModificationSiteEscalade/{id}")
@@ -110,7 +109,7 @@ public class SiteEscaladeController {
 
   //___________________________________________________________________________
 
-//--------------------- Création d'Un Site d'Escalade -------------------------
+  //--------------------- Création d'Un Site d'Escalade -------------------------
 
 
   @GetMapping("/creationSiteEscalade")

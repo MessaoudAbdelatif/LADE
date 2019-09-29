@@ -59,7 +59,7 @@ public class ToposController {
 
   //___________________________________________________________________________
 
-//--------------------- Consulter un topos en particulier ---------------
+  //--------------------- Consulter un topos en particulier ---------------
 
   @GetMapping("/viewTopos/{id}")
   public String afficherUnTopos(Model model, @PathVariable("id") Long id) {
@@ -82,7 +82,7 @@ public class ToposController {
   public String toposDisponibleLocation(@PathVariable(name = "id") Long id)
       throws ToposIntrouvableException {
     toposMetier.toposDisponibleLocation(id);
-    return "redirect:/user/viewTopos/"+id;
+    return "redirect:/user/viewTopos/" + id;
   }
   /*//___________________________________________________________________________//*/
 
@@ -92,13 +92,11 @@ public class ToposController {
   public String toposIndisponibleLocation(@PathVariable(name = "id") Long id)
       throws ToposIntrouvableException {
     toposMetier.toposIndisponibleLocation(id);
-    return "redirect:/user/viewTopos/"+id;
+    return "redirect:/user/viewTopos/" + id;
   }
-/*
+  /*
   //___________________________________________________________________________//
-*/
-
-
+  */
 
 
 }

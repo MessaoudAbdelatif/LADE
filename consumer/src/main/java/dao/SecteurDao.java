@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface SecteurDao extends JpaRepository <Secteur, Long> {
+public interface SecteurDao extends JpaRepository<Secteur, Long> {
 
 }

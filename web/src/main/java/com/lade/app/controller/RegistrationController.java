@@ -24,16 +24,16 @@ public class RegistrationController {
 
   private UtilisateurConnecteMetier utilisateurConnecteMetier;
   private UtilisateurConnecteMapper utilisateurConnecteMapper;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
 
   @Autowired
   public RegistrationController(UtilisateurConnecteMetier utilisateurConnecteMetier,
       UtilisateurConnecteMapper utilisateurConnecteMapper,
-      BCryptPasswordEncoder bCryptPasswordEncoder) {
+      BCryptPasswordEncoder bcryptPasswordEncoder) {
     this.utilisateurConnecteMetier = utilisateurConnecteMetier;
     this.utilisateurConnecteMapper = utilisateurConnecteMapper;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    this.bcryptPasswordEncoder = bcryptPasswordEncoder;
   }
 
   /* @InitBinder -> Spring execute cette méthode quand RegistrationController est appelé
@@ -54,15 +54,15 @@ public class RegistrationController {
   }
 
   @PostMapping("/save")
-  public String registration(Model model, @ModelAttribute("utilisateurConnecte")
-  @Valid @NonNull UtilisateurConnecteDto utilisateurConnecteDto,
+  public String registration(Model model,
+      @ModelAttribute("utilisateurConnecte") @Valid @NonNull UtilisateurConnecteDto utilisateurConnecteDto,
       BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       model.addAttribute("civiliteChoix", Civilite.values());
       return "views/registration";
     }
     utilisateurConnecteDto
-        .setMotDePasse(bCryptPasswordEncoder.encode(utilisateurConnecteDto.getMotDePasse()));
+        .setMotDePasse(bcryptPasswordEncoder.encode(utilisateurConnecteDto.getMotDePasse()));
     utilisateurConnecteMetier.ajouterUtilisateurConnecte(
         utilisateurConnecteMapper.toUtilisateurConnecte(utilisateurConnecteDto));
     return "views/registrationConfirme";

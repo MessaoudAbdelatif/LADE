@@ -12,7 +12,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer{
+public class WebConfig implements WebMvcConfigurer {
 
 
   /**
@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer{
 
 
   @Override
-  public void addResourceHandlers( ResourceHandlerRegistry registry ) {
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry
         .addResourceHandler("/static/**")
         .addResourceLocations("classpath:/static/");
@@ -35,7 +35,7 @@ public class WebConfig implements WebMvcConfigurer{
   }
 
 
-  private ISpringTemplateEngine templateEngine( ITemplateResolver templateResolver) {
+  private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
     SpringTemplateEngine engine = new SpringTemplateEngine();
     engine.addDialect(new LayoutDialect(new GroupingStrategy()));
     engine.addDialect(new Java8TimeDialect());

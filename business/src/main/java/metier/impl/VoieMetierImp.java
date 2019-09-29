@@ -25,13 +25,13 @@ public class VoieMetierImp implements VoieMetier {
   }
 
   @Override
-  public Voie consulterUneVoie(Long id){
-  Voie voieSelected = voieDao.getOne(id);
-  if (voieSelected == null) {
-    throw new RuntimeException("Voie Introuvable");
+  public Voie consulterUneVoie(Long id) {
+    Voie voieSelected = voieDao.getOne(id);
+    if (voieSelected == null) {
+      throw new RuntimeException("Voie Introuvable");
+    }
+    return voieSelected;
   }
-  return voieSelected;
-}
 
   @Override
   public Collection<Voie> afficherListeToutesVoieBySecteur() {

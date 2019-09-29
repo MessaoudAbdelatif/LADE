@@ -1,6 +1,9 @@
 package entities;
 
 public enum Civilite {
+  /**
+   * Choix entre civilites.
+   */
   MR("Mr"),
   MME("Mme"),
   MLLE("Mlle");

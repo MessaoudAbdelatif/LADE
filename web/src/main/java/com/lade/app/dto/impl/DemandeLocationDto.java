@@ -1,10 +1,7 @@
 package com.lade.app.dto.impl;
 
-
-
 import javax.validation.constraints.NotNull;
 import lombok.Data;
-
 
 @Data
 public class DemandeLocationDto {

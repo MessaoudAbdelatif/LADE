@@ -28,11 +28,9 @@ public class SecteurMetierImpl implements SecteurMetier {
 
   @Override
   public List<Secteur> consulterListSecteurPourUnSiteEscalade(SiteEscalade siteEscalade) {
-//    List<Secteur> secteurs = secteurDao.findAll().stream().filter(secteur -> secteur.getSiteEscalade().equals(siteEscalade.getSecteurs().contains()));
+    /*TODO*/
     return null;
   }
-
-
 
 
   @Override

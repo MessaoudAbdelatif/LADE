@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface SiteEscaladeDao extends JpaRepository<SiteEscalade, Long> {
 
-   Page<SiteEscalade> findByNomContainsIgnoreCaseOrderByNom(String sei, Pageable pageable);
-   Page<SiteEscalade> findByVilleProximiteContainsIgnoreCase(String sei, Pageable pageable);
-   Page<SiteEscalade> findByLieuContainsIgnoreCase(String sei, Pageable pageable);
+  Page<SiteEscalade> findByNomContainsIgnoreCaseOrderByNom(String sei, Pageable pageable);
+
+  Page<SiteEscalade> findByVilleProximiteContainsIgnoreCase(String sei, Pageable pageable);
+
+  Page<SiteEscalade> findByLieuContainsIgnoreCase(String sei, Pageable pageable);
 
 }

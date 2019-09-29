@@ -44,7 +44,7 @@ public class DemandeLocationController {
     this.utilisateurConnecteMetier = utilisateurConnecteMetier;
   }
 
-/*//--------------------- Création d'Une Demande de Location -------------------------*/
+  /*//--------------------- Création d'Une Demande de Location -------------------------*/
 
 
   @GetMapping("/creationDemandeLocation/{topos_id}")
@@ -79,7 +79,7 @@ public class DemandeLocationController {
   }
   /*//___________________________________________________________________________*/
 
-/*//--------------------- Consulter Une Demande de Location ---------------//*/
+  /*//--------------------- Consulter Une Demande de Location ---------------//*/
 
   @GetMapping("/viewDemandeLocation/{id}")
   public String afficherUneDemandeLocation(Model model, @PathVariable("id") Long id) {
@@ -91,8 +91,9 @@ public class DemandeLocationController {
       Topos unTopos = toposMetier.consulterUnTopos(demandeLocationDtoSelected.getTopos());
       ToposDto unToposDto = toposMapper.toToposDto(unTopos);
       model.addAttribute("unTopos", unToposDto);
-      UtilisateurConnecte unUtilisateurConnecte =utilisateurConnecteMetier.consulterUtilisateurConnecte(unToposDto.getUtilisateurConnecte());
-model.addAttribute("unUtilisateurConnecte",unUtilisateurConnecte);
+      UtilisateurConnecte unUtilisateurConnecte = utilisateurConnecteMetier
+          .consulterUtilisateurConnecte(unToposDto.getUtilisateurConnecte());
+      model.addAttribute("unUtilisateurConnecte", unUtilisateurConnecte);
     } catch (Exception e) {
       model.addAttribute("exception", e);
     }
@@ -107,7 +108,7 @@ model.addAttribute("unUtilisateurConnecte",unUtilisateurConnecte);
   public String accepterDemandeLocation(@PathVariable(name = "id") Long id)
       throws ToposIntrouvableException {
     demandeLocationMetier.accepterUneDemandeLocation(id);
-    return "redirect:/user/viewDemandeLocation/"+id;
+    return "redirect:/user/viewDemandeLocation/" + id;
   }
   /*//___________________________________________________________________________//*/
 
@@ -117,10 +118,10 @@ model.addAttribute("unUtilisateurConnecte",unUtilisateurConnecte);
   public String refuserDemandeLocation(@PathVariable(name = "id") Long id)
       throws ToposIntrouvableException {
     demandeLocationMetier.refuserUneDemandeLocation(id);
-    return "redirect:/user/viewDemandeLocation/"+id;
+    return "redirect:/user/viewDemandeLocation/" + id;
   }
-/*
+  /*
   //___________________________________________________________________________//
-*/
+  */
 }
 

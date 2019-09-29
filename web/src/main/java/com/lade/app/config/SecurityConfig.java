@@ -18,13 +18,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private DataSource dataSource;
 
   @Bean
-    //J'ajoute BCryptPasswordEncoder au contexte de Spring afin de l'injecter par la suite !
+  //J'ajoute BCryptPasswordEncoder au contexte de Spring afin de l'injecter par la suite !
   BCryptPasswordEncoder getBCPE() {
     return new BCryptPasswordEncoder();
   }
 
   @Autowired  // J'injecte BCryptPasswordEncoder afin de l'utiliser dans les methods de la class pour crypter les mots de passes !
-      BCryptPasswordEncoder bCryptPasswordEncoder;
+      BCryptPasswordEncoder bcryptPasswordEncoder;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -46,12 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll()
         .defaultSuccessUrl("/loginConfirme")
         .failureUrl("/login?error=true")
-     /*   .usernameParameter("username")//
-        .passwordParameter("password")*/
         .and()
         .logout().permitAll().logoutSuccessUrl("/logoutConfirme");
-
-
 
     http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
     http.authorizeRequests().antMatchers("/user/**").hasRole("USER");

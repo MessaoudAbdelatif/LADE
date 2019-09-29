@@ -34,8 +34,6 @@ public class Topos implements Serializable {
   @Column(name = "Lieu_De_Parution")
   private String lieuDeParution;
 
-
-  //@Temporal(TemporalType.TIMESTAMP)
   @Column(name = "Date_De_Parution")
   @CreationTimestamp
   private Date dateDeParution;

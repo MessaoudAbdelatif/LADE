@@ -70,9 +70,9 @@ public class UtilisateurConnecte implements Serializable {
   @ManyToMany
   @JoinTable(
       name = "utilisateurConnecte_roles",
-      joinColumns = { @JoinColumn(name = "username") },
-      inverseJoinColumns = { @JoinColumn(name = "role_id") } )
-  private List< Role > roles;
+      joinColumns = {@JoinColumn(name = "username")},
+      inverseJoinColumns = {@JoinColumn(name = "role_id")})
+  private List<Role> roles;
 
 
   public UtilisateurConnecte() {
