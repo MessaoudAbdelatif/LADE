@@ -9,5 +9,4 @@ public interface DemandeLocationMetier {
   void updateUneDemandeLocation(DemandeLocation demandeLocation);
 
   DemandeLocation findDemandeLocationById(Long id);
-
 }

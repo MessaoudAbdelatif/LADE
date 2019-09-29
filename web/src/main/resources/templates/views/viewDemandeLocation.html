@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<div layout:fragment="content1">
+  <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${demandeLocationDtoSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center" th:text="('Demande de location conçernant le topos: ')+${unTopos.getNom().toUpperCase()}">
+      </div>
+
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Demande emise par</th>
+            <th class="text-center" th:text="${demandeLocationDtoSelected.utilisateurConnecte}"></th>
+          </tr>
+          <tr>
+            <th>Date de début</th>
+            <th class="text-center" th:text="${demandeLocationDtoSelected.dateDebut}"></th>
+          </tr>
+          <tr>
+            <th>Date de fin</th>
+            <th class="text-center" th:text="${demandeLocationDtoSelected.dateFin}"></th>
+          </tr>
+        </table>
+          <div th:if="${principal==unTopos.utilisateurConnecte}">
+            <input class="text-center" th:text="${demandeLocationDtoSelected.}"></input>
+          </div>
+<!--
+
+          <tr th:if="${toposSelected.disponibleEnLocation}">
+            <th>Location</th>
+            <th class="text-center text-info">Loué</th>
+          </tr>
+          <tr th:if="${!toposSelected.disponibleEnLocation}">
+            <th>Location</th>
+            <th class="text-center text-success">Disponible</th>
+          </tr>
+-->
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</html>

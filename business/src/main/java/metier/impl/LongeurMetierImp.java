@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class LongeurMetierImp implements LongeurMetier {
 
-
   private LongeurDao longeurDao;
 
   @Autowired
@@ -31,5 +30,6 @@ public class LongeurMetierImp implements LongeurMetier {
     }
     return longeurSelected;
   }
+
 
 }

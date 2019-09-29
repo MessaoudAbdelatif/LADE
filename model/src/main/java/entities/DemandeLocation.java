@@ -1,7 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -20,12 +22,17 @@ public class DemandeLocation implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotNull
   @Column(name = "Date_Debut")
-  private Date dateDebut;
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  private LocalDate dateDebut;
 
+  @NotNull
   @Column(name = "Date_Fin")
-  private Date dateFin;
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  private LocalDate dateFin;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "Topos_id")
   private Topos topos;
@@ -44,7 +51,7 @@ public class DemandeLocation implements Serializable {
   public DemandeLocation() {
   }
 
-  public DemandeLocation(Date dateDebut, Date dateFin, Topos topos,
+  public DemandeLocation(LocalDate dateDebut, LocalDate dateFin, Topos topos,
       UtilisateurConnecte utilisateurConnecte, String message, Boolean proprioValidation) {
     this.dateDebut = dateDebut;
     this.dateFin = dateFin;
@@ -62,19 +69,19 @@ public class DemandeLocation implements Serializable {
     this.id = id;
   }
 
-  public Date getDateDebut() {
+  public LocalDate getDateDebut() {
     return dateDebut;
   }
 
-  public void setDateDebut(Date dateDebut) {
+  public void setDateDebut(LocalDate dateDebut) {
     this.dateDebut = dateDebut;
   }
 
-  public Date getDateFin() {
+  public LocalDate getDateFin() {
     return dateFin;
   }
 
-  public void setDateFin(Date dateFin) {
+  public void setDateFin(LocalDate dateFin) {
     this.dateFin = dateFin;
   }
 

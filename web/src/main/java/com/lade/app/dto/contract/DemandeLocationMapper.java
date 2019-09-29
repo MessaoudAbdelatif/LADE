@@ -11,10 +11,16 @@ public interface DemandeLocationMapper  {
 
   @Mapping(target = "utilisateurConnecte.username",source = "utilisateurConnecte")
   @Mapping(target = "topos.id", source = "topos")
+/*
+  @Mapping(target = "dateDebut", dateFormat = "yyyy/MM/dd")
+  @Mapping(target = "dateFin", dateFormat = "yyyy/MM/dd")
+*/
   DemandeLocation toDemandeLocation(DemandeLocationDto demandeLocationDto);
 
   @Mapping(target = "utilisateurConnecte",source = "utilisateurConnecte.username")
   @Mapping(target = "topos", source = "topos.id")
+  /*@Mapping(target = "dateDebut", dateFormat = "yyyy/MM/dd")
+  @Mapping(target = "dateFin", dateFormat = "yyyy/MM/dd")*/
   DemandeLocationDto toDemandeLocationDto(DemandeLocation demandeLocation);
 
 }

@@ -10,6 +10,8 @@ public interface ToposMetier {
 
   List<Topos> consulterAllTopos();
 
-  void ajouterUnTopos(Topos topos);
+  Topos ajouterUnTopos(Topos topos);
+
+  void updateTopos(Topos topos);
 
 }

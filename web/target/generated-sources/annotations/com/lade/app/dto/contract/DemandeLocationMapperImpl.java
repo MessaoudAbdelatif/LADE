@@ -4,12 +4,14 @@ import com.lade.app.dto.impl.DemandeLocationDto;
 import entities.DemandeLocation;
 import entities.Topos;
 import entities.UtilisateurConnecte;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-09-28T00:11:37+0200",
+    date = "2019-09-28T23:38:40+0200",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.1 (Oracle Corporation)"
 )
 @Component
@@ -26,8 +28,12 @@ public class DemandeLocationMapperImpl implements DemandeLocationMapper {
         demandeLocation.setUtilisateurConnecte( demandeLocationDtoToUtilisateurConnecte( demandeLocationDto ) );
         demandeLocation.setTopos( demandeLocationDtoToTopos( demandeLocationDto ) );
         demandeLocation.setId( demandeLocationDto.getId() );
-        demandeLocation.setDateDebut( demandeLocationDto.getDateDebut() );
-        demandeLocation.setDateFin( demandeLocationDto.getDateFin() );
+        if ( demandeLocationDto.getDateDebut() != null ) {
+            demandeLocation.setDateDebut( LocalDate.parse( demandeLocationDto.getDateDebut() ) );
+        }
+        if ( demandeLocationDto.getDateFin() != null ) {
+            demandeLocation.setDateFin( LocalDate.parse( demandeLocationDto.getDateFin() ) );
+        }
         demandeLocation.setMessage( demandeLocationDto.getMessage() );
         demandeLocation.setProprioValidation( demandeLocationDto.getProprioValidation() );
 
@@ -45,8 +51,12 @@ public class DemandeLocationMapperImpl implements DemandeLocationMapper {
         demandeLocationDto.setUtilisateurConnecte( demandeLocationUtilisateurConnecteUsername( demandeLocation ) );
         demandeLocationDto.setTopos( demandeLocationToposId( demandeLocation ) );
         demandeLocationDto.setId( demandeLocation.getId() );
-        demandeLocationDto.setDateDebut( demandeLocation.getDateDebut() );
-        demandeLocationDto.setDateFin( demandeLocation.getDateFin() );
+        if ( demandeLocation.getDateDebut() != null ) {
+            demandeLocationDto.setDateDebut( DateTimeFormatter.ISO_LOCAL_DATE.format( demandeLocation.getDateDebut() ) );
+        }
+        if ( demandeLocation.getDateFin() != null ) {
+            demandeLocationDto.setDateFin( DateTimeFormatter.ISO_LOCAL_DATE.format( demandeLocation.getDateFin() ) );
+        }
         demandeLocationDto.setMessage( demandeLocation.getMessage() );
         demandeLocationDto.setProprioValidation( demandeLocation.getProprioValidation() );
 
