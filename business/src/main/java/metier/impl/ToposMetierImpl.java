@@ -45,4 +45,17 @@ public class ToposMetierImpl implements ToposMetier {
   public void updateTopos(Topos topos) {
     toposDao.save(topos);
   }
+
+  @Override
+  public void toposDisponibleLocation(Long id) throws ToposIntrouvableException {
+    Topos toposUpdate = consulterUnTopos(id);
+    toposUpdate.setDisponibleEnLocation(true);
+    updateTopos(toposUpdate);
+  }
+  @Override
+  public void toposIndisponibleLocation(Long id) throws ToposIntrouvableException {
+    Topos toposUpdate = consulterUnTopos(id);
+    toposUpdate.setDisponibleEnLocation(false);
+    updateTopos(toposUpdate);
+  }
 }

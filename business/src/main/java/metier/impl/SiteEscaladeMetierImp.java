@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
   private SiteEscaladeDao siteEscaladeDao;

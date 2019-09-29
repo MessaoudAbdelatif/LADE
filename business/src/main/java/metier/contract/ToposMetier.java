@@ -14,4 +14,8 @@ public interface ToposMetier {
 
   void updateTopos(Topos topos);
 
+  void toposDisponibleLocation(Long id) throws ToposIntrouvableException;
+
+  void toposIndisponibleLocation(Long id) throws ToposIntrouvableException;
+
 }

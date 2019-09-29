@@ -40,7 +40,7 @@ public class DemandeLocationController {
     this.toposMapper = toposMapper;
   }
 
-//--------------------- Création d'Une Demande de Location -------------------------
+/*//--------------------- Création d'Une Demande de Location -------------------------*/
 
 
   @GetMapping("/creationDemandeLocation/{topos_id}")
@@ -73,9 +73,9 @@ public class DemandeLocationController {
 
     return "redirect:/user/viewDemandeLocation/" + demandeLocation1.getId();
   }
-  //___________________________________________________________________________
+  /*//___________________________________________________________________________*/
 
-//--------------------- Consulter Une Demande de Location ---------------
+/*//--------------------- Consulter Une Demande de Location ---------------//*/
 
   @GetMapping("/viewDemandeLocation/{id}")
   public String afficherUneDemandeLocation(Model model, @PathVariable("id") Long id) {
@@ -92,9 +92,29 @@ public class DemandeLocationController {
     }
     return "views/viewDemandeLocation";
   }
+  /*//___________________________________________________________________________//*/
 
-  //___________________________________________________________________________
+  /*//--------------------- Accepter Une Demande de Location ---------------//*/
 
 
+  @PostMapping("/accepterDemandeLocation/{id}")
+  public String accepterDemandeLocation(@PathVariable(name = "id") Long id)
+      throws ToposIntrouvableException {
+    demandeLocationMetier.accepterUneDemandeLocation(id);
+    return "redirect:/user/viewDemandeLocation/"+id;
+  }
+  /*//___________________________________________________________________________//*/
+
+  /*//--------------------- Refuser Une Demande de Location ---------------//*/
+
+  @PostMapping("/refuserDemandeLocation/{id}")
+  public String refuserDemandeLocation(@PathVariable(name = "id") Long id)
+      throws ToposIntrouvableException {
+    demandeLocationMetier.refuserUneDemandeLocation(id);
+    return "redirect:/user/viewDemandeLocation/"+id;
+  }
+/*
+  //___________________________________________________________________________//
+*/
 }
 

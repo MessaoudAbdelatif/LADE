@@ -8,47 +8,85 @@
   <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${toposSelected}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center" th:text="${toposSelected.nom.toUpperCase()}">
+      <div class="card-header h4 text-dark text-center"
+           th:text="${toposSelected.nom.toUpperCase()}">
       </div>
+      <table class="table table-hover table-bordered table-striped">
+        <tr>
+          <th>Lieu De Parution</th>
+          <th class="text-center" th:text="${toposSelected.lieuDeParution}"></th>
+        </tr>
+        <tr>
+          <th>Adresse URL</th>
+          <th class="text-center" th:text="${toposSelected.lien}"></th>
+        </tr>
+        <tr>
+          <th>description</th>
+          <th class="text-center" th:text="${toposSelected.description}"></th>
+        </tr>
+        <tr th:if="${toposSelected.disponibleEnLocation}">
+          <th>Location</th>
+          <th class="text-center text-success">Disponible</th>
+        </tr>
+        <tr th:if="${!toposSelected.disponibleEnLocation}">
+          <th>Location</th>
+          <th class="text-center text-danger">Loué</th>
+        </tr>
+      </table>
+      <div class="btn-group btn">
+        <div
+            th:if="${#authentication.name == toposSelected.utilisateurConnecte and toposSelected.disponibleEnLocation != true}">
+          <div class="text-center text-danger">
+            <form autocomplete="off"
+                  th:action="@{'/user/toposDisponibleLocation/' + ${toposSelected.getId()}}"
+                  method="post">
+              <button type="submit" class="btn btn-success d-inline">
+                Rendre disponible à la location
+                <a id="Accepter"
+                   onclick="return confirm('êtes-vous sûr de vouloir le rendre disponible à location ?')">
+                  <i class="fas fa-check-circle"></i>
+                </a>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+            th:if="${#authentication.name==toposSelected.utilisateurConnecte and toposSelected.disponibleEnLocation != false}">
+          <form autocomplete="off"
+                th:action="@{'/user/toposIndisponibleLocation/' + ${toposSelected.getId()}}"
+                method="post">
+            <button type="submit" class="btn btn-danger d-inline" data-toggle="tooltip"
+                    data-placement="top"
+                    title="Refuser">
+              Rendre indisponible à la location
+              <a id="Refuser"
+                 onclick="return confirm('êtes-vous sûr de vouloir le rendre indisponible à location ?')">
+                <i class="fas fa-ban"></i>
+              </a>
+            </button>
+          </form>
 
-      <div class="p-2">
-        <table class="table table-hover table-bordered table-striped">
-          <tr>
-            <th>Lieu De Parution</th>
-            <th class="text-center" th:text="${toposSelected.lieuDeParution}"></th>
-          </tr>
-          <tr>
-            <th>Adresse URL</th>
-            <th class="text-center" th:text="${toposSelected.lien}"></th>
-          </tr>
-          <tr>
-            <th>description</th>
-            <th class="text-center" th:text="${toposSelected.description}"></th>
-          </tr>
-          <tr th:if="${toposSelected.disponibleEnLocation}">
-            <th>Location</th>
-            <th class="text-center text-info">Loué</th>
-          </tr>
-          <tr th:if="${!toposSelected.disponibleEnLocation}">
-            <th>Location</th>
-            <th class="text-center text-success">Disponible</th>
-          </tr>
-        </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${toposSelected.demandeLocations.size() > 0 and #authentication.name == toposSelected.utilisateurConnecte}">
+  <div class="container mt-5 ml-md-5 col-md-6"
+       th:if="${toposSelected.demandeLocations.size() > 0 and #authentication.name == toposSelected.utilisateurConnecte}">
     <div class="shadow card bg-light">
       <div class="card-header h4 text-dark text-center">
         <div>Demande Location</div>
       </div>
       <div class="p-2">
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-center bg-light" th:each="demandeLoc : ${toposSelected.demandeLocations}">
-              <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}"> <div class="text-info" th:text="('Emise par: ')+${demandeLoc.utilisateurConnecte.getUsername().toUpperCase()}+(' Email: ')+${demandeLoc.utilisateurConnecte.getEmail()}"></div></a>
-            </li>
-          </ul>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-center bg-light"
+              th:each="demandeLoc : ${toposSelected.demandeLocations}">
+            <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
+              <div class="text-info"
+                   th:text="('Emise par: ')+${demandeLoc.utilisateurConnecte.getUsername().toUpperCase()}+(' Email: ')+${demandeLoc.utilisateurConnecte.getEmail()}"></div>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ import com.lade.app.dto.impl.ToposDto;
 import entities.Topos;
 import javax.validation.Valid;
 import metier.contract.ToposMetier;
+import metier.exception.ToposIntrouvableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -73,5 +74,31 @@ public class ToposController {
   }
 
   //___________________________________________________________________________
+
+  /*//--------------------- Accepter Une Demande de Location ---------------//*/
+
+
+  @PostMapping("/toposDisponibleLocation/{id}")
+  public String toposDisponibleLocation(@PathVariable(name = "id") Long id)
+      throws ToposIntrouvableException {
+    toposMetier.toposDisponibleLocation(id);
+    return "redirect:/user/viewTopos/"+id;
+  }
+  /*//___________________________________________________________________________//*/
+
+  /*//--------------------- Refuser Une Demande de Location ---------------//*/
+
+  @PostMapping("/toposIndisponibleLocation/{id}")
+  public String toposIndisponibleLocation(@PathVariable(name = "id") Long id)
+      throws ToposIntrouvableException {
+    toposMetier.toposIndisponibleLocation(id);
+    return "redirect:/user/viewTopos/"+id;
+  }
+/*
+  //___________________________________________________________________________//
+*/
+
+
+
 
 }
