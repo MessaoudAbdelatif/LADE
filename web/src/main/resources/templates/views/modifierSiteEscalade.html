@@ -7,16 +7,13 @@
 
 <div layout:fragment="content1">
 
-  <main class="page registration-page">
-    <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
-      <div class="container  card shadow  bg-light  text-dark p-3 ">
-        <div class="card-header">
+    <div class="container mt-5 ml-md-5 col-md-6">
+      <div class="shadow card bg-light">
+        <div class="card-header h4 text-primary text-center">
           <h2 class="h2">Modifier le site d'esclade : <label
               th:text="${updateSiteEscalade.nom}"></label></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
-            auctor in, mattis vitae leo.</p>
         </div>
-        <form method="post"
+        <form class="form-group p-2" method="post"
               th:action="@{/saveModificationSiteEscalade/{id}(id=${updateSiteEscalade.id})}"
               th:object="${updateSiteEscalade}">
           <div class="form-group">
@@ -38,34 +35,27 @@
               th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
           </div>
 
-          <!--          ADMIN FONCTION TODO    START-->
-<div class="btn-group">
-  <div sec:authorize="hasRole('ROLE_ADMIN')">
-          <div th:if="${!updateSiteEscalade.isTag()}">
-            <div class="btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-info">
-                <input type="checkbox" th:field="*{tag}" th:checked="${updateSiteEscalade.isTag()}"
-                       checked autocomplete="off"> Approuvé
+          <!--          Create requestPost method to swith boolean TODO    START-->
+
+          <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <small>Approuvé par la communaute les amis de l'escalade ?</small>
+            <div class="btn-group-sm btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-success active">
+                <input type="radio" name="options" id="option1" autocomplete="off"
+                       th:value="${true}" th:field="*{tag}"/> OUI
+              </label>
+              <label class="btn btn-danger">
+                <input th:value="${false}" type="radio" name="options" id="option2"
+                       autocomplete="off" th:field="*{tag}"/>
+                NON
               </label>
             </div>
           </div>
+          <button class="btn btn-primary align-content-end mt-3" type="submit">Enregistrer</button>
 
-          <div th:if="${updateSiteEscalade.isTag()}">
-            <div class="btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-danger active">
-                <input type="checkbox" th:field="*{tag}"
-                       th:checked="${updateSiteEscalade.setTag(false)}" autocomplete="off">
-                Dé-Approuvé
-              </label>
-            </div>
-          </div>
-          <!--          ADMIN FONCTION TODO    END-->
-
-  </div>
-          <button class="btn btn-primary align-content-end" type="submit">Enregistrer</button></div>
         </form>
       </div>
-    </section>
+    </div>
   </main>
 </div>
 

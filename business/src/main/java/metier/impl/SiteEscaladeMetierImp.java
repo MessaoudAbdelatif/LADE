@@ -47,12 +47,16 @@ public class SiteEscaladeMetierImp implements SiteEscaladeMetier {
 
   @Override
   public void ajouterUnSiteEscalade(SiteEscalade siteEscalade) {
+    siteEscalade.setTag(false);
     siteEscaladeDao.save(siteEscalade);
   }
 
   @Override
   public SiteEscalade updateSiteEscalade(Long id, SiteEscalade siteEscalade) {
     SiteEscalade siteEscaladeToUpdate = consulterUnSiteEscalade(id);
+    if (siteEscalade.isTag() == null) {
+      siteEscalade.setTag(false);
+    }
     siteEscaladeToUpdate = siteEscaladeDao.save(siteEscalade);
     return siteEscaladeToUpdate;
   }

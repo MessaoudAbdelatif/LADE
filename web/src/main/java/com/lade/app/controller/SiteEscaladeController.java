@@ -102,7 +102,7 @@ public class SiteEscaladeController {
     }
     SiteEscalade siteEscalade1 = siteEscaladeMapper.toSiteEscalade(siteEscaladeDto);
     siteEscalade1.setId(id);
-    siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade1);
+    siteEscaladeMetier.updateSiteEscalade(id, siteEscalade1);
 
     return "redirect:/viewSiteEscalade?id=" + siteEscalade1.getId();
   }

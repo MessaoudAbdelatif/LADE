@@ -10,7 +10,7 @@
   <!-- Fiche d'information personnel CARD START-->
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center">
+      <div class="card-header h4 text-primary text-center">
         <div
             th:text="${utilisateur.civilite} + (${' '}) +(${utilisateur.nom.toUpperCase()}) +(${' '})+ (${utilisateur.prenom.toUpperCase()})"></div>
       </div>
@@ -45,42 +45,44 @@
 
   <!-- Mes Topos CARD START -->
 
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.topos.size()>0}">
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${!utilisateur.topos.isEmpty()}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center">
+      <div class="card-header h4 text-primary text-center">
         <div>MES TOPOS</div>
       </div>
-      <div class="p-2">
-        <table class="table table-hover table-bordered table-striped">
-          <tr>
-            <th class="text-center" th:each="topo : ${utilisateur.topos}">
-             <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}"> <div class="list-group-item-info" th:text="${topo.nom}"></div></a>
-            </th>
-          </tr>
-        </table>
+      <div class="p-2 card-body list-group">
+            <div th:each="topo : ${utilisateur.topos}">
+              <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}">
+                <div class="btn btn-light list-group-item" th:text="${topo.nom.toUpperCase()}"></div>
+              </a>
+            </div>
       </div>
     </div>
   </div>
+
   <!-- Mes Topos CARD END -->
 
   <!-- Demande de Location Reçu CARD START -->
-  <div class="container mt-5 ml-md-5 col-md-6" th:if="${utilisateur.demandeLocations.size()>0}">    <!--th:if="${utilisateur.demandeLocations.size()>0}"-->
+
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${!utilisateur.demandeLocations.isEmpty()}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center">
+      <div class="card-header h4 text-primary text-center">
         <div>DEMANDE DE LOCATION EMISE</div>
       </div>
-      <div class="p-2">
-        <table class="table table-hover table-bordered table-striped">
-          <tr  th:each="demandeLoc : ${utilisateur.demandeLocations}">
-              <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
-                <div
-                  class="card card-body h5 btn-secondary text-center" th:text="${demandeLoc.topos.nom}"></div></a>
-          </tr>
-        </table>
+      <div class="p-2 card-body list-group">
+        <div th:each="demandeLoc : ${utilisateur.demandeLocations}">
+          <a th:href="@{/user/viewDemandeLocation/{id}(id=${demandeLoc.id})}">
+            <div
+                class="btn btn-light list-group-item"
+                th:text="Topos +(': ')+ ${demandeLoc.topos.nom.toUpperCase()}"></div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
+
   <!-- Demande de Location Reçu CARD END -->
+
 </div>
 
 

@@ -29,14 +29,22 @@
           </tr>
 
           <div th:if="${demandeLocationDtoSelected.proprioValidation == true}">
-          <tr>
-            <th>Réponse du proprietaire</th>
-            <th class="text-center text-success" th:text="Approuvé"></th>
+            <tr>
+              <th>Réponse du proprietaire</th>
+              <th class="text-center text-success" th:text="Approuvé"></th>
             </tr>
             <tr>
               <th>Email du proprietaire</th>
               <th class="text-center text-info"
                   th:text="${unUtilisateurConnecte.getEmail()}"></th>
+            </tr>
+
+          </div>
+
+          <div th:if="${demandeLocationDtoSelected.proprioValidation == false}">
+            <tr>
+              <th>Réponse du proprietaire</th>
+              <th class="text-center text-danger" th:text="Refusé"></th>
             </tr>
 
           </div>

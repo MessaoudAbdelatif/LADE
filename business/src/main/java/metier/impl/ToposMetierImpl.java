@@ -37,6 +37,7 @@ public class ToposMetierImpl implements ToposMetier {
 
   @Override
   public Topos ajouterUnTopos(Topos topos) {
+    topos.setDisponibleEnLocation(false);
     toposDao.save(topos);
     return topos;
   }

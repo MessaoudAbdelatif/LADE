@@ -3,6 +3,7 @@ package com.lade.app.controller;
 import com.lade.app.dto.contract.ToposMapper;
 import com.lade.app.dto.impl.ToposDto;
 import entities.Topos;
+import java.util.List;
 import javax.validation.Valid;
 import metier.contract.ToposMetier;
 import metier.exception.ToposIntrouvableException;
@@ -97,6 +98,16 @@ public class ToposController {
   /*
   //___________________________________________________________________________//
   */
+
+  /*//--------------------- Consulter All Topos ---------------//*/
+  @GetMapping("/topos")
+  public String consulterAllTopos(Model model){
+    List<Topos> topos = toposMetier.consulterAllTopos();
+    model.addAttribute("toposList", topos);
+    return "views/topos";
+  }
+
+  /*//---------------------------------------------------------//*/
 
 
 }

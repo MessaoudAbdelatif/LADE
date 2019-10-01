@@ -8,7 +8,7 @@
   <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${toposSelected}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center"
+      <div class="card-header h4  text-center text-primary"
            th:text="${toposSelected.nom.toUpperCase()}">
       </div>
       <table class="table table-hover table-bordered table-striped">
@@ -92,7 +92,7 @@ Button Demnade de location
          th:if="${toposSelected.demandeLocations.size() > 0 and #authentication.name == toposSelected.utilisateurConnecte}">
       <div class="shadow card bg-light">
         <div class="card-header h4 text-dark text-center">
-          <div>Demande Location</div>
+          <div class="text-primary">DEMANDE DE LOCATION</div>
         </div>
         <div class="p-2">
           <ul class="list-group">
