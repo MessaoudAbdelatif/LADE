@@ -7,57 +7,53 @@
 
 <div layout:fragment="content1">
 
-    <div class="container mt-5 ml-md-5 col-md-6">
-      <div class="shadow card bg-light">
-        <div class="card-header h4 text-primary text-center">
-          <h2 class="h2">Modifier le site d'esclade : <label
-              th:text="${updateSiteEscalade.nom}"></label></h2>
-        </div>
-        <form class="form-group p-2" method="post"
-              th:action="@{/saveModificationSiteEscalade/{id}(id=${updateSiteEscalade.id})}"
-              th:object="${updateSiteEscalade}">
-          <div class="form-group">
-            <input class="form-control item" type="hidden" id="nom" name="nom" th:field="*{nom}">
-            <span th:errors="*{nom}" class="text-danger"></span>
-          </div>
-          <div class="form-group"><label for="lieu">Lieu</label><input class="form-control item"
-                                                                       type="text" id="lieu"
-                                                                       name="lieu"
-                                                                       th:field="*{lieu}">
-            <span th:errors="*{lieu}" class="text-danger"></span>
-          </div>
-          <div class="form-group"><label for="villeProximite">Ville à proximité</label><input
-              class="form-control item" type="text" name="villeProximite" id="villeProximite"
-              th:field="*{villeProximite}"><span th:errors="*{villeProximite}"
-                                                 class="text-danger"></span></div>
-          <div class="form-group"><label for="typeRoche">Type de roche</label><input
-              class="form-control item" type="text" id="typeRoche" name="typeRoche"
-              th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
-          </div>
-
-          <!--          Create requestPost method to swith boolean TODO    START-->
-
-          <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <small>Approuvé par la communaute les amis de l'escalade ?</small>
-            <div class="btn-group-sm btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-success active">
-                <input type="radio" name="options" id="option1" autocomplete="off"
-                       th:value="${true}" th:field="*{tag}"/> OUI
-              </label>
-              <label class="btn btn-danger">
-                <input th:value="${false}" type="radio" name="options" id="option2"
-                       autocomplete="off" th:field="*{tag}"/>
-                NON
-              </label>
-            </div>
-          </div>
-          <button class="btn btn-primary align-content-end mt-3" type="submit">Enregistrer</button>
-
-        </form>
+  <div class="container mt-5 ml-md-5 col-md-6">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-primary text-center">
+        <h2 class="h2">Modifier le site d'esclade : <label
+            th:text="${updateSiteEscalade.nom}"></label></h2>
       </div>
+      <form class="form-group p-2" method="post"
+            th:action="@{/saveModificationSiteEscalade/{id}(id=${updateSiteEscalade.id})}"
+            th:object="${updateSiteEscalade}">
+        <div class="form-group">
+          <input class="form-control item" type="hidden" id="nom" name="nom" th:field="*{nom}">
+          <span th:errors="*{nom}" class="text-danger"></span>
+        </div>
+        <div class="form-group"><label for="lieu">Lieu</label><input class="form-control item"
+                                                                     type="text" id="lieu"
+                                                                     name="lieu"
+                                                                     th:field="*{lieu}">
+          <span th:errors="*{lieu}" class="text-danger"></span>
+        </div>
+        <div class="form-group"><label for="villeProximite">Ville à proximité</label><input
+            class="form-control item" type="text" name="villeProximite" id="villeProximite"
+            th:field="*{villeProximite}"><span th:errors="*{villeProximite}"
+                                               class="text-danger"></span></div>
+        <div class="form-group"><label for="typeRoche">Type de roche</label><input
+            class="form-control item" type="text" id="typeRoche" name="typeRoche"
+            th:field="*{typeRoche}"><span th:errors="*{typeRoche}" class="text-danger"></span>
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+          <small>Approuvé par la communaute les amis de l'escalade ?</small>
+          <div class="btn-group-sm btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-success active">
+              <input type="radio" name="options" id="option1" autocomplete="off"
+                     th:value="${true}" th:field="*{tag}"/> OUI
+            </label>
+            <label class="btn btn-danger">
+              <input th:value="${false}" type="radio" name="options" id="option2"
+                     autocomplete="off" th:field="*{tag}"/>
+              NON
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary align-content-end mt-3" type="submit">Enregistrer</button>
+      </form>
     </div>
+  </div>
   </main>
 </div>
-
 
 </html>
