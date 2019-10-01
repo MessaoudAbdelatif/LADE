@@ -12,7 +12,8 @@
   <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
   <div class="container mt-5 ml-md-5 col-md-6" th:if="${siteEscaladeSelected}">
     <div class="shadow card bg-light">
-      <div class="card-header h4 text-dark text-center" th:text="${siteEscaladeSelected.nom.toUpperCase()}">
+      <div class="card-header h4 text-dark text-center"
+           th:text="${siteEscaladeSelected.nom.toUpperCase()}">
       </div>
 
       <div class="p-2">
@@ -36,8 +37,10 @@
           <tr th:if="${siteEscaladeSelected.secteurs.size()>0}">
             <th>Secteur</th>
             <th>
-            <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
-              <a th:href="@{/viewSecteur/{id}(id=${secteur.id})}"><li class="list-inline" th:text="${secteur.nom}"></a> </li></ul>
+              <ul th:each="secteur : ${siteEscaladeSelected.secteurs}">
+                <a th:href="@{/viewSecteur/{id}(id=${secteur.id})}">
+                  <li class="list-inline" th:text="${secteur.nom}">
+                </a> </li></ul>
             </th>
           </tr>
           <tr th:if="${siteEscaladeSelected.tag}">
@@ -49,10 +52,39 @@
             <th class="text-center text-danger ">Non Approuvé</th>
           </tr>
         </table>
-        <a class="btn btn-primary"
-           th:href="@{/edit/{id}(id=${siteEscaladeSelected.id})}">Editer</a>
-        <a class="btn btn-primary"
-           th:href="@{/creationSecteur/{id}(id=${siteEscaladeSelected.id})}">+ Ajouter un secteur</a>
+        <div class="btn btn-group text-center"><a class="btn btn-info"
+                                  th:href="@{/edit/{id}(id=${siteEscaladeSelected.id})}">Editer</a>
+          <a class="btn btn-primary"
+             th:href="@{/creationSecteur/{id}(id=${siteEscaladeSelected.id})}">+ Ajouter un
+            secteur</a>
+          <a class="btn btn-primary"
+             th:href="@{/user/creationCommentaire/{siteEscaladeId}(siteEscaladeId=${siteEscaladeSelected.id})}">+
+            Ajouter un commentaire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-5 ml-md-5 col-md-6 mb-3" th:if="${siteEscaladeSelected.commentaires.size()>0}">
+    <div class="shadow card bg-light">
+      <div class="card-header  h4 text-dark text-center" th:text="COMMENTAIRE"></div>
+      <div class="card-body p-2">
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="text-primary">
+            <th  scope="col">Pseudo</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Message</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="commentaire : ${siteEscaladeSelected.commentaires}">
+            <th scope="row" th:text="${commentaire.utilisateurConnecte.username}"></th>
+            <td th:text="${commentaire.titre}"></td>
+            <td width="1000" th:text="${commentaire.message}"></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

@@ -11,12 +11,6 @@ public class IndexController {
     return "views/index";
   }
 
-
-  @GetMapping("/coco")
-  public String commentaire() {
-    return "views/creationCommentaire";
-  }
-
   @GetMapping("/admin/coco1")
   public String demandeDeLocationTopo() {
     return "views/requeteLocationTopos";

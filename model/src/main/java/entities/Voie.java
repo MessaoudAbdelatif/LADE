@@ -32,7 +32,7 @@ public class Voie implements Serializable {
   private Secteur secteur;
 
   @Column(name = "Descreption")
-  private String descreption;
+  private String description;
 
   @Column(name = "Cotation")
   private String cotation;
@@ -43,11 +43,11 @@ public class Voie implements Serializable {
   public Voie() {
   }
 
-  public Voie(String nom, Secteur secteur, String descreption, String cotation,
+  public Voie(String nom, Secteur secteur, String description, String cotation,
       List<Longeur> longeurs) {
     this.nom = nom;
     this.secteur = secteur;
-    this.descreption = descreption;
+    this.description = description;
     this.cotation = cotation;
     this.longeurs = longeurs;
   }
@@ -76,12 +76,12 @@ public class Voie implements Serializable {
     this.secteur = secteur;
   }
 
-  public String getDescreption() {
-    return descreption;
+  public String getDescription() {
+    return description;
   }
 
-  public void setDescreption(String descreption) {
-    this.descreption = descreption;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public String getCotation() {

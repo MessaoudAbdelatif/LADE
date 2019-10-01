@@ -8,14 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "Commentaire")
-
 public class Commentaire implements Serializable {
 
   @Id
@@ -33,12 +31,11 @@ public class Commentaire implements Serializable {
   @Column(name = "Titre")
   private String titre;
 
-  @Lob
   @Column(name = "Message")
   private String message;
 
   @Column(name = "Date_Edition")
-  private Date dateEdition;
+  private Date dateCreation;
 
   public Commentaire() {
   }
@@ -49,15 +46,15 @@ public class Commentaire implements Serializable {
    * @param siteEscalade le site d'escalde conçerner par le commentaire.
    * @param titre titre du message.
    * @param message corps du message.
-   * @param dateEdition la date de création du message.
+   * @param dateCreation la date de création du message.
    */
   public Commentaire(UtilisateurConnecte utilisateurConnecte, SiteEscalade siteEscalade,
-      String titre, String message, Date dateEdition) {
+      String titre, String message, Date dateCreation) {
     this.utilisateurConnecte = utilisateurConnecte;
     this.siteEscalade = siteEscalade;
     this.titre = titre;
     this.message = message;
-    this.dateEdition = dateEdition;
+    this.dateCreation = dateCreation;
   }
 
   public Long getId() {
@@ -68,19 +65,19 @@ public class Commentaire implements Serializable {
     this.id = id;
   }
 
-  public UtilisateurConnecte getUserName() {
+  public UtilisateurConnecte getUtilisateurConnecte() {
     return utilisateurConnecte;
   }
 
-  public void setUserName(UtilisateurConnecte utilisateurConnecte) {
+  public void setUtilisateurConnecte(UtilisateurConnecte utilisateurConnecte) {
     this.utilisateurConnecte = utilisateurConnecte;
   }
 
-  public SiteEscalade getNomSiteEscalade() {
+  public SiteEscalade getSiteEscalade() {
     return siteEscalade;
   }
 
-  public void setNomSiteEscalade(SiteEscalade siteEscalade) {
+  public void setSiteEscalade(SiteEscalade siteEscalade) {
     this.siteEscalade = siteEscalade;
   }
 
@@ -100,12 +97,12 @@ public class Commentaire implements Serializable {
     this.message = message;
   }
 
-  public Date getDateEdition() {
-    return dateEdition;
+  public Date getDateCreation() {
+    return dateCreation;
   }
 
-  public void setDateEdition(Date dateEdition) {
-    this.dateEdition = dateEdition;
+  public void setDateCreation(Date dateCreation) {
+    this.dateCreation = dateCreation;
   }
 }
 

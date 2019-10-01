@@ -13,7 +13,7 @@ public class VoieDto {
   @NotEmpty
   private String nom;
   private String secteur;
-  private String descreption;
+  private String description;
   private String cotation;
   private List<Longeur> longeurs;
 }
