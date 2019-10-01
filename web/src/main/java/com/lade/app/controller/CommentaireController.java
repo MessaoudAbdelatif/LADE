@@ -5,7 +5,6 @@ import com.lade.app.dto.impl.CommentaireDto;
 import entities.Commentaire;
 import javax.validation.Valid;
 import metier.contract.CommentaireMetier;
-import metier.contract.SiteEscaladeMetier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,14 +22,13 @@ public class CommentaireController {
 
   private final CommentaireMetier commentaireMetier;
   private final CommentaireMapper commentaireMapper;
-  private final SiteEscaladeMetier siteEscaladeMetier;
 
 
   public CommentaireController(CommentaireMetier commentaireMetier,
-      CommentaireMapper commentaireMapper, SiteEscaladeMetier siteEscaladeMetier) {
+      CommentaireMapper commentaireMapper) {
     this.commentaireMetier = commentaireMetier;
     this.commentaireMapper = commentaireMapper;
-    this.siteEscaladeMetier = siteEscaladeMetier;
+
   }
   //--------------------- Création d'Un Commentaire -------------------------
 
@@ -57,9 +55,46 @@ public class CommentaireController {
     commentaireDto.setSiteEscalade(siteEscaladeId);
     Commentaire unCommentaire = commentaireMapper.toCommentaire(commentaireDto);
     commentaireMetier.ajouterUnCommentaire(unCommentaire);
-    return "redirect:/viewSiteEscalade?id="+ siteEscaladeId;
+    return "redirect:/viewSiteEscalade?id=" + siteEscaladeId;
   }
 
   //___________________________________________________________________________
+
+  /*//--------------------- Mise à jour d'un commentaire ---------------//*/
+
+  @GetMapping("/updateUnCommentaire/{id}")
+  public String updateUnCommentaire(Model model, @PathVariable("id") Long id) {
+    Commentaire commentaireSelected = commentaireMetier.findCommentaireById(id);
+    CommentaireDto commentaireDtoSelected = commentaireMapper
+        .toCommentaireDto(commentaireSelected);
+    model.addAttribute("commentaireDtoSelected", commentaireDtoSelected);
+    model.addAttribute("idSiteEscalade", commentaireSelected.getSiteEscalade().getId());
+    return "views/modifierCommentaire";
+  }
+
+  @PostMapping("/saveUpdateUnCommentaire/{id}")
+  public String saveUpdateUnCommentaire(Model model, @PathVariable(name = "id") Long id,
+      @Valid @ModelAttribute("commentaireDtoSelected") CommentaireDto commentaireDto,
+      BindingResult updateCommentaireErrors) {
+    if (updateCommentaireErrors.hasErrors()) {
+      return " views/modifierCommentaire";
+    }
+    Commentaire unCommentaire = commentaireMapper.toCommentaire(commentaireDto);
+    commentaireMetier.updateUnCommentaire(unCommentaire);
+    return "redirect:/viewSiteEscalade?id=" + unCommentaire.getSiteEscalade().getId();
+  }
+  /*//___________________________________________________________________________//*/
+
+  /*//--------------------- Suppression d'un commentaire ---------------//*/
+  @PostMapping("/deleteUnCommentaire/{id}")
+  public String deleteUnCommentaire(@PathVariable(name = "id") Long id) {
+    Commentaire unCommentaire=commentaireMetier.findCommentaireById(id);
+    commentaireMetier.deleteCommentaire(id);
+    return "redirect:/viewSiteEscalade?id="+unCommentaire.getSiteEscalade().getId();
+  }
+  /*
+  //___________________________________________________________________________//
+  */
+
 
 }

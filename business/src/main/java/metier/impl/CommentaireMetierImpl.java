@@ -28,6 +28,11 @@ public class CommentaireMetierImpl implements CommentaireMetier {
   }
 
   @Override
+  public Commentaire findCommentaireById(Long id) {
+    return commentaireDao.getOne(id);
+  }
+
+  @Override
   public void updateUnCommentaire(Commentaire commentaire) {
     commentaireDao.save(commentaire);
   }

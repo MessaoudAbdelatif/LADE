@@ -9,4 +9,7 @@ public interface CommentaireMetier {
   void updateUnCommentaire(Commentaire commentaire);
 
   void deleteCommentaire(Long commentaireId);
+
+  Commentaire findCommentaireById(Long id);
+
 }

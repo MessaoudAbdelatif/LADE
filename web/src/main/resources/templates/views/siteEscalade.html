@@ -22,7 +22,7 @@
                    placeholder="Saisir mot clé.." aria-label="sei" aria-describedby="button-addon2"
                    id="nomSiteEscaladeInsere" autofocus="autofocus">
             <div class="input-group-append">
-              <button class="btn btn-primary" type="submit" id="button-addon2">Rechercher</button>
+              <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> Rechercher</button>
             </div>
           </div>
 
@@ -51,14 +51,14 @@
           <th th:text="${s.nom}"></th>
           <th th:text="${s.lieu}"></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/viewSiteEscalade(id=${s.id})}">Consulter</a></th>
+                                     th:href="@{/viewSiteEscalade(id=${s.id})}"><i class="fas fa-check"></i>Consulter</a></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/edit/{id}(id=${s.id})}">Editer</a></th>
+                                     th:href="@{/edit/{id}(id=${s.id})}"><i class="fas fa-edit"></i>Editer</a></th>
         </tr>
       </table>
 
 <div class="p-3 align-content-center">
-  <a class="btn btn-primary" th:href="@{/creationSiteEscalade}">+ Ajouter un site d'escalade</a>
+  <a class="btn btn-primary" th:href="@{/creationSiteEscalade}"><i class="fas fa-plus"></i> Ajouter un site d'escalade</a>
 </div>
     </div>
     <div class="container" th:if="${nbrPagesTotal>1}">
