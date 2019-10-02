@@ -88,17 +88,18 @@ public class CommentaireController {
 
   /*//--------------------- Suppression d'un commentaire ---------------//*/
   @PostMapping("/deleteUnCommentaire/{id}")
-  public String deleteUnCommentaire(Model model,@PathVariable(name = "id") Long id) {
-    Commentaire unCommentaire=commentaireMetier.findCommentaireById(id);
+  public String deleteUnCommentaire(Model model, @PathVariable(name = "id") Long id) {
+    Commentaire unCommentaire = commentaireMetier.findCommentaireById(id);
     commentaireMetier.deleteCommentaire(id);
-    return "redirect:/viewSiteEscalade?id="+unCommentaire.getSiteEscalade().getId();
+    return "redirect:/viewSiteEscalade?id=" + unCommentaire.getSiteEscalade().getId();
   }
+
   /*
   //___________________________________________________________________________//
   */
   /*//--------------------- Consulter d'un commentaire ---------------//*/
   @GetMapping("/consulterUnCommentaire/{id}")
-  public String consulterUnCommentaire(Model model, @PathVariable(name = "id") Long id){
+  public String consulterUnCommentaire(Model model, @PathVariable(name = "id") Long id) {
     Commentaire commentaireSelected = commentaireMetier.findCommentaireById(id);
     CommentaireDto commentaireDtoSelected = commentaireMapper
         .toCommentaireDto(commentaireSelected);

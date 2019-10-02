@@ -101,7 +101,7 @@ public class ToposController {
 
   /*//--------------------- Consulter All Topos ---------------//*/
   @GetMapping("/topos")
-  public String consulterAllTopos(Model model){
+  public String consulterAllTopos(Model model) {
     List<Topos> topos = toposMetier.consulterAllTopos();
     model.addAttribute("toposList", topos);
     return "views/topos";
