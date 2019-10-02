@@ -103,7 +103,6 @@ public class DemandeLocationController {
 
   /*//--------------------- Accepter Une Demande de Location ---------------//*/
 
-
   @PostMapping("/accepterDemandeLocation/{id}")
   public String accepterDemandeLocation(@PathVariable(name = "id") Long id)
       throws ToposIntrouvableException {

@@ -23,7 +23,7 @@ public class SiteEscalade implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotEmpty
+
   @Column(name = "Nom")
   private String nom;
 
@@ -31,7 +31,7 @@ public class SiteEscalade implements Serializable {
   private Integer nbrSecteur;
 
   @Column(name = "Lieu")
-  @NotEmpty
+
   private String lieu;
 
   @Column(name = "Ville_Proximite")

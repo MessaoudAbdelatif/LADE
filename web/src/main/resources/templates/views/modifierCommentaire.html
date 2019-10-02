@@ -19,11 +19,8 @@
           <input class="form-control" type="text" id="titre" name="titre" th:field="*{titre}">
           <span th:errors="*{titre}" class="text-danger"></span>
         </div>
-        <div class="form-group"><label for="titre">Message :</label><textarea class="form-control"
-                                                                            type="text"
-                                                                            id="inputMessage"
-                                                                            name="titre"
-                                                                            th:field="*{message}"></textarea>
+        <div class="form-group"><label for="titre">Message :</label>
+          <textarea class="form-control"  type="text" id="inputMessage"  name="titre" th:field="*{message}"></textarea>
           <span th:errors="*{message}" class="text-danger"></span>
         </div>
         <button class="btn btn-primary align-content-end mt-3" type="submit">Enregistrer</button>

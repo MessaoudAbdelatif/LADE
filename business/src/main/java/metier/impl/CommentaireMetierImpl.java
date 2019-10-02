@@ -33,10 +33,9 @@ public class CommentaireMetierImpl implements CommentaireMetier {
   }
 
   @Override
-  public void updateUnCommentaire(Commentaire commentaire) {
-    commentaireDao.save(commentaire);
+  public void updateUnCommentaire(String titre,String message,Long id) {
+    commentaireDao.updateCommentaire(id,titre,message);
   }
-
 
   @Override
   public void deleteCommentaire(Long commentaireId) {

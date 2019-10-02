@@ -6,7 +6,7 @@ public interface CommentaireMetier {
 
   Commentaire ajouterUnCommentaire(Commentaire commentaire);
 
-  void updateUnCommentaire(Commentaire commentaire);
+  void updateUnCommentaire(String titre,String message,Long id);
 
   void deleteCommentaire(Long commentaireId);
 

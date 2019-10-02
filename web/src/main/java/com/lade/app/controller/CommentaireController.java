@@ -73,16 +73,11 @@ public class CommentaireController {
   }
 
   @PostMapping("/saveUpdateUnCommentaire/{id}")
-  public String saveUpdateUnCommentaire(Model model, @PathVariable(name = "id") Long id,
-      @Valid @ModelAttribute("commentaireDtoSelected") CommentaireDto commentaireDto,
-      BindingResult updateCommentaireErrors) {
-    if (updateCommentaireErrors.hasErrors()) {
-      return " views/modifierCommentaire";
-    }
-
-    Commentaire unCommentaire = commentaireMapper.toCommentaire(commentaireDto);
-    commentaireMetier.updateUnCommentaire(unCommentaire);
-    return "redirect:/viewSiteEscalade?id=" + unCommentaire.getSiteEscalade().getId();
+  public String saveUpdateUnCommentaire(Model model, @PathVariable(name = "id") Long id,@ModelAttribute("commentaireDtoSelected")CommentaireDto commentaireDtoSelected) {
+    Commentaire unCommentaire = commentaireMapper.toCommentaire(commentaireDtoSelected);
+    commentaireMetier.updateUnCommentaire(unCommentaire.getTitre(),unCommentaire.getMessage(),unCommentaire.getId());
+    Commentaire commentaireUsedforIdExtract = commentaireMetier.findCommentaireById(id);
+    return "redirect:/viewSiteEscalade?id=" + commentaireUsedforIdExtract.getSiteEscalade().getId();
   }
   /*//___________________________________________________________________________//*/
 
