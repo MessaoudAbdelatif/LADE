@@ -1,8 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Commentaire - Les Amis de l'escalade</title>
-</head>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout">
 
+<div layout:fragment="content1">
+  <div class="container mt-5 ml-md-5 col-md-6">
+    <div class="shadow card bg-light">
+      <div class="card-header h4  text-center text-primary"
+           th:text="${commentaireDtoSelected.titre.toUpperCase()}">
+      </div>
+      <div class="card-body">
+        <label>Message :</label>
+        <div class="text-center" th:text="${commentaireDtoSelected.message}">
+        </div>
+        <div class="btn btn-danger p-2" sec:authorize="hasRole('ROLE_ADMIN')">
+          <a class="text-dark" th:href="@{/user/updateUnCommentaire/{id}(id=${commentaireDtoSelected.id})}">Modifier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </html>

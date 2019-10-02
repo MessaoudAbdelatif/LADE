@@ -77,6 +77,7 @@
             <th scope="col">Pseudo</th>
             <th scope="col">Titre</th>
             <th scope="col">Message</th>
+            <th scope="col"><i class="fas fa-folder"></i></th>
           </tr>
           </thead>
           <tbody>
@@ -84,6 +85,7 @@
             <th scope="row" th:text="${commentaire.utilisateurConnecte.username}"></th>
             <td th:text="${commentaire.titre}"></td>
             <td th:text="${commentaire.message}"></td>
+            <td class="btn btn-sm"><a th:href="@{/user/consulterUnCommentaire/{id}(id=${commentaire.id})}"><i class="fas fa-folder"></i></a></td>
           </tr>
         </table>
       </div>
