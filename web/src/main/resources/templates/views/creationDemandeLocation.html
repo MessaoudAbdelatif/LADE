@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html
+<html lang="fr"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="layout">
@@ -10,8 +10,8 @@
     <section class="container dark ml-sm-5 col-md-6 p-2">
       <div class="card shadow bg-light text-dark">
         <div class="card-header text-center">
-          <h2 class="h2">Faire une demande de location de Topo</h2>
-          <small th:text="${#httpServletRequest.userPrincipal.name}"></small><small> sauvegarder votre expérience</small>
+          <h2 class="h2">Faire une demande de location</h2>
+          <small th:text="${#httpServletRequest.userPrincipal.name}"></small><small> veuillez renseigner ce formulaire</small>
         </div>
         <form class="p-2" method="post" th:action="@{/user/saveDemandeLocation/{topos_id}(topos_id=${toposSelected.getId()})}"
               th:object="${newDemandeLocation}">
