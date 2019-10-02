@@ -21,7 +21,7 @@
           <th class="text-center" th:text="${toposSelected.lien}"></th>
         </tr>
         <tr>
-          <th>description</th>
+          <th>Description</th>
           <th class="text-center" th:text="${toposSelected.description}"></th>
         </tr>
         <tr th:if="${toposSelected.disponibleEnLocation}">
@@ -35,8 +35,8 @@
       </table>
 
       <!--
-Button Demnade de location
--->
+      Button Demnade de location
+        -->
 
       <button class="btn btn-primary p-2"
               th:if="${#authentication.name != toposSelected.utilisateurConnecte}">
@@ -45,9 +45,9 @@ Button Demnade de location
           de location</a>
       </button>
 
-      <!--
-    Button Demnade de location
-    -->
+        <!--
+      Button Demnade de location
+      -->
 
 
       <div class="btn-group btn">

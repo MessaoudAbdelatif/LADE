@@ -52,10 +52,9 @@ public class ToposController {
     toposDto.setUtilisateurConnecte(currentPrincipalName);
 
     toposDto.setDisponibleEnLocation(false);
-
     Topos topos1 = toposMapper.toTopos(toposDto);
     toposMetier.ajouterUnTopos(topos1);
-    return "redirect:/user/viewTopos?id=" + topos1.getId();
+    return "redirect:/user/viewTopos/" + topos1.getId();
   }
 
   //___________________________________________________________________________
