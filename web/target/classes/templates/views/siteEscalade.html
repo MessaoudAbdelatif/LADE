@@ -2,6 +2,8 @@
 <html lang="fr"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
       layout:decorate="layout">
 
 <head>
@@ -15,26 +17,30 @@
 
       <div class="card-header h4 text-dark text-center">Nos Sites D'escalades</div>
       <div class=" p-3">
-        <form  th:action="@{/siteEscalade}" method="get">
+        <form th:action="@{/siteEscalade}" method="get">
           <label>Un site d'escalade en particulier ?</label>
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="nomSiteEscaladeInsere" th:value="${sei}"
                    placeholder="Saisir mot clé.." aria-label="sei" aria-describedby="button-addon2"
                    id="nomSiteEscaladeInsere" autofocus="autofocus">
             <div class="input-group-append">
-              <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-search"></i> Rechercher</button>
+              <button class="btn btn-primary" type="submit" id="button-addon2"><i
+                  class="fas fa-search"></i> Rechercher
+              </button>
             </div>
           </div>
 
           <div class="form-check form-check-inline">
             <input class="form-check-input" id="NOM" type="radio" name="typeRecherche" value="NOM"
-                   checked="checked"><label class="form-check-label"  for="NOM">Nom</label></div>
+                   checked="checked"><label class="form-check-label" for="NOM">Nom</label></div>
           <div class="form-check form-check-inline">
-            <input  class="form-check-input" id="LIEU" type="radio" name="typeRecherche" value="LIEU"
-            ><label class="form-check-label"  for="LIEU">Lieu</label>
-          </div> <div class="form-check form-check-inline">
-            <input class="form-check-input" id="VILLEPROX" type="radio" name="typeRecherche" value="VILLEPROX"
-            ><label class="form-check-label"  for="VILLEPROX">Ville à Proximité</label></div>
+            <input class="form-check-input" id="LIEU" type="radio" name="typeRecherche" value="LIEU"
+            ><label class="form-check-label" for="LIEU">Lieu</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="VILLEPROX" type="radio" name="typeRecherche"
+                   value="VILLEPROX"
+            ><label class="form-check-label" for="VILLEPROX">Ville à Proximité</label></div>
         </form>
       </div>
       <div class="text-danger p-3" th:if="${siteEscalade.isEmpty()}">Aucun Site D'escalade Trouvé
@@ -51,43 +57,48 @@
           <th th:text="${s.nom}"></th>
           <th th:text="${s.lieu}"></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/viewSiteEscalade(id=${s.id})}"><i class="fas fa-check"></i>Consulter</a></th>
+                                     th:href="@{/viewSiteEscalade(id=${s.id})}"><i
+              class="fas fa-check"></i>Consulter</a></th>
           <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/edit/{id}(id=${s.id})}"><i class="fas fa-edit"></i>Editer</a></th>
+                                     th:href="@{/edit/{id}(id=${s.id})}"><i class="fas fa-edit"></i>Editer</a>
+          </th>
         </tr>
       </table>
 
-<div class="p-3 align-content-center">
-  <a class="btn btn-primary" th:href="@{/creationSiteEscalade}"><i class="fas fa-plus"></i> Ajouter un site d'escalade</a>
-</div>
-    </div>
-    <div class="container" th:if="${nbrPagesTotal>1}">
-      <ul class="pagination justify-content-center ">
-        <li class="page-item">
-          <a class="page-link "
-             th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
-             aria-label="Previous" th:if="${currentPage>0}">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
+      <div sec:authorize="hasRole('ROLE_USER')">
+        <div class="p-3 align-content-center">
+          <a class="btn btn-primary" th:href="@{/creationSiteEscalade}"><i class="fas fa-plus"></i>
+            Ajouter un site d'escalade</a>
+        </div>
+      </div>
 
-        <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
-            th:each="numPages,status:${pages}">
-          <a class="page-link "
-             th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
-             th:text="${status.index}"></a>
-        </li>
-        <li class="page-item">
-          <a class="page-link"
-             th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
-             aria-label="Next" th:if="${siteEscalade.size()>4}">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
+      <div class="container" th:if="${nbrPagesTotal>1}">
+        <ul class="pagination justify-content-center ">
+          <li class="page-item">
+            <a class="page-link "
+               th:href="@{/siteEscalade(numPages=(${currentPage}-1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
+               aria-label="Previous" th:if="${currentPage>0}">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          <li class="page-item" th:classappend="${currentPage==status.index}?'active':''"
+              th:each="numPages,status:${pages}">
+            <a class="page-link "
+               th:href="@{/siteEscalade(numPages=${status.index},nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
+               th:text="${status.index}"></a>
+          </li>
+          <li class="page-item">
+            <a class="page-link"
+               th:href="@{/siteEscalade(numPages=(${currentPage}+1),nomSiteEscaladeInsere=${sei},typeRecherche=${currentTypeRecherche})}"
+               aria-label="Next" th:if="${siteEscalade.size()>4}">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 </body>
 
 </html>

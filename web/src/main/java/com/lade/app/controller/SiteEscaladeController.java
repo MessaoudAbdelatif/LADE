@@ -126,6 +126,7 @@ public class SiteEscaladeController {
     if (newSiteEscaladeErrors.hasErrors()) {
       return VIEWS_CREATION_SITE_ESCALADE;
     }
+    siteEscaladeDto.setTag(false);
     SiteEscalade siteEscalade1 = siteEscaladeMapper.toSiteEscalade(siteEscaladeDto);
     siteEscaladeMetier.ajouterUnSiteEscalade(siteEscalade1);
 
