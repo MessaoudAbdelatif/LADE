@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Nos Topos - Les Amis De L'escalade</title>
+</head>
+<body>
+<div layout:fragment="content1">
+
+  <div class="container mt-5 ml-md-5 col-md-6">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-primary text-center">
+        <div>NOS TOPOS</div>
+      </div>
+      <div class="p-2 card-body list-group">
+        <div th:each="topo : ${toposList}">
+          <a th:href="@{/user/viewTopos/{id}(id=${topo.id})}">
+
+            <div class="btn btn-light list-group">
+
+              <div class="list-group-item" th:text="${topo.nom.toUpperCase()}"></div>
+              <label class="list-group-item"
+                     th:class="${topo.disponibleEnLocation ? 'badge badge-success badge-pill' : 'badge badge-danger badge-pill'}">◇️</label>
+            </div>
+          </a>
+        </div>
+      </div>
+      <a class="btn btn-primary " th:href="@{/user/creationTopos}"><em class="fas fa-plus"></em> Ajouter un Topos</a>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
+<div layout:fragment="content1">
+
+  <main class="page registration-page">
+    <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
+      <div class="container  card shadow  bg-light  text-dark p-3 ">
+        <div class="card-header">
+          <h2 class="h2 text-center">Ajouter un secteur au site :</h2>
+          <h2 class="h2 text-center" th:text="${SiteEscaladeParent.nom}"></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
+            auctor in, mattis vitae leo.</p>
+        </div>
+
+
+        <form class="p-2" method="post" name="secteurForm"
+              th:action="@{/ajouterSecteur/{siteEscalade}(siteEscalade=${SiteEscaladeParent.getId()})}"
+              th:object="${newSecteur}" >
+          <input type="hidden" th:field="*{id}"/>
+          <div  >
+            <label for="nom">Nom secteur</label>
+            <input th:class="${#fields.hasErrors('nom')} ? 'form-control is-invalid' : 'form-control'" type="text" id="nom" name="nom" th:field="*{nom}"
+                   th:errorclass="has-error" required/>
+            <span th:if="${#fields.hasErrors('nom')}" class="form-text"></span>
+            <ul class="text-danger">
+              <li  th:each="errNom : ${#fields.errors('nom')}" th:text="${errNom}"></li>
+            </ul>
+          </div>
+          <div class="form-group"><label for="description">Description</label><input
+              class="form-control item" type="text" name="description" id="description"
+              th:field="*{description}"/><span th:errors="*{description}"
+                                               class="text-danger"></span>
+          </div>
+          <button class="btn btn-primary " type="submit">Enregistrer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!--
+  ############### Validation FRONT-END Script  #############*START*###########
+  -->
+  <script type="text/javascript" src="../../js/validationForm/secteurForm.js"></script>
+  <!--
+  ############### Validation FRONT-END Script  #############*END*#############
+-->
+</div>
+
+</html>

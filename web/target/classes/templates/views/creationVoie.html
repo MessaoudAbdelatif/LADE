@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<div layout:fragment="content1">
+
+  <main class="page registration-page">
+    <section class="clean-form dark  mt-5 ml-md-5 col-md-6">
+      <div class="container  card shadow  bg-light  text-dark p-3 ">
+        <div class="card-header">
+          <h2 class="h2 text-center">Ajouter une Voie au Secteur :</h2>
+          <h2 class="h2 text-center" th:text="${SecteurParent.nom}"></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec
+            auctor in, mattis vitae leo.</p>
+        </div>
+        <form class="p-2" method="post" th:action="@{/ajouterVoie/{secteurID}(secteurID=${SecteurParent.getId()})}" th:object="${newVoie}" name="voieForm" onsubmit="return validateform()">
+          <input type="hidden" th:field="*{id}"/>
+          <div class="form-group"><label for="nom">Nom Voie</label>
+            <input class="form-control item" type="text" id="nom" name="nom" th:field="*{nom}" required>
+            <span th:errors="*{nom}" class="text-danger"></span>
+          </div>
+
+          <div class="input-group ">
+            <label th:for="cotation">Cotation
+              <select id="cotation" th:field="*{cotation}">
+                <option value=""> -- </option>
+                <option th:each="CotationSelection : ${cotationList}"
+                        th:text="${CotationSelection}"
+                        th:value="${CotationSelection}">
+                </option>
+              </select>
+            </label>
+          </div>
+
+
+          <div class="form-group"><label for="description">Description</label><input
+              class="form-control item" type="text" name="description" id="description"
+              th:field="*{description}"><span th:errors="*{description}" class="text-danger"></span>
+          </div>
+          <button class="btn btn-primary " type="submit">Enregistrer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!--
+############### Validation FRONT-END Script  #############*START*###########
+-->
+  <script type="text/javascript" src="../../js/validationForm/voieForm.js"></script>
+  <!--
+  ############### Validation FRONT-END Script  #############*END*#############
+-->
+</div>
+
+
+</html>

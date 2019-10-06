@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<div layout:fragment="content1">
+  <div class="text-danger" th:if="${exception}" th:text="${exception.getMessage()}"></div>
+  <div class="container mt-5 ml-md-5 col-md-6" th:if="${demandeLocationDtoSelected}">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-dark text-center"
+           th:text="('Demande de location conçernant le topos: ')+${unTopos.getNom().toUpperCase()}">
+      </div>
+
+      <div class="p-2">
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Demande emise par</th>
+            <th class="text-center"
+                th:text="${demandeLocationDtoSelected.utilisateurConnecte}"></th>
+          </tr>
+          <tr>
+            <th>Date de début</th>
+            <th class="text-center" th:text="${demandeLocationDtoSelected.dateDebut}"></th>
+          </tr>
+          <tr>
+            <th>Date de fin</th>
+            <th class="text-center" th:text="${demandeLocationDtoSelected.dateFin}"></th>
+          </tr>
+          <tr th:if="${demandeLocationDtoSelected.proprioValidation == true}">
+            <th>Réponse du proprietaire</th>
+            <th class="text-center text-success" th:text="Approuvé"></th>
+          </tr>
+          <tr th:if="${demandeLocationDtoSelected.proprioValidation == true}">
+            <th>Email du proprietaire</th>
+            <th class="text-center text-info"
+                th:text="${unUtilisateurConnecte.getEmail()}"></th>
+          </tr>
+          <tr th:if="${demandeLocationDtoSelected.proprioValidation == false}">
+            <th>Réponse du proprietaire</th>
+            <th class="text-center text-danger" th:text="Refusé"></th>
+          </tr>
+        </table>
+        <div class="btn btn-group">
+          <div
+              th:if="${#authentication.name==unTopos.utilisateurConnecte and demandeLocationDtoSelected.proprioValidation != true}">
+            <form autocomplete="off"
+                  th:action="@{'/user/accepterDemandeLocation/' + ${demandeLocationDtoSelected.getId()}}"
+                  method="post">
+              <button type="submit" class="btn btn-success">
+                Accepter
+                <a id="Accepter"
+                   onclick="return confirm('êtes-vous sûr de vouloir accepter la demande de location ?')">
+                  <i class="fas fa-check-circle"></i>
+                </a>
+              </button>
+            </form>
+          </div>
+          <div class="ml-2"
+               th:if="${#authentication.name==unTopos.utilisateurConnecte and demandeLocationDtoSelected.proprioValidation != false}">
+            <form autocomplete="off"
+                  th:action="@{'/user/refuserDemandeLocation/' + ${demandeLocationDtoSelected.getId()}}"
+                  method="post">
+              <button type="submit" class="btn btn-danger" data-toggle="tooltip"
+                      data-placement="top"
+                      title="Refuser">
+                Refuser
+                <a id="Refuser"
+                   onclick="return confirm('êtes-vous sûr de vouloir refuser la demande de location ?')">
+                  <i class="fas fa-ban"></i>
+                </a>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</html>

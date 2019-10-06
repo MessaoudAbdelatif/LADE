@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout">
+
+<div layout:fragment="content1">
+  <div class="container mt-5 ml-md-5 col-md-6" sec:authorize="hasRole('ROLE_ADMIN')">
+    <div class="shadow card bg-light">
+      <div class="card-header h4 text-primary text-center">
+        <h2 class="h2">Modifier Un Commentaire</h2>
+      </div>
+      <form class="form-group p-2" method="post"
+            th:action="@{/user/saveUpdateUnCommentaire/{id}(id=${commentaireDtoSelected.id})}"
+            th:object="${commentaireDtoSelected}">
+        <div class="form-group">
+          <label >Titre :</label>
+          <input class="form-control" type="text" id="titre" name="titre" th:field="*{titre}">
+          <span th:errors="*{titre}" class="text-danger"></span>
+        </div>
+        <div class="form-group"><label for="titre">Message :</label>
+          <textarea class="form-control"  type="text" id="inputMessage"  name="titre" th:field="*{message}"></textarea>
+          <span th:errors="*{message}" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary align-content-end mt-3" type="submit">Enregistrer</button>
+      </form>
+
+      <form class="form-group p-2" method="post"
+            th:action="@{/user/deleteUnCommentaire/{id}(id=${commentaireDtoSelected.id})}">
+        <button class="btn btn-danger align-content-end mt-3" type="submit">Supprimer</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+</html>

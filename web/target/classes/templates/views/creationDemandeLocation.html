@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
+<div layout:fragment="content1">
+
+  <main>
+    <section class="container dark ml-sm-5 col-md-6 p-2">
+      <div class="card shadow bg-light text-dark">
+        <div class="card-header text-center">
+          <h2 class="h2">Faire une demande de location</h2>
+          <small th:text="${#httpServletRequest.userPrincipal.name}"></small><small> veuillez renseigner ce formulaire</small>
+        </div>
+        <form class="p-2" method="post" th:action="@{/user/saveDemandeLocation/{topos_id}(topos_id=${toposSelected.getId()})}"
+              th:object="${newDemandeLocation}">
+          <div class="form-group"><label for="dateDebut">Date de début</label>
+            <input class="form-control" type="date" id="dateDebut" th:field="*{dateDebut}" required/>
+            <span th:errors="*{dateDebut}" class="text-danger"></span>
+          </div>
+          <div class="form-group"><label for="dateFin">Date de fin</label><input
+              class="form-control " type="date" id="dateFin" th:field="*{dateFin}" required/>
+            <span th:errors="*{dateFin}" class="text-danger"></span>
+          </div>
+          <label for="exampleFormControlTextarea6">Ecrire un message pour encourager le
+            prêteur</label>
+          <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="9"
+                    placeholder="Votre message ici..." th:field="*{message}"></textarea>
+
+          <div class="p-2">
+            <button class="btn btn-primary" type="submit">Envoyé la demande de location →</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+</html>

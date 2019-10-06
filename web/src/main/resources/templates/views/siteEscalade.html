@@ -51,7 +51,7 @@
           <th>NOM</th>
           <th>LIEU</th>
           <th></th>
-          <th></th>
+          <th sec:authorize="hasRole('ROLE_USER')"></th>
         </tr>
         <tr th:each="s:${siteEscalade}">
           <th th:text="${s.nom}"></th>
@@ -59,8 +59,9 @@
           <th class="text-center"><a class="btn btn-primary"
                                      th:href="@{/viewSiteEscalade(id=${s.id})}"><i
               class="fas fa-check"></i>Consulter</a></th>
-          <th class="text-center"><a class="btn btn-primary"
-                                     th:href="@{/edit/{id}(id=${s.id})}"><i class="fas fa-edit"></i>Editer</a>
+          <th class="text-center" sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-primary"
+                                                                          th:href="@{/edit/{id}(id=${s.id})}"><i
+              class="fas fa-edit"></i>Editer</a>
           </th>
         </tr>
       </table>
@@ -99,6 +100,7 @@
       </div>
     </div>
   </div>
+</div>
 </body>
 
 </html>

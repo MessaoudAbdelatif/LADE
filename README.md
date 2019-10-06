@@ -14,7 +14,7 @@ Ce site vous permettrait de consulter les sites d'escalades répertorier par la 
     MDP = 12345ABCDE
     
 3 - Alimenter la base de donnée avec le fichier SQL:
-    app/db/db_lade.backup
+    app/db/db_lade_backup.sql
     
 4 - Executer : app/web/target/web-0.0.1-SNAPSHOT.jar
     
